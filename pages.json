@@ -1,0 +1,118 @@
+{
+	"pages": [{
+			"path": "pages/login/signin",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/rectification/rectification",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/homePage/home",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		}, {
+			"path": "pages/homePage/homeSecond/homeList",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/mine/mine",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/investigation/investigation",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/prospect/prospect",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/homePage/homeSecond/caseAdmin",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/prospect/prospectEdit",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/investigation/investigationEdit",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/index/index",
+			"style": {
+				"navigationBarTitleText": "uni-app"
+			}
+		}
+	],
+	"globalStyle": {
+		"navigationBarTextStyle": "black",
+		"navigationBarTitleText": "uni-app",
+		"navigationBarBackgroundColor": "#F8F8F8",
+		"backgroundColor": "#F8F8F8",
+		"app-plus": {
+			"background": "#efeff4"
+		}
+	},
+	"tabBar": {
+		"color": "#505050",
+		"selectedColor": "#118ee9",
+		"borderStyle": "black",
+		"backgroundColor": "#F2F2F2",
+		"list": [{
+				"pagePath": "pages/homePage/home",
+				"iconPath": "./static/img/tabber/01.svg",
+				"selectedIconPath": "./static/img/tabber/001.svg",
+				"text": "我的案件"
+			},
+
+
+			{
+				"pagePath": "pages/prospect/prospect",
+				"iconPath": "./static/img/tabber/02.svg",
+				"selectedIconPath": "./static/img/tabber/002.svg",
+				"text": "现场踏勘"
+			},
+			{
+				"pagePath": "pages/investigation/investigation",
+				"iconPath": "./static/img/tabber/03.svg",
+				"selectedIconPath": "./static/img/tabber/003.svg",
+				"text": "现场调查"
+			},
+			{
+				"pagePath": "pages/mine/mine",
+				"iconPath": "./static/img/tabber/04.svg",
+				"selectedIconPath": "./static/img/tabber/04.svg",
+				"text": "个人中心"
+			}
+
+
+		]
+	}
+}

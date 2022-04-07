@@ -1,0 +1,16 @@
+{
+    "id": "qiao-drawingBoard",
+    "name": "画板",
+    "version": "1.0.0",
+    "description": "画板",
+    "keywords": [
+        "画板",
+        "签名"
+    ],
+    "dcloudext": {
+        "category": [
+            "前端组件",
+            "通用组件"
+        ]
+    }
+}
