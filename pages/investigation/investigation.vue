@@ -154,7 +154,9 @@
 							// getlist[i].boxnumleft = 
 							// getlist.push(res[0].left + res[0].width - uni.upx2px(this.bothLeft))
 							console.log("this.this", res[0])
-							that.tabList[c - 1].boxnumleft = res[0].width+uni.upx2px(33)
+							let allleft = uni.upx2px(33, this.$store.state.phoneInfo.playerWidth)
+
+							that.tabList[c - 1].boxnumleft = res[0].width + allleft
 							// console.log("getlist",i)
 							console.log("this.this.tabList[i]", that.tabList)
 						} else {
@@ -178,10 +180,13 @@
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth
 						let secondwidth = firstwidth / 2
-						this.boxLeft = res[0].left - uni.upx2px(this.bothLeft) + secondwidth
+
+						let allleft = uni.upx2px(this.bothLeft, this.$store.state.phoneInfo.playerWidth)
+
+						this.boxLeft = res[0].left - allleft + secondwidth
 						if (!this.boxnumleft) {
 
-							this.boxnumleft = res[0].left + res[0].width - uni.upx2px(this.bothLeft)
+							this.boxnumleft = res[0].left + res[0].width - allleft
 							console.log("this.boxnumleft", this.boxnumleft)
 						}
 

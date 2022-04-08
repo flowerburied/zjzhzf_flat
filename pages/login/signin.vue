@@ -92,6 +92,7 @@
 				this.isAgreement = !this.isAgreement
 			},
 			submit() {
+				this.$store.dispatch("getPhoneInfo")
 				console.log('表单数据信息：');
 				// this.$refs.form.validate().then(res => {
 				// 	console.log('表单数据信息：', res);

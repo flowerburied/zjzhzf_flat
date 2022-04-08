@@ -44,13 +44,16 @@ const store = new Vuex.Store({
 		}, step) {
 			uni.getSystemInfo({
 				success: (res) => {
+					let allheight = uni.upx2px(44, res.windowWidth)
+					// let allheight = 50
+					console.log("uni.upx2px(44)", allheight)
 					let option = {
 						playerWidth: res.windowWidth,
 						playerHeight: res.windowHeight,
 						statusBarHeight: res.statusBarHeight,
-						BarHeight: uni.upx2px(44) + res.statusBarHeight,
-						BarHeightDown: uni.upx2px(44),
-						publicCon: res.windowHeight - uni.upx2px(44) - res.statusBarHeight,
+						BarHeight: allheight + res.statusBarHeight,
+						BarHeightDown: allheight,
+						publicCon: res.windowHeight - allheight - res.statusBarHeight,
 						securityTop: res.safeArea.top,
 						// publicSecCon: res.windowHeight - uni.upx2px(248) - res.statusBarHeight,
 						// publicSecTop: uni.upx2px(248) + res.statusBarHeight,

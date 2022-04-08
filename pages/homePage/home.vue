@@ -70,7 +70,7 @@
 						name: "已办结",
 						num: 6
 					},
-				
+
 				],
 				scrollInto: "",
 				tabIndex: 0,
@@ -133,10 +133,13 @@
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth
 						let secondwidth = firstwidth / 2
-						this.boxLeft = res[0].left - uni.upx2px(this.bothLeft) + secondwidth
+
+						let allleft = uni.upx2px(this.bothLeft, this.$store.state.phoneInfo.playerWidth)
+
+						this.boxLeft = res[0].left - allleft + secondwidth
 						if (!this.boxnumleft) {
 
-							this.boxnumleft = res[0].left + res[0].width - uni.upx2px(this.bothLeft)
+							this.boxnumleft = res[0].left + res[0].width - allleft
 						}
 
 						// console.log("this.boxwidth", this.boxwidth)
