@@ -115,6 +115,9 @@
 
 			async login() {
 				try {
+					uni.showLoading({
+						title: '加载中'
+					});
 					let option = {
 						username: this.formData.username,
 						password: this.formData.password,
@@ -149,13 +152,18 @@
 							duration: 2000
 						});
 					}
+						uni.hideLoading();
 				} catch (e) {
+						uni.hideLoading();
 					console.log('try:e:', e)
 				}
 			},
 
 			async handleChangeCheckCode() {
 				try {
+					uni.showLoading({
+						title: '加载中'
+					});
 					this.currdatetime = new Date().getTime();
 					const res = await this.api.user.randomImage(this.currdatetime)
 					console.log("appLogin", res)
@@ -169,7 +177,9 @@
 						this.randCodeImage = result
 						// console.log("this.randCodeImage", this.randCodeImage)
 					}
+						uni.hideLoading();
 				} catch (e) {
+						uni.hideLoading();
 					console.log('try:e:', e)
 				}
 

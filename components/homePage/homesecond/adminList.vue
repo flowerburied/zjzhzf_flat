@@ -1,35 +1,75 @@
 <template>
 	<view class="home_second_view">
-
-
-
-
 		<view class="second_view_box">
 			<myCol>
 				<myRow background="#f0f0f0" widthPercentage='2'>
 					<text class="public_text">事项序列</text>
 				</myRow>
 				<myRow widthPercentage='3'>
-					<text class="public_text">事项序列</text>
+					<text class="public_text">{{model.itemNo?model.itemNo:''}}</text>
 				</myRow>
 				<myRow background="#f0f0f0" widthPercentage='2'>
-					<text class="public_text">事项序列</text>
+					<text class="public_text">事项类型</text>
 				</myRow>
 				<myRow widthPercentage='3'>
-					<text class="public_text">事项序列</text>
+					<text class="public_text">{{model.itemType}}</text>
 				</myRow>
 			</myCol>
 			<myCol>
 				<myRow background="#f0f0f0" widthPercentage='2'>
-					<text class="public_text">事项序列</text>
+					<text class="public_text">当事人类型</text>
+				</myRow>
+				<myRow widthPercentage='3'>
+					<text class="public_text"> {{ model.partyType == "1" ? "单位" : "个人" }}</text>
+				</myRow>
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">名称</text>
+				</myRow>
+				<myRow widthPercentage='3'>
+					<text class="public_text"> {{ model.companyName }}</text>
+				</myRow>
+			</myCol>
+			<myCol>
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">案件所涉项目名称</text>
 				</myRow>
 				<myRow widthPercentage='8'>
-					<text class="public_text">无锡海斯凯尔医学技术有限公司办公室精修项目，该项目设计单位江苏协优工程设计有限公司未按照消防技术标准强
-						制性要求进行消防设计。</text>
+					<text class="public_text"> {{ model.projectName }}</text>
+				</myRow>
+			</myCol>
+			<myCol>
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">案由</text>
+				</myRow>
+				<myRow widthPercentage='8'>
+					<text class="public_text"> {{ model.caseDesc }}</text>
+				</myRow>
+			</myCol>
+			<myCol>
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">经办单位</text>
+				</myRow>
+				<myRow widthPercentage='8'>
+					<text class="public_text">新吴区住房和城乡建设局</text>
+				</myRow>
+			</myCol>
+			<myCol>
+
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">陈述申辩材料状态</text>
+				</myRow>
+				<myRow widthPercentage='3'>
+					<text class="public_text">{{model.sbcl}}</text>
+				</myRow>
+				<myRow background="#f0f0f0" widthPercentage='2'>
+					<text class="public_text">是否疑难案件</text>
+				</myRow>
+				<myRow widthPercentage='3'>
+					<text class="public_text">{{model.ynaj}}</text>
 				</myRow>
 			</myCol>
 
-			<myCol>
+			<!-- 			<myCol>
 				<myRow background="#f0f0f0" widthPercentage='2'>23</myRow>
 				<myRow background="#f0f0f0" widthPercentage='3'>3456</myRow>
 				<myRow background="#f0f0f0" widthPercentage='5'>23</myRow>
@@ -39,7 +79,7 @@
 				<myRow>23</myRow>
 				<myRow>3456</myRow>
 
-			</myCol>
+			</myCol> -->
 
 		</view>
 
@@ -50,28 +90,11 @@
 				v-for="(itt,indt) in tabberList" :key="indt">{{itt.title}} </text>
 		</view>
 
-		<view class="second_view_box">
+		<essentialInfo :model="model" v-if="getItemnum==0"></essentialInfo>
+		<Acceptance :checkedList="checkedList" :model="model" v-if="getItemnum==1"></Acceptance>
+		<FileCase :checkedList="checkedList" :model="model" v-if="getItemnum==2"></FileCase>
 
-			<myCol>
-				<myRow background="#f0f0f0" widthPercentage='2'>
-					<text class="public_text">事项序列</text>
-				</myRow>
-				<myRow widthPercentage='8'>
-					<text class="public_text">无锡海斯凯尔医学技术有限公司办公室精修项目，该项目设计单位江苏协优工程设计有限公司未按照消防技术标准强
-						制性要求进行消防设计。</text>
-				</myRow>
-			</myCol>
-
-
-			<myCol>
-				<myRow>23</myRow>
-				<myRow>3456</myRow>
-
-			</myCol>
-
-		</view>
-
-
+		<HearCase :checkedList="checkedList" :model="model" v-if="getItemnum==3"></HearCase>
 
 	</view>
 </template>
@@ -79,7 +102,19 @@
 <script>
 	import myCol from "@/components/public/myRow/myCol.vue"
 	import myRow from "@/components/public/myRow/myRow.vue"
+	import essentialInfo from './tabber/essentialInfo.vue'
+	import FileCase from './tabber/FileCase.vue'
+	import HearCase from './tabber/HearCase.vue'
+	import Acceptance from './tabber/Acceptance.vue'
 	export default {
+		props: {
+			model: {
+				type: Object
+			},
+			checkedList: {
+				type: Array
+			}
+		},
 		data() {
 			return {
 				tabberList: [{
@@ -91,6 +126,11 @@
 					{
 						title: "立案"
 					},
+					{
+						title: "审理"
+					},
+
+
 				],
 				getItemnum: 0
 			}
@@ -101,9 +141,12 @@
 			}
 		},
 		components: {
-
+			essentialInfo,
 			myRow,
-			myCol
+			myCol,
+			FileCase,
+			HearCase,
+			Acceptance
 
 		},
 	}
@@ -135,6 +178,7 @@
 
 			.base_active {
 				color: #118ee9;
+				text-decoration: underline;
 			}
 
 		}

@@ -44,7 +44,7 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
 						class="scroll-Y">
-						<adminList></adminList>
+						<adminList :checkedList="checkedList" :model="model"></adminList>
 					</scroll-view>
 				</swiper-item>
 
@@ -64,14 +64,9 @@
 	export default {
 		data() {
 			return {
-
-
 				tabList: [{
-						name: "案件管理",
-
-					},
-
-				],
+					name: "案件管理",
+				}, ],
 				scrollInto: "",
 				tabIndex: 0,
 				taberWidth: 1700,
@@ -79,7 +74,6 @@
 				boxwidth: 52,
 				getList: [],
 				boxnumleft: null,
-
 				// 数据
 				classes: '2022',
 				items: [{
@@ -93,7 +87,9 @@
 				],
 				// addlist
 				bothsides: '0 12rpx',
-				bothLeft: 34
+				bothLeft: 34,
+				model: {},
+				checkedList: []
 			}
 		},
 		components: {
@@ -103,13 +99,101 @@
 			adminList
 
 		},
-		onLoad() {
+		onLoad(e) {
+			console.log("e", e)
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
+			let getrotuer = JSON.parse(e.dataSource)
+			console.log("getrotuer", getrotuer)
+			this.queryUser()
+			this.getlist(getrotuer)
 
 		},
 		methods: {
+			async queryUser() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+
+					const res = await this.api.myCaseHomePage.queryUser()
+				
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 0) {
+						//处理办案人
+						this.checkedList = result.map((item) => {
+							return {
+								value: item.id,
+								text: item.realname
+							}
+						})
+						
+	console.log("this.checkedList ", this.checkedList )
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			async getlist(getrotuer) {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+
+					let option = {
+						id: getrotuer.id,
+					}
+					console.log("option", option)
+					const res = await this.api.myCaseHomePage.queryById(option)
+					console.log("queryById", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						//处理办案人
+						if (result.filingHandler) {
+							if (typeof result.filingHandler == "string") {
+								result.filingHandler = result.filingHandler.split(",");
+							}
+						}
+						if (result.hearHandler) {
+							if (typeof result.hearHandler == "string") {
+								result.hearHandler = result.hearHandler.split(",");
+							}
+						}
+						if (result.acceptanceHandler) {
+							if (typeof result.acceptanceHandler == "string") {
+								result.acceptanceHandler = result.acceptanceHandler.split(",");
+							}
+						}
+						this.model = result
+						console.log("this.model", this.model)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
 			goback() {
 				uni.navigateBack({
 					delta: 1,
@@ -136,7 +220,7 @@
 				let info = uni.createSelectorQuery().in(this);
 				info.select(`#ctsbox${e}`).boundingClientRect().exec(res => {
 					if (res[0]) {
-						console.log("ctsDome", res[0])
+						// console.log("ctsDome", res[0])
 						// this.boxwidth = res[0].width
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth

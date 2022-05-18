@@ -1,39 +1,39 @@
 <template>
 	<view class="home_content">
 		<view class="home_content_box">
-			<view class="content_box_item">
+			<view class="content_box_item" v-for="(item,index) in dataSource" :key="index">
 				<view class="box_item_box" style="margin-top: 10rpx;">
 					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">XM202201161344</text>
+					<text class="item_box_text">{{item.itemNo}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">XM202201161344</text>
+					<text class="item_box_title">项目名称：</text>
+					<text class="item_box_text">{{item.itemNo}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">123456</text>
+					<text class="item_box_title">当事人：</text>
+					<text class="item_box_text">{{item.caseYear}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text2">123456</text>
+					<text class="item_box_title">案件类型：</text>
+					<text class="item_box_text2">{{item.ajlx}}</text>
 				</view>
 				<view class="box_line">
 
 				</view>
-				<view class="box_btn_add">
-					<publicBtn @click="tolist">操作</publicBtn>
+				<view class="box_btn_add" @click="tolist(item)">
+					<publicBtn >进入</publicBtn>
 					<!-- <view class="box_btn" @click="tolist">
 						操作
 					</view> -->
 				</view>
 			</view>
-			<view class="content_box_item" @click="tolist">
+			<!-- 	<view class="content_box_item" @click="tolist">
 				1234
 			</view>
 			<view class="content_box_item">
 				1234
-			</view>
+			</view> -->
 		</view>
 
 	</view>
@@ -42,11 +42,16 @@
 <script>
 	import publicBtn from '@/components/public/publicBtn.vue'
 	export default {
+		props: {
+			dataSource: {
+				type: Array
+			}
+		},
 		methods: {
-			tolist() {
-				// console.log("34567")
+			tolist(val) {
+				console.log("34567", val)
 				uni.navigateTo({
-					url: '/pages/homePage/homeSecond/caseAdmin'
+					url: `/pages/homePage/homeSecond/caseAdmin?dataSource=${JSON.stringify(val)}`
 				})
 			}
 		},

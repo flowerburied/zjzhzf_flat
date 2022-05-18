@@ -42,9 +42,16 @@
 			<swiper :style="{height:$store.state.phoneInfo.publicCon+'px'}" class="tab-view" ref="swiper1"
 				id="tab-bar-view" :current="tabIndex" :duration="300" @change="onswiperchange">
 				<swiper-item class="swiper-item ">
-					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
-						class="scroll-Y">
-						<homeContent></homeContent>
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
+						scroll-y="true" class="scroll-Y">
+						<homeContent :dataSource="getList"></homeContent>
+						<SecurityBox></SecurityBox>
+					</scroll-view>
+				</swiper-item>
+				<swiper-item class="swiper-item ">
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
+						scroll-y="true" class="scroll-Y">
+						<homeContent :dataSource="getList"></homeContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
@@ -77,7 +84,7 @@
 				taberWidth: 1700,
 				boxLeft: 0,
 				boxwidth: 52,
-				getList: [],
+
 				boxnumleft: null,
 
 				// 数据
@@ -93,7 +100,13 @@
 				],
 				// addlist
 				bothsides: '0 33rpx',
-				bothLeft: 123
+				bothLeft: 123,
+
+				pageNo: 1,
+				getList: [],
+				caseState: 1,
+				caseState1: true
+
 			}
 		},
 		components: {
@@ -106,19 +119,87 @@
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
+			this.getlist()
 
 		},
 		methods: {
+			scrolltolower(e) {
+				console.log('e', e)
+				if (this.caseState1) {
+					this.pageNo += 1
+					this.getlist()
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: '没有数据了！',
+						duration: 2000
+					});
+				}
+
+			},
+			async getlist() {
+
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						pageNo: this.pageNo,
+						pageSize: 8,
+						case_state: this.caseState
+					}
+					console.log("option", option)
+					const res = await this.api.myCaseHomePage.pagelist(option)
+					// console.log("pagelist", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						if (result.records.length != 0) {
+							for (var i = 0; i < result.records.length; i++) {
+								this.getList.push(result.records[i])
+							}
+						} else {
+							this.caseState1 = false
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+						uni.hideLoading();
+						// console.log("this.getList", this.getList)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+				} catch (e) {
+					uni.hideLoading();
+					console.log('try:e:', e)
+				}
+			},
 			onswiperchange(e) {
-				// console.log('onswiperchangee', e)
+				this.getList = []
 				this.getitemTab(e.detail.current)
-
-
+				if (e.detail.current == 0) {
+					console.log('进行中', e)
+					this.caseState = 1
+				} else {
+					console.log('已办结', e)
+					this.caseState = 2
+				}
+				this.caseState1 = true
+				this.pageNo = 1
+				this.getlist()
 			},
 			onnodeclick(e) {
 				console.log(e);
 			},
-
 			onchange(e) {
 				console.log('onchange:', e);
 			},
@@ -133,15 +214,11 @@
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth
 						let secondwidth = firstwidth / 2
-
 						let allleft = uni.upx2px(this.bothLeft, this.$store.state.phoneInfo.playerWidth)
-
 						this.boxLeft = res[0].left - allleft + secondwidth
 						if (!this.boxnumleft) {
-
 							this.boxnumleft = res[0].left + res[0].width - allleft
 						}
-
 						// console.log("this.boxwidth", this.boxwidth)
 					} else {
 						console.log("错误")

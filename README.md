@@ -1,5 +1,7 @@
 
-
+## 关键
+"rpxCalcMaxDeviceWidth": 2000,
+[](https://blog.csdn.net/weixin_44461275/article/details/121852424?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-121852424-blog-123432133.pc_relevant_paycolumn_v3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-121852424-blog-123432133.pc_relevant_paycolumn_v3&utm_relevant_index=5)
 ## 完美解决uni.upx2px()方法翻转屏幕没有重置
 http://www.lucklnk.com/godaddy/details/aid/756937088
 可知源码
