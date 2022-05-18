@@ -1,14 +1,14 @@
 
 
-##完美解决uni.upx2px()方法翻转屏幕没有重置
-[](http://www.lucklnk.com/godaddy/details/aid/756937088)
+## 完美解决uni.upx2px()方法翻转屏幕没有重置
+http://www.lucklnk.com/godaddy/details/aid/756937088
 可知源码
 有第二个参数！传入第二个参数可解决
 let allleft = uni.upx2px(33, this.$store.state.phoneInfo.playerWidth)
 
 ## 华为平板 
 开发者选项-日志记录器缓冲区大小需要设置为最大16/m
-[](https://blog.csdn.net/qq_41891425/article/details/107352935)
+https://blog.csdn.net/qq_41891425/article/details/107352935
 QuickShortcutMaker可能有点用
 ## 苹果推送证书和正常证书要两个
 

@@ -12,7 +12,7 @@ let MyUtil = {
 			// let tokenSec = uni.getStorageSync('tokenSec') || 0
 			// console.log('tokenSec', tokenSec);
 			uni.request({
-				url: "http://61.160.89.90:11218" + params.url,
+				url: "http://172.16.0.54:8090/jeecg-boot" + params.url,
 				method: params.method || "GET",
 				header: {
 					"X-Access-Token": token || 0,

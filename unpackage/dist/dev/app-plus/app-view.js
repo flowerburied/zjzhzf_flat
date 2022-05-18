@@ -265,7 +265,7 @@ var render = function() {
                       callback: function($$v) {
                         _vm.$handleVModelEvent(5, $$v)
                       },
-                      expression: "formData.name"
+                      expression: "formData.username"
                     }
                   })
                 ],
@@ -280,8 +280,15 @@ var render = function() {
                     attrs: {
                       "placeholder-class": "from_item_inputpla",
                       type: "text",
-                      placeholder: "请输入账户名",
+                      placeholder: "请输入密码",
                       _i: 7
+                    },
+                    model: {
+                      value: _vm._$g(7, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(7, $$v)
+                      },
+                      expression: "formData.password"
                     }
                   })
                 ],
@@ -296,14 +303,36 @@ var render = function() {
                     attrs: {
                       "placeholder-class": "from_item_inputpla",
                       type: "text",
-                      placeholder: "请输入账户名",
+                      placeholder: "请输入验证码",
                       _i: 9
+                    },
+                    model: {
+                      value: _vm._$g(9, "v-model"),
+                      callback: function($$v) {
+                        _vm.$handleVModelEvent(9, $$v)
+                      },
+                      expression: "formData.captcha"
                     }
                   }),
-                  _c("v-uni-view", {
-                    staticClass: _vm._$g(10, "sc"),
-                    attrs: { _i: 10 }
-                  })
+                  _c(
+                    "v-uni-view",
+                    {
+                      staticClass: _vm._$g(10, "sc"),
+                      attrs: { _i: 10 },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
+                    [
+                      _c("v-uni-image", {
+                        staticClass: _vm._$g(11, "sc"),
+                        attrs: { src: _vm._$g(11, "a-src"), mode: "", _i: 11 }
+                      })
+                    ],
+                    1
+                  )
                 ],
                 1
               )
@@ -312,12 +341,12 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(11, "sc"), attrs: { _i: 11 } },
+            { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
             [
               _c("v-uni-view", {
-                staticClass: _vm._$g(12, "sc"),
-                class: _vm._$g(12, "c"),
-                attrs: { _i: 12 },
+                staticClass: _vm._$g(13, "sc"),
+                class: _vm._$g(13, "c"),
+                attrs: { _i: 13 },
                 on: {
                   click: function($event) {
                     return _vm.$handleViewEvent($event)
@@ -326,7 +355,7 @@ var render = function() {
               }),
               _c(
                 "v-uni-text",
-                { staticClass: _vm._$g(13, "sc"), attrs: { _i: 13 } },
+                { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
                 [_vm._v("我已阅读并同意金坛的《用户服务协议》与《隐私政策》")]
               )
             ],
@@ -334,14 +363,14 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+            { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
             [_vm._v("忘记密码?")]
           ),
           _c(
             "v-uni-view",
             {
-              staticClass: _vm._$g(15, "sc"),
-              attrs: { _i: 15 },
+              staticClass: _vm._$g(16, "sc"),
+              attrs: { _i: 16 },
               on: {
                 click: function($event) {
                   return _vm.$handleViewEvent($event)
@@ -445,7 +474,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../ruanjian/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/* 水平间距 */\n/* 水平间距 */\n.signin {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.signin .signup {\n  background-color: #ffffff;\n  width: 300rpx;\n  height: 300rpx;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  box-shadow: 0px 10rpx 10rpx 0px rgba(0, 0, 0, 0.3);\n  border-radius: 1rpx;\n}\n.signin .signup .signup_from {\n  width: 225rpx;\n  display: flex;\n  flex-direction: column;\n  margin-top: 10rpx;\n}\n.signin .signup .signup_from .signup_from_box {\n  margin-top: 13rpx;\n  width: 225rpx;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-size: 10rpx;\n  line-height: 10rpx;\n  border-bottom: 0.5rpx solid #e5e5e5;\n}\n.signin .signup .signup_from .signup_from_box .from_item_input {\n  color: #505050;\n}\n.signin .signup .signup_from .signup_from_box .from_item_inputpla {\n  color: #a6a6a6;\n}\n.signin .signup .signup_from .signup_from_box .from_item_box {\n  width: 60rpx;\n  height: 20rpx;\n  border: 0.5rpx solid #e5e5e5;\n}\n.signin .signup .signup_agreement {\n  margin-top: 9rpx;\n  width: 225rpx;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n.signin .signup .signup_agreement .signup_agreement_text {\n  margin-left: 6rpx;\n  font-size: 8rpx;\n  line-height: 8rpx;\n  color: #000000;\n}\n.signin .signup .signup_agreement .signup_agreement_box {\n  width: 10rpx;\n  height: 10rpx;\n  border: 1px solid #43ace9;\n}\n.signin .signup .signup_agreement .agreement_box_active {\n  background-color: #43ace9;\n}\n.signin .signup .signup_reset {\n  width: 225rpx;\n  margin-top: 10rpx;\n  display: flex;\n  flex-direction: row-reverse;\n  font-size: 7rpx;\n  line-height: 7rpx;\n  color: #43ace9;\n}\n.signin .signup .signup_btn {\n  width: 225rpx;\n  height: 30rpx;\n  margin-top: 23rpx;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 1rpx;\n  background-color: #118ee9;\n  color: #F2F3F7;\n  font-size: 11rpx;\n  line-height: 11rpx;\n}\n.signin .signup .signup_title {\n  margin-top: 35rpx;\n  color: #118ee9;\n  font-size: 11rpx;\n  line-height: 11rpx;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/* 水平间距 */\n/* 水平间距 */\n.signin {\n  width: 100%;\n  height: 100vh;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n}\n.signin .signup {\n  background-color: #ffffff;\n  width: 300rpx;\n  height: 300rpx;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  box-shadow: 0px 10rpx 10rpx 0px rgba(0, 0, 0, 0.3);\n  border-radius: 1rpx;\n}\n.signin .signup .signup_from {\n  width: 225rpx;\n  display: flex;\n  flex-direction: column;\n  margin-top: 10rpx;\n}\n.signin .signup .signup_from .signup_from_box {\n  margin-top: 13rpx;\n  width: 225rpx;\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between;\n  font-size: 10rpx;\n  line-height: 10rpx;\n  border-bottom: 0.5rpx solid #e5e5e5;\n}\n.signin .signup .signup_from .signup_from_box .from_item_input {\n  color: #505050;\n}\n.signin .signup .signup_from .signup_from_box .from_item_inputpla {\n  color: #a6a6a6;\n}\n.signin .signup .signup_from .signup_from_box .from_item_box {\n  width: 60rpx;\n  height: 20rpx;\n  border: 0.5rpx solid #e5e5e5;\n}\n.signin .signup .signup_from .signup_from_box .from_item_box .item_box_img {\n  width: 60rpx;\n  height: 20rpx;\n}\n.signin .signup .signup_agreement {\n  margin-top: 9rpx;\n  width: 225rpx;\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  justify-content: center;\n}\n.signin .signup .signup_agreement .signup_agreement_text {\n  margin-left: 6rpx;\n  font-size: 8rpx;\n  line-height: 8rpx;\n  color: #000000;\n}\n.signin .signup .signup_agreement .signup_agreement_box {\n  width: 10rpx;\n  height: 10rpx;\n  border: 1px solid #43ace9;\n}\n.signin .signup .signup_agreement .agreement_box_active {\n  background-color: #43ace9;\n}\n.signin .signup .signup_reset {\n  width: 225rpx;\n  margin-top: 10rpx;\n  display: flex;\n  flex-direction: row-reverse;\n  font-size: 7rpx;\n  line-height: 7rpx;\n  color: #43ace9;\n}\n.signin .signup .signup_btn {\n  width: 225rpx;\n  height: 30rpx;\n  margin-top: 23rpx;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  border-radius: 1rpx;\n  background-color: #118ee9;\n  color: #F2F3F7;\n  font-size: 11rpx;\n  line-height: 11rpx;\n}\n.signin .signup .signup_title {\n  margin-top: 35rpx;\n  color: #118ee9;\n  font-size: 11rpx;\n  line-height: 11rpx;\n}\n", ""]);
 // Exports
 module.exports = exports;
 

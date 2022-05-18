@@ -1,34 +1,29 @@
 <template>
 	<view class="signin">
-
-
 		<view class="signup">
-
 			<view class="signup_title">
 				账号密码登录
 			</view>
-
 			<view class="signup_from">
 				<view class="signup_from_box">
-					<input class="from_item_input" v-model="formData.name" placeholder-class="from_item_inputpla"
+					<input class="from_item_input" v-model="formData.username" placeholder-class="from_item_inputpla"
 						type="text" placeholder="请输入账户名" />
 				</view>
 				<view class="signup_from_box">
-					<input class="from_item_input" placeholder-class="from_item_inputpla" type="text"
-						placeholder="请输入账户名" />
+					<input class="from_item_input" v-model="formData.password" placeholder-class="from_item_inputpla"
+						type="text" placeholder="请输入密码" />
 				</view>
 				<view class="signup_from_box">
-					<input class="from_item_input" placeholder-class="from_item_inputpla" type="text"
-						placeholder="请输入账户名" />
-					<view class="from_item_box">
-
+					<input class="from_item_input" v-model="formData.captcha" placeholder-class="from_item_inputpla"
+						type="text" placeholder="请输入验证码" />
+					<view class="from_item_box" @click="handleChangeCheckCode">
+						<image class="item_box_img" :src="randCodeImage" mode=""></image>
 					</view>
 				</view>
 			</view>
 			<view class="signup_agreement">
 				<view @click="changeAgreemenet" class="signup_agreement_box"
 					:class="[isAgreement?'agreement_box_active':'']">
-
 				</view>
 				<text class="signup_agreement_text">我已阅读并同意金坛的《用户服务协议》与《隐私政策》</text>
 			</view>
@@ -38,9 +33,6 @@
 			<view class="signup_btn" @click="submit">
 				登录
 			</view>
-
-
-
 		</view>
 	</view>
 </template>
@@ -52,40 +44,49 @@
 				isAgreement: false,
 				// 表单数据
 				formData: {
-					name: 'admin',
-					passnum: 'Jtgk@2022'
+					username: 'admin',
+					password: '123456',
+					captcha: ""
 				},
 				rules: {
 					// 对name字段进行必填验证
-					name: {
+					username: {
 						rules: [{
-								required: true,
-								errorMessage: '请输入账户名',
-							}
-
-						]
+							required: true,
+							errorMessage: '请输入账户名',
+						}]
 					},
-
-					passnum: {
+					password: {
 						rules: [{
 								required: true,
 								errorMessage: '请输入密码',
 							},
-							// {
-							// 	minLength: 8,
-							// 	maxLength: 20,
-							// 	errorMessage: '密码长度在 {minLength} 到 {maxLength} 个字符',
-							// }
+
+						]
+					},
+					captcha: {
+						rules: [{
+								required: true,
+								errorMessage: '请输入验证码',
+							},
+
 						]
 					}
-				}
+				},
+				currdatetime: '',
+				randCodeImage: ""
 
 			}
 		},
 		onReady() {
 			// 需要在onReady中设置规则
 			// this.$refs.form.setRules(this.rules)
+
 		},
+		onLoad() {
+			this.handleChangeCheckCode()
+		},
+
 		methods: {
 			changeAgreemenet() {
 				console.log('表单数据信息：');
@@ -93,28 +94,33 @@
 			},
 			submit() {
 				this.$store.dispatch("getPhoneInfo")
-				console.log('表单数据信息：');
-				// this.$refs.form.validate().then(res => {
-				// 	console.log('表单数据信息：', res);
-				// 	this.login()
-				// }).catch(err => {
-				// 	console.log('表单错误信息：', err);
-				// })
-				uni.switchTab({
-					url: '/pages/homePage/home'
-				})
+
+				const {
+					username,
+					password,
+					captcha
+				} = this.formData
+				if (username && password && captcha) {
+					this.login()
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: '请输入完整',
+						duration: 2000
+					});
+				}
+			
+
 			},
-			// login() {
-			// 	this.$store.dispatch("getPhoneInfo")
-			// 	uni.switchTab({
-			// 		url: '/pages/tidings/tidings'
-			// 	})
-			// }
+
 			async login() {
 				try {
 					let option = {
-						username: this.formData.name,
-						password: this.formData.passnum
+						username: this.formData.username,
+						password: this.formData.password,
+						captcha: this.formData.captcha,
+						remember_me: true,
+						checkKey: this.currdatetime
 					}
 					console.log("option", option)
 					const res = await this.api.user.appLogin(option)
@@ -132,8 +138,9 @@
 						// 	this.$store.dispatch("setuserinfo")
 						// 	this.routes.goIndex()
 						// }, 500)
+						console.log("userinfo", userinfo)
 						uni.switchTab({
-							url: '/pages/tidings/tidings'
+							url: '/pages/homePage/home'
 						})
 					} else {
 						uni.showToast({
@@ -147,7 +154,27 @@
 				}
 			},
 
+			async handleChangeCheckCode() {
+				try {
+					this.currdatetime = new Date().getTime();
+					const res = await this.api.user.randomImage(this.currdatetime)
+					console.log("appLogin", res)
+					const {
+						code,
+						result,
+						timestamp
+					} = res
+					if (code == 0) {
 
+						this.randCodeImage = result
+						// console.log("this.randCodeImage", this.randCodeImage)
+					}
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+
+
+			}
 		}
 	}
 </script>
@@ -200,7 +227,12 @@
 						width: 60rpx;
 						height: 20rpx;
 						border: 0.5rpx solid #e5e5e5;
+
 						// box-shadow: rgba(204, 204, 204, 1) solid 1px;
+						.item_box_img {
+							width: 60rpx;
+							height: 20rpx;
+						}
 					}
 				}
 			}
