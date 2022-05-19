@@ -21,9 +21,9 @@
 		</view>
 
 
-		<publicContent>
+		<publicContent @scrolltolower="scrolltolower">
 
-			<prospectContent></prospectContent>
+			<prospectContent :dataSource="getList"></prospectContent>
 			<SecurityBox></SecurityBox>
 
 
@@ -38,13 +38,6 @@
 	export default {
 		data() {
 			return {
-
-
-
-
-
-
-
 				// 数据
 				classes: '2022',
 				items: [{
@@ -57,6 +50,11 @@
 					}
 				],
 
+				pageNo: 1,
+				getList: [],
+				caseState: 1,
+				ismore: true
+
 			}
 		},
 		components: {
@@ -66,7 +64,7 @@
 
 		},
 		onLoad() {
-
+			this.getlist()
 
 		},
 		methods: {
@@ -83,6 +81,66 @@
 				uni.navigateTo({
 					url: '/pages/prospect/prospectEdit'
 				})
+			},
+			scrolltolower(e) {
+				console.log('e', e)
+				if (this.ismore) {
+					this.pageNo += 1
+					this.getlist()
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: '没有数据了！',
+						duration: 2000
+					});
+				}
+
+			},
+			async getlist() {
+
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						pageNo: this.pageNo,
+						pageSize: 8,
+
+					}
+					console.log("option", option)
+					const res = await this.api.prospect.siteSurveyList(option)
+					// console.log("pagelist", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						if (result.records.length != 0) {
+							for (var i = 0; i < result.records.length; i++) {
+								this.getList.push(result.records[i])
+							}
+						} else {
+							this.ismore = false
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+						uni.hideLoading();
+						console.log("this.getList", this.getList)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+				} catch (e) {
+					uni.hideLoading();
+					console.log('try:e:', e)
+				}
 			},
 		}
 

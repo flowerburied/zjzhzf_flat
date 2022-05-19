@@ -1,7 +1,7 @@
 import request from '../../request.js'
 
 
-let woffice = {
+let myCaseHomePage = {
 	// 
 	pagelist(params) {
 		return request.request({
@@ -31,4 +31,4 @@ let woffice = {
 	},
 }
 // 用户授权
-export default woffice
+export default myCaseHomePage

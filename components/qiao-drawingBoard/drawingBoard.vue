@@ -91,6 +91,14 @@
 				this.lineIndex = null;
 				this.resetCanvas()
 			},
+			transformUint8ArrayToBase64(array) {
+				var binary = "";
+				for (var len = array.byteLength, i = 0; i < len; i++) {
+					binary += String.fromCharCode(array[i]);
+				}
+				return window.btoa(binary).replace(/=/g, "");
+			},
+
 			save(callback) {
 				uni.canvasToTempFilePath({
 					canvasId: this.cid,
@@ -98,6 +106,15 @@
 						callback(res)
 					},
 				}, this)
+				// uni.canvasToTempFilePath({
+
+				// 	canvasId: this.cid,
+				// 	success: function(res) {
+				// 		// 在H5平台下，tempFilePath 为 base64
+				// 		console.log(res)
+				// 	}
+				// },this)
+
 			},
 		}
 	}

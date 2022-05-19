@@ -84,7 +84,21 @@
 
 		},
 		onLoad() {
-			this.handleChangeCheckCode()
+			let getToken = uni.getStorage({
+				key: "token",
+				success: function(res) {
+					console.log(res.data);
+					if (res.data) {
+						uni.switchTab({
+							url: '/pages/homePage/home'
+						})
+					} else {
+						this.handleChangeCheckCode()
+					}
+				}
+			})
+			// console.log("getkone", getToken)
+			// this.handleChangeCheckCode()
 		},
 
 		methods: {
@@ -109,7 +123,7 @@
 						duration: 2000
 					});
 				}
-			
+
 
 			},
 
@@ -152,9 +166,9 @@
 							duration: 2000
 						});
 					}
-						uni.hideLoading();
+					uni.hideLoading();
 				} catch (e) {
-						uni.hideLoading();
+					uni.hideLoading();
 					console.log('try:e:', e)
 				}
 			},
@@ -177,9 +191,9 @@
 						this.randCodeImage = result
 						// console.log("this.randCodeImage", this.randCodeImage)
 					}
-						uni.hideLoading();
+					uni.hideLoading();
 				} catch (e) {
-						uni.hideLoading();
+					uni.hideLoading();
 					console.log('try:e:', e)
 				}
 

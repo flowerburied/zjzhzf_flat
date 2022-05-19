@@ -39,8 +39,6 @@
 		<publicContent backcolor="#FFFFFF">
 
 			<view class="prospect_edit">
-
-
 				<view class="second_view_box">
 					<myCol>
 						<myRow background="#f0f0f0" widthPercentage='2'>
@@ -61,14 +59,11 @@
 					</myCol>
 					<myCol>
 						<myRow widthPercentage='2' background="#f0f0f0">
-
 							<text class="public_text">
 								录音
 							</text>
 						</myRow>
 						<myRow widthPercentage='8'>
-
-
 							<text v-if="voicePath" class="public_text">
 								录音文件
 							</text>
@@ -120,10 +115,11 @@
 							</text>
 						</myRow>
 						<myRow widthPercentage='3'>
-							<text v-if="!isshowimg" class="public_text active_text" @click="openpopup">
+							<!-- <text v-if="!isshowimg" class="public_text active_text" @click="openpopup">
 								签名
 							</text>
-							<image v-if="isshowimg" class="public_img" :src="testcanvasimg"></image>
+							<image v-if="isshowimg" class="public_img" :src="testcanvasimg"></image> -->
+							<ESignature :resultImg1='resultImg1'></ESignature>
 						</myRow>
 						<myRow widthPercentage='2' background="#f0f0f0">
 							<text class="public_text ">
@@ -131,7 +127,7 @@
 							</text>
 						</myRow>
 						<myRow widthPercentage='3'>
-							<image class="public_img" :src="testcanvasimg"></image>
+							<!-- <image class="public_img" :src="testcanvasimg"></image> -->
 						</myRow>
 					</myCol>
 					<myCol>
@@ -164,20 +160,13 @@
 				<SecurityBox></SecurityBox>
 			</view>
 		</publicContent>
-		<uni-popup ref="popup" type="center">
+		<!-- <uni-popup ref="popup" type="center">
 			<view class="recti_popup">
-
-
-
-
 				<view class="recti_popup_canvas">
 					<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="300rpx"
 						canvasHeight="200rpx">
 					</drawing-board>
 				</view>
-
-
-
 				<view class="recti_popup_btn">
 					<view class="view_btn_item add_color">
 						关闭
@@ -186,10 +175,8 @@
 						保存
 					</view>
 				</view>
-
 			</view>
-
-		</uni-popup>
+		</uni-popup> -->
 	</view>
 </template>
 
@@ -202,7 +189,9 @@
 	import myCol from "@/components/public/myRow/myCol.vue"
 	import myRow from "@/components/public/myRow/myRow.vue"
 
-	import drawingBoard from "@/components/qiao-drawingBoard/drawingBoard.vue"
+	import ESignature from '@/components/public/ESignature.vue'
+
+	// import drawingBoard from "@/components/qiao-drawingBoard/drawingBoard.vue"
 	// 录音
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
@@ -257,12 +246,9 @@
 				// addlist
 				bothsides: '0 12rpx',
 				bothLeft: 34,
-				testcanvasimg: "",
-				// 画板
-				isshowimg: false,
-				isdraw: false,
 				// 录音
-				voicePath: ''
+				voicePath: '',
+				resultImg1: "16529254678660_1652925467559.png"
 			}
 		},
 
@@ -273,8 +259,8 @@
 			adminList,
 			myCol,
 			myRow,
-			drawingBoard
 
+			ESignature
 		},
 		onLoad() {
 			this.$nextTick(() => {
@@ -305,37 +291,14 @@
 					innerAudioContext.play();
 				}
 			},
-			save() {
-				if (this.isdraw) {
-					this.$refs['drawingBoard'].save((res) => {
-						console.log(res)
-						this.testcanvasimg = res.tempFilePath
-						this.isshowimg = true
-						this.$refs.popup.close()
-					})
-				} else {
 
-					uni.showToast({
-						icon: "none",
-						title: '请签字',
-						duration: 2000
-					});
-				}
-
-			},
-
-			touchmove222() {
-				// console.log("hual")
-
-				this.isdraw = true
-			},
-			openpopup() {
-				this.$refs.popup.open('center')
-			},
-			closepopup() {
-				console.log("关闭")
-				this.$refs.popup.close()
-			},
+			// openpopup() {
+			// 	this.$refs.popup.open('center')
+			// },
+			// closepopup() {
+			// 	console.log("关闭")
+			// 	this.$refs.popup.close()
+			// },
 			goback() {
 				uni.navigateBack({
 					delta: 1,
@@ -388,55 +351,6 @@
 	.home {
 
 		position: relative;
-
-
-		.recti_popup {
-			width: 500rpx;
-			// height: 305rpx;
-			border-radius: 4rpx;
-			background-color: #ffffff;
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-
-			.recti_popup_canvas {
-				margin-top: 20rpx;
-				width: 300rpx;
-				height: 200rpx;
-				border: 1rpx solid #cccccc;
-			}
-
-			.recti_popup_btn {
-				margin-top: 20rpx;
-				width: 100%;
-				display: flex;
-				flex-direction: row-reverse;
-
-				.view_btn_item {
-					margin: 10rpx 8rpx;
-					padding: 8rpx 16rpx;
-					font-size: 10rpx;
-					background-color: #118ee9;
-					line-height: 150%;
-					color: #ffffff;
-					border-radius: 4rpx;
-				}
-
-				.add_color {
-					color: #383838;
-					background-color: #e5e5e5;
-				}
-
-			}
-
-
-
-
-
-
-
-		}
-
 
 		.prospect_edit {
 			display: flex;

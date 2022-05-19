@@ -1,22 +1,22 @@
 <template>
 	<view class="home_content">
 		<view class="home_content_box">
-			<view class="content_box_item">
+			<view class="content_box_item" v-for="(item,index) in dataSource" :key="index">
 				<view class="box_item_box" style="margin-top: 10rpx;">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">XM202201161344</text>
+					<text class="item_box_title">工程名称：</text>
+					<text class="item_box_text">{{item.projectName}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">XM202201161344</text>
+					<text class="item_box_title">建设单位：</text>
+					<text class="item_box_text">{{item.constructionUnit}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text">123456</text>
+					<text class="item_box_title">施工单位：</text>
+					<text class="item_box_text">{{item.constructionCompany}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">项目编号：</text>
-					<text class="item_box_text2">123456</text>
+					<text class="item_box_title">勘查时间：</text>
+					<text class="item_box_text2">{{item.surveyTime}}</text>
 				</view>
 				<view class="box_line">
 
@@ -30,12 +30,12 @@
 					<publicBtn>修改</publicBtn>
 				</view>
 			</view>
-			<view class="content_box_item" @click="tolist">
+			<!-- 	<view class="content_box_item" @click="tolist">
 				1234
 			</view>
 			<view class="content_box_item">
 				1234
-			</view>
+			</view> -->
 		</view>
 
 	</view>
@@ -44,14 +44,25 @@
 <script>
 	import publicBtn from '@/components/public/publicBtn.vue'
 	export default {
-	
+		props: {
+			dataSource: {
+				type: Array
+			}
+		},
+		data() {
+			return {
+
+			}
+		},
+
 		methods: {
 			tolist() {
 				// console.log("34567")
 				uni.navigateTo({
 					url: '/pages/homePage/homeSecond/caseAdmin'
 				})
-			}
+			},
+
 		},
 		components: {
 			publicBtn
