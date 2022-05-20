@@ -1,5 +1,5 @@
 <template>
-	<view class="half_box_item" :style="{width:`${widthPercentage}0%`,
+	<view class="half_box_item" :style="{width:`${widthPercentage*10}%`,
 	 background:`${background}`
 	 }">
 		<slot></slot>

@@ -1,4 +1,5 @@
 <template>
+
 	<view class="home">
 		<view class="home_tabber"
 			:style="{ width: $store.state.phoneInfo.playerWidth+'px',height:$store.state.phoneInfo.BarHeight }">
@@ -24,10 +25,19 @@
 		<publicContent @scrolltolower="scrolltolower">
 
 			<prospectContent :dataSource="getList"></prospectContent>
+
+
+
 			<SecurityBox></SecurityBox>
 
-
 		</publicContent>
+
+
+
+
+
+
+
 	</view>
 </template>
 
@@ -53,7 +63,10 @@
 				pageNo: 1,
 				getList: [],
 				caseState: 1,
-				ismore: true
+				ismore: true,
+
+
+
 
 			}
 		},
@@ -67,7 +80,9 @@
 			this.getlist()
 
 		},
+
 		methods: {
+
 
 			onnodeclick(e) {
 				console.log(e);
@@ -79,6 +94,8 @@
 			toadd() {
 				console.log('add');
 				uni.navigateTo({
+
+					// url: '/pages/prospect/testindex'
 					url: '/pages/prospect/prospectEdit'
 				})
 			},
@@ -148,6 +165,12 @@
 </script>
 
 <style lang="scss">
+	.padding {
+		padding-top: 30rpx;
+		padding-left: 30rpx;
+		padding-bottom: 50rpx;
+	}
+
 	.home {
 
 		.tab-view {

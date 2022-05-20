@@ -17,18 +17,13 @@
 					<view class="tabber_down_con" :style="{ marginLeft:bothLeft +'rpx'}">
 						<view class="down_con_box">
 							<view class="con_box_add" v-for="(tab,indextab) in tabList" :key="indextab">
-								<!-- 	<view class="box_add_num" :style="{ left: boxnumleft+'px'}">
-									{{tab.num}}
-								</view> -->
+
 								<text :style="{ margin:bothsides }" :class="[indextab==tabIndex?'con_active_color':'']"
 									@click="getitemTab(indextab)" :id="`ctsbox${indextab}`"
 									class="con_box_text">{{tab.name}}</text>
 							</view>
 						</view>
-						<!-- 	<view class="down_con_line">
-							<view class="con_line" :style="{ left: boxLeft+'px',width: boxwidth+'px'}">
-							</view>
-						</view> -->
+
 					</view>
 				</scroll-view>
 
@@ -36,188 +31,29 @@
 		</view>
 		<!-- <image class="home_position_img" src="@/static/img/public/002.png"></image> -->
 
-		<publicContent backcolor="#FFFFFF">
 
-			<view class="prospect_edit">
-				<view class="second_view_box">
-					<myCol>
-						<myRow background="#f0f0f0" widthPercentage='2'>
-							<text class="public_text">
-								建设单位
-							</text>
-						</myRow>
-						<myRow widthPercentage='3'>
-							<uni-easyinput placeholder="请输入内容"></uni-easyinput>
-						</myRow>
-						<myRow background="#f0f0f0" widthPercentage='2'>
-							<text class="public_text">
-								建设单位
-							</text>
-						</myRow>
-						<myRow widthPercentage='3'>3456</myRow>
+		<!-- <publicContent backcolor="#FFFFFF"> -->
+		<!-- <view :style="{width:$store.state.phoneInfo.playerWidth+'px' }"> -->
+			<prospectFrom></prospectFrom>
+			
+			<SecurityBox></SecurityBox>
+		<!-- </view> -->
+			
+		<!-- </publicContent> -->
 
-					</myCol>
-					<myCol>
-						<myRow widthPercentage='2' background="#f0f0f0">
-							<text class="public_text">
-								录音
-							</text>
-						</myRow>
-						<myRow widthPercentage='8'>
-							<text v-if="voicePath" class="public_text">
-								录音文件
-							</text>
-							<text class="public_text" @tap="startRecord">
-								开始录音
-							</text>
-							<text class="public_text" @tap="endRecord">
-								停止录音
-							</text>
-							<text class="public_text" @tap="playVoice">
-								播放录音
-							</text>
-						</myRow>
-					</myCol>
-					<myCol>
-						<myRow widthPercentage='2' background="#f0f0f0">
-
-							<text class="public_text">
-								当事人类型
-							</text>
-						</myRow>
-						<myRow widthPercentage='8'>
-							<uni-data-checkbox class="public_padding" v-model="radio1" :localdata="sex">
-							</uni-data-checkbox>
-						</myRow>
-					</myCol>
-					<myCol>
-						<myRow widthPercentage='2' background="#f0f0f0">
-
-							<text class="public_text">
-								现场勘探示意图
-							</text>
-						</myRow>
-						<myRow widthPercentage='8'>
-							<view class="public_updata">
-
-
-								<uni-file-picker limit="3" :value="fileLists" :imageStyles="imageStyles"
-									file-mediatype="image">
-								</uni-file-picker>
-
-							</view>
-						</myRow>
-					</myCol>
-					<myCol>
-						<myRow widthPercentage='2' background="#f0f0f0">
-							<text class="public_text">
-								当事人签名
-							</text>
-						</myRow>
-						<myRow widthPercentage='3'>
-							<!-- <text v-if="!isshowimg" class="public_text active_text" @click="openpopup">
-								签名
-							</text>
-							<image v-if="isshowimg" class="public_img" :src="testcanvasimg"></image> -->
-							<ESignature :resultImg1='resultImg1'></ESignature>
-						</myRow>
-						<myRow widthPercentage='2' background="#f0f0f0">
-							<text class="public_text ">
-								见证者签名
-							</text>
-						</myRow>
-						<myRow widthPercentage='3'>
-							<!-- <image class="public_img" :src="testcanvasimg"></image> -->
-						</myRow>
-					</myCol>
-					<myCol>
-						<myRow background="#f0f0f0" widthPercentage='2'>
-							<text class="public_text">
-								处理意见
-							</text>
-						</myRow>
-						<myRow widthPercentage='8'>
-							<uni-easyinput type="textarea" autoHeight placeholder="请输入内容">
-							</uni-easyinput>
-
-						</myRow>
-
-					</myCol>
-					<myCol>
-						<myRow background="#f0f0f0" widthPercentage='2'>23</myRow>
-						<myRow background="#f0f0f0" widthPercentage='3'>3456</myRow>
-						<myRow background="#f0f0f0" widthPercentage='5'>23</myRow>
-
-					</myCol>
-					<myCol>
-						<myRow>23</myRow>
-						<myRow>3456</myRow>
-
-					</myCol>
-
-				</view>
-
-				<SecurityBox></SecurityBox>
-			</view>
-		</publicContent>
-		<!-- <uni-popup ref="popup" type="center">
-			<view class="recti_popup">
-				<view class="recti_popup_canvas">
-					<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="300rpx"
-						canvasHeight="200rpx">
-					</drawing-board>
-				</view>
-				<view class="recti_popup_btn">
-					<view class="view_btn_item add_color">
-						关闭
-					</view>
-					<view class="view_btn_item" @click="save">
-						保存
-					</view>
-				</view>
-			</view>
-		</uni-popup> -->
 	</view>
 </template>
 
 <script>
 	import SecurityBox from '@/components/public/SecurityBox.vue'
 	import publicContent from '@/components/public/publicContent.vue'
-	import recordSheet from '@/components/homePage/homesecond/recordSheet.vue'
-	import adminList from '@/components/homePage/homesecond/adminList.vue'
 
-	import myCol from "@/components/public/myRow/myCol.vue"
-	import myRow from "@/components/public/myRow/myRow.vue"
+	import prospectFrom from '@/components/prospect/prospectFrom.vue'
 
-	import ESignature from '@/components/public/ESignature.vue'
-
-	// import drawingBoard from "@/components/qiao-drawingBoard/drawingBoard.vue"
-	// 录音
-	const recorderManager = uni.getRecorderManager();
-	const innerAudioContext = uni.createInnerAudioContext();
-
-	innerAudioContext.autoplay = true;
+	import upAllFile from '@/components/public/from/upAllFile.vue'
 	export default {
 		data() {
 			return {
-
-				imageStyles: {
-					width: 88,
-					height: 88,
-					border: {
-						radius: '2rpx'
-					}
-				},
-				fileLists: [],
-				radio1: 0,
-				sex: [{
-					text: '单位',
-					value: 0
-				}, {
-					text: '个人',
-					value: 1
-				}, ],
-
 				tabList: [{
 						name: "现场踏勘情况",
 
@@ -246,59 +82,27 @@
 				// addlist
 				bothsides: '0 12rpx',
 				bothLeft: 34,
-				// 录音
-				voicePath: '',
-				resultImg1: "16529254678660_1652925467559.png"
+
 			}
 		},
 
 		components: {
 			SecurityBox,
 			publicContent,
-			recordSheet,
-			adminList,
-			myCol,
-			myRow,
-
-			ESignature
+			prospectFrom,
+			upAllFile
 		},
 		onLoad() {
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
 
-			let self = this;
-			recorderManager.onStop(function(res) {
-				console.log('recorder stop' + JSON.stringify(res));
-				self.voicePath = res.tempFilePath;
-			});
 		},
 		methods: {
-			startRecord() {
-				console.log('开始录音');
 
-				recorderManager.start();
-			},
-			endRecord() {
-				console.log('录音结束');
-				recorderManager.stop();
-			},
-			playVoice() {
-				console.log('播放录音');
 
-				if (this.voicePath) {
-					innerAudioContext.src = this.voicePath;
-					innerAudioContext.play();
-				}
-			},
 
-			// openpopup() {
-			// 	this.$refs.popup.open('center')
-			// },
-			// closepopup() {
-			// 	console.log("关闭")
-			// 	this.$refs.popup.close()
-			// },
+
 			goback() {
 				uni.navigateBack({
 					delta: 1,
@@ -352,50 +156,7 @@
 
 		position: relative;
 
-		.prospect_edit {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
 
-			.second_view_box {
-				margin-top: 12rpx;
-				width: 624rpx;
-				display: flex;
-				flex-wrap: wrap;
-				border-left: 1px #D2D2D2 solid;
-				border-top: 1px #D2D2D2 solid;
-
-				.public_text {
-					padding: 8rpx 16rpx;
-					font-size: 12rpx;
-					line-height: 150%;
-					color: #707070;
-				}
-
-				.public_padding {
-					padding: 8rpx 16rpx;
-				}
-
-				.public_updata {
-					width: 100%;
-					display: flex;
-					flex-direction: row;
-					padding: 8rpx 16rpx;
-				}
-
-				.public_img {
-					padding: 8rpx 16rpx;
-					width: 50rpx;
-					height: 50rpx;
-				}
-
-				.active_text {
-					text-decoration: underline;
-					color: #118ee9;
-				}
-
-			}
-		}
 
 
 		.home_position_img {
@@ -426,6 +187,13 @@
 
 
 			}
+		}
+
+		.test_updata {
+			z-index: 1001;
+			position: fixed;
+			top: 200rpx;
+			background-color: #ffffff;
 		}
 
 		.home_tabber {
