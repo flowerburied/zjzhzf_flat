@@ -12,7 +12,7 @@ let MyUtil = {
 			// let tokenSec = uni.getStorageSync('tokenSec') || 0
 			// console.log('tokenSec', tokenSec);
 			uni.request({
-				url: "http://172.16.0.54:8090/jeecg-boot" + params.url,
+				url: "http://192.168.10.171:8090/jeecg-boot" + params.url,
 				method: params.method || "GET",
 				header: {
 					"X-Access-Token": token || 0,
@@ -27,6 +27,17 @@ let MyUtil = {
 						uni.showModal({
 							title: '提示',
 							content: '404',
+						});
+					} else if (res.data.status == 500) {
+						uni.removeStorage({
+							key: 'token',
+							success: function(res) {
+								// console.log('success');
+								uni.navigateTo({
+									url: "/pages/login/signin"
+								})
+
+							}
 						});
 					}
 

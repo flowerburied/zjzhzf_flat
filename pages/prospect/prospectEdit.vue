@@ -34,11 +34,11 @@
 
 		<!-- <publicContent backcolor="#FFFFFF"> -->
 		<!-- <view :style="{width:$store.state.phoneInfo.playerWidth+'px' }"> -->
-			<prospectFrom></prospectFrom>
-			
-			<SecurityBox></SecurityBox>
+		<prospectFrom v-model="model"></prospectFrom>
+
+		<SecurityBox></SecurityBox>
 		<!-- </view> -->
-			
+
 		<!-- </publicContent> -->
 
 	</view>
@@ -82,7 +82,7 @@
 				// addlist
 				bothsides: '0 12rpx',
 				bothLeft: 34,
-
+				model: {}
 			}
 		},
 
@@ -92,14 +92,53 @@
 			prospectFrom,
 			upAllFile
 		},
-		onLoad() {
+		onLoad(e) {
+			console.log("e", e)
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
+			if (e.dataSource) {
+				let getrotuer = JSON.parse(e.dataSource)
+				console.log("getrotuer", getrotuer)
+				this.getlist(getrotuer)
+			}
 
 		},
 		methods: {
+			async getlist(getrotuer) {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
 
+					let option = {
+						id: getrotuer.id,
+					}
+					console.log("option", option)
+					const res = await this.api.prospect.queryById(option)
+					console.log("queryById", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						//处理办案人
+
+						this.model = result
+						console.log("this.model", this.model)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
 
 
 

@@ -14,7 +14,7 @@
 					</drawing-board>
 				</view>
 				<view class="recti_popup_btn">
-					<view class="view_btn_item add_color">
+					<view class="view_btn_item add_color" @click="closepopup">
 						关闭
 					</view>
 					<view class="view_btn_item" @click="save">

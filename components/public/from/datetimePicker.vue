@@ -15,7 +15,10 @@
 		watch: {
 			datetimesingle1: {
 				handler(val, oldValue) {
-					this.resultImg = val;
+					if (val) {
+						this.datetimesingle = val;
+					}
+
 				},
 				//立刻执行handler
 				immediate: true,

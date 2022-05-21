@@ -146,7 +146,8 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						case_state: this.caseState
+						case_state: this.caseState,
+						year: this.classes
 					}
 					console.log("option", option)
 					const res = await this.api.myCaseHomePage.pagelist(option)
@@ -198,7 +199,11 @@
 				this.getlist()
 			},
 			onnodeclick(e) {
-				console.log(e);
+				console.log('this.this.classes', this.classes);
+				this.getList = []
+				this.caseState1 = true
+				this.pageNo = 1
+				this.getlist()
 			},
 			onchange(e) {
 				console.log('onchange:', e);

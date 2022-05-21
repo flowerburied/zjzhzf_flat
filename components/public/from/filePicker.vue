@@ -27,7 +27,11 @@
 		watch: {
 			resultImg1: {
 				handler(val, oldValue) {
-					this.imageValue = val;
+					console.log('val', val)
+					if (val) {
+						this.imageValue = val;
+					}
+
 				},
 				//立刻执行handler
 				immediate: true,
@@ -39,7 +43,7 @@
 		},
 		props: {
 			resultImg1: {
-				type: Array,
+				type: [Array,String],
 
 			},
 		},
@@ -55,8 +59,8 @@
 				}
 			},
 			getAvatarView(avatar) {
-
-				if (avatar) {
+				console.log('avatar', avatar)
+				if (avatar.length != 0) {
 					if (typeof avatar == "string") {
 						avatar = avatar.split(",");
 						let getarr = []

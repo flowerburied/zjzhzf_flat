@@ -188,7 +188,7 @@
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
-						<!-- <ESignature :resultImg1='resultImg1'></ESignature> -->
+
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<text class="public_text ">
@@ -242,30 +242,59 @@
 						<view class="public_input">
 							<uni-forms-item name="fileUrl">
 								<view class="test_index">
-									<!-- v-model="testfile" -->
+
 									<upAllFile v-model="model.fileUrl"></upAllFile>
 								</view>
 
-								<!-- 	let getlist = JSON.parse(item.responseText)
-		this.$emit("change", getlist.message); -->
-								<!-- <testindex></testindex> -->
+
 
 							</uni-forms-item>
 						</view>
 					</myRow>
 				</myCol>
-
 				<myCol>
+					<myRow widthPercentage='1.66' background="#f0f0f0">
+
+						<text class="public_text">
+							处理意见
+						</text>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+
+						<view class="public_input">
+							<uni-forms-item name="handlingOpinions">
+								<uni-easyinput type="textarea" v-model="model.handlingOpinions" placeholder="请输入现场踏勘情况">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+
+
+				<!-- <myCol>
 					<myRow>
 						<button @click="submit" type="default">测试</button>
 					</myRow>
 					<myRow>3456</myRow>
 
-				</myCol>
+				</myCol> -->
 
 			</view>
 		</uni-forms>
 
+		<view class="prosp_from_btn">
+
+			<view>
+				<button class="from_btn" @click="goBack" type="default">返回</button>
+			</view>
+			<view>
+				<button @click="submitexamine" v-if="model.id" class="from_btn" type="primary">提交</button>
+			</view>
+			<view>
+				<button class="from_btn" @click="submit" type="primary">保存</button>
+			</view>
+
+		</view>
 
 	</view>
 </template>
@@ -273,15 +302,39 @@
 <script>
 	import myCol from "@/components/public/myRow/myCol.vue"
 	import myRow from "@/components/public/myRow/myRow.vue"
+
 	import datetimePicker from '@/components/public/from/datetimePicker.vue'
 	import ESignature from '@/components/public/ESignature.vue'
 	import filePicker from '@/components/public/from/filePicker.vue'
-	// import lFile from '@/components/public/from/l-file.vue'
+
 	import upAllFile from '@/components/public/from/upAllFile.vue'
 
-	import testindex from '@/pages/prospect/testindex.vue'
+
 
 	export default {
+		watch: {
+			resultList: {
+				handler(val, oldValue) {
+					if (val.id) {
+						console.log("valllllll", val)
+						this.model = val;
+					}
+
+				},
+				//立刻执行handler
+				immediate: true,
+			},
+		},
+		model: {
+			prop: "resultList",
+			event: "change",
+		},
+		props: {
+			resultList: {
+				type: Object,
+
+			},
+		},
 		data() {
 			return {
 
@@ -296,7 +349,7 @@
 					signatureQuestioned: "",
 					surveyorQuestioned: "",
 					schematicDiagram: [],
-					fileUrl: "2022-05-15_log_1653015726153.txt"
+					fileUrl: ""
 				},
 				rules: {
 					// 对name字段进行必填验证
@@ -400,6 +453,13 @@
 
 						}, ]
 					},
+					handlingOpinions: {
+						rules: [{
+							required: true,
+							errorMessage: '请输入处理意见',
+
+						}, ]
+					},
 				},
 
 
@@ -426,7 +486,7 @@
 			ESignature,
 			filePicker,
 			upAllFile,
-			testindex
+
 		},
 		mounted() {
 			this.option = {
@@ -470,6 +530,48 @@
 
 		},
 		methods: {
+			async submitexamine() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						id: this.model.id
+					}
+					const res = await this.api.prospect.submit(option)
+					console.log("edit", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			goBack() {
+				uni.navigateBack({
+					delta: 1,
+					animationType: 'pop-out',
+					animationDuration: 200
+				})
+				// console.log('goback')
+			},
 			// 上传进度回调
 			onprogress(item) {
 				this.files.set(item.name, item);
@@ -556,11 +658,83 @@
 				console.log("this", this.model)
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
+					if (this.model.id) {
+						this.submitForm()
+					} else {
+						this.submitFormAdd()
+					}
 				}).catch(err => {
 					console.log('表单错误信息：', err);
 				})
 			},
+			async submitForm() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					const res = await this.api.prospect.edit(this.model)
+					console.log("edit", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
 
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			async submitFormAdd() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					this.model.schematicDiagram = JSON.stringify(this.model.schematicDiagram)
+					const res = await this.api.prospect.add(this.model)
+					console.log("add", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+					uni.navigateBack({
+						delta: 1,
+						animationType: 'pop-out',
+						animationDuration: 200
+					})
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
 
 
 
@@ -577,6 +751,19 @@
 		display: flex;
 		flex-direction: column;
 		align-items: center;
+
+		.prosp_from_btn {
+			margin-top: 12rpx;
+			width: 624rpx;
+			display: flex;
+			flex-direction: row-reverse;
+			align-items: center;
+
+			.from_btn {
+				// background-color: #000000;
+				margin-right: 15rpx;
+			}
+		}
 
 		.second_view_box {
 			margin-top: 12rpx;

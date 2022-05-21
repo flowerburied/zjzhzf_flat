@@ -26,8 +26,17 @@
 					<!-- <view class="box_btn" @click="tolist">
 						操作
 					</view> -->
-					<publicBtn backColor="#e5e5e5" textColor="#707070">删除</publicBtn>
-					<publicBtn>修改</publicBtn>
+					<view class="box_btn">
+						<button @click="delList(item)" type="default">删除</button>
+					</view>
+					<view class="box_btn">
+						<button @click="changeList(item)" type="primary">修改</button>
+					</view>
+
+
+
+					<!-- 	<publicBtn @click="delList(item)" backColor="#e5e5e5" textColor="#707070">删除</publicBtn>
+					<publicBtn @click="changeList(item) ">修改</publicBtn> -->
 				</view>
 			</view>
 			<!-- 	<view class="content_box_item" @click="tolist">
@@ -62,6 +71,15 @@
 					url: '/pages/homePage/homeSecond/caseAdmin'
 				})
 			},
+			changeList(val) {
+				console.log("val", val)
+				uni.navigateTo({
+					url: `/pages/prospect/prospectEdit?dataSource=${JSON.stringify(val)}`
+				})
+			},
+			delList(val) {
+				console.log("val", val)
+			}
 
 		},
 		components: {
@@ -108,16 +126,7 @@
 
 					.box_btn {
 						margin-right: 16rpx;
-						width: 44rpx;
-						height: 24rpx;
-						background-color: #118ee9;
-						color: #ffffff;
-						border-radius: 4rpx;
-						display: flex;
-						align-items: center;
-						justify-content: center;
-						font-size: 10rpx;
-						line-height: 10rpx;
+
 					}
 				}
 

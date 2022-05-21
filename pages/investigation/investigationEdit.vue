@@ -69,7 +69,10 @@
 								建设单位
 							</text>
 						</myRow>
-						<myRow widthPercentage='3'>3456</myRow>
+						<myRow widthPercentage='3'>
+
+							<dataTreePicker></dataTreePicker>
+						</myRow>
 
 					</myCol>
 					<myCol>
@@ -220,6 +223,8 @@
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
 
+	import dataTreePicker from '@/components/public/from/dataTreePicker.vue'
+
 	innerAudioContext.autoplay = true;
 	export default {
 		data() {
@@ -286,7 +291,8 @@
 			adminList,
 			myCol,
 			myRow,
-			drawingBoard
+			drawingBoard,
+			dataTreePicker
 
 		},
 		onLoad() {

@@ -25,9 +25,6 @@
 		<publicContent @scrolltolower="scrolltolower">
 
 			<prospectContent :dataSource="getList"></prospectContent>
-
-
-
 			<SecurityBox></SecurityBox>
 
 		</publicContent>
@@ -85,6 +82,10 @@
 
 
 			onnodeclick(e) {
+				this.getList = []
+				this.ismore = true
+				this.pageNo = 1
+				this.getlist()
 				console.log(e);
 			},
 
@@ -122,11 +123,12 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
+						year: this.classes
 
 					}
 					console.log("option", option)
 					const res = await this.api.prospect.siteSurveyList(option)
-					// console.log("pagelist", res)
+					console.log("pagelist", res)
 					const {
 						code,
 						message,

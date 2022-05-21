@@ -1,4 +1,14 @@
 
+## 附件上传
+[](https://ext.dcloud.net.cn/plugin?id=5459#detail)
+2.0不能在scroll-view中使用 一定要用动态fixed或者使用1.0
+【群主】shanjunLi(274962262)  9:47:43
+不要放到scroll-view里
+
+【群主】shanjunLi(274962262)  9:48:33
+你要放scroll-view里那自己在组件里改下获取定位方式，改成scroll的top试试
+
+
 ## 关键
 "rpxCalcMaxDeviceWidth": 2000,
 [](https://blog.csdn.net/weixin_44461275/article/details/121852424?spm=1001.2101.3001.6650.2&utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-121852424-blog-123432133.pc_relevant_paycolumn_v3&depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7ECTRLIST%7ERate-2-121852424-blog-123432133.pc_relevant_paycolumn_v3&utm_relevant_index=5)
