@@ -3,20 +3,20 @@
 		<view class="home_content_box">
 			<view class="content_box_item" v-for="(item,index) in dataSource" :key="index">
 				<view class="box_item_box" style="margin-top: 10rpx;">
-					<text class="item_box_title">工程名称：</text>
-					<text class="item_box_text">{{item.projectName}}</text>
+					<text class="item_box_title">地点：</text>
+					<text class="item_box_text">{{item.inquiryLocation}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">建设单位：</text>
-					<text class="item_box_text">{{item.constructionUnit}}</text>
+					<text class="item_box_title">案由：</text>
+					<text class="item_box_text">{{item.causeAction}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">施工单位：</text>
-					<text class="item_box_text">{{item.constructionCompany}}</text>
+					<text class="item_box_title">被询问人：</text>
+					<text class="item_box_text">{{item.personQuestioned}}</text>
 				</view>
 				<view class="box_item_box">
-					<text class="item_box_title">勘查时间：</text>
-					<text class="item_box_text2">{{item.surveyTime}}</text>
+					<text class="item_box_title">开始时间：</text>
+					<text class="item_box_text2">{{item.inquiryStarttime}}</text>
 				</view>
 				<view class="box_line">
 
@@ -50,66 +50,12 @@
 			}
 		},
 		methods: {
-			tolist() {
-				// console.log("34567")
+			tolist(val) {
+				console.log("34567", val)
 				uni.navigateTo({
-					url: '/pages/homePage/homeSecond/caseAdmin'
+					url: `/pages/homePage/homeSecond/caseAdmin?dataSource=${JSON.stringify(val)}`
 				})
-			},
-			changeList(val) {
-				console.log("val", val)
-				uni.navigateTo({
-					url: `/pages/prospect/prospectEdit?dataSource=${JSON.stringify(val)}`
-				})
-			},
-			delList(val) {
-				console.log("val", val)
-				let that = this
-				uni.showModal({
-					title: '提示',
-					content: '再次确认删除',
-					success: function(res) {
-						if (res.confirm) {
-							that.deleteTrue(val.id)
-							console.log('用户点击确定');
-						} else if (res.cancel) {
-							console.log('用户点击取消');
-						}
-					}
-				});
-			},
-			async deleteTrue(val) {
-				try {
-					const res = await this.api.prospect.delete(val)
-					console.log("edit", res)
-					const {
-						code,
-						message,
-						result
-					} = res
-					if (code == 200) {
-
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-						this.$emit("callbackCon")
-					} else {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-					}
-					uni.hideLoading();
-				} catch (e) {
-					console.log('try:e:', e)
-				}
-			},
-
-
-
+			}
 		},
 		components: {
 			publicBtn

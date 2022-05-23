@@ -21,7 +21,7 @@
 						radius: '2rpx'
 					}
 				},
-				url: 'http://172.16.0.54:8090/jeecg-boot'
+				url: 'http://192.168.10.171:8090/jeecg-boot'
 			}
 		},
 		watch: {

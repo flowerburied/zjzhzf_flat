@@ -45,7 +45,8 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
 						class="scroll-Y">
-						<homeContent></homeContent>
+						<TranscriptContent :dataSource="tranList">
+						</TranscriptContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
@@ -59,6 +60,7 @@
 	import SecurityBox from '@/components/public/SecurityBox.vue'
 	import publicContent from '@/components/public/publicContent.vue'
 	import homeContent from '@/components/homePage/homeContent.vue'
+	import TranscriptContent from '@/components/investigation/TranscriptContent.vue'
 	export default {
 		data() {
 			return {
@@ -100,16 +102,21 @@
 				],
 				// addlist
 				bothsides: '0 33rpx',
-				bothLeft: 123
+				bothLeft: 123,
+
+				ismore: true,
+				tranList: []
 			}
 		},
 		components: {
 			SecurityBox,
 			publicContent,
-			homeContent
+			homeContent,
+			TranscriptContent
 
 		},
 		onLoad() {
+			this.transcriptpageList()
 			this.$nextTick(() => {
 				this.getitemTab(0)
 				this.getnumwidth()
@@ -117,16 +124,72 @@
 
 		},
 		methods: {
+			async transcriptpageList() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						pageNo: this.pageNo,
+						pageSize: 8,
+					}
+					// console.log("option", option)
+					const res = await this.api.fieldInvestigation.transcriptpageList(option)
+					console.log("pagelist", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						if (result.records.length != 0) {
+							for (var i = 0; i < result.records.length; i++) {
+								this.tranList.push(result.records[i])
+							}
+						} else {
+							this.ismore = false
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+						uni.hideLoading();
+						// console.log("this.getList", this.getList)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+				} catch (e) {
+					uni.hideLoading();
+					console.log('try:e:', e)
+				}
+			},
+
 			toadd() {
-				// console.log('add');
-				uni.navigateTo({
-					url: '/pages/investigation/investigationEdit'
-				})
+				console.log('add', this.tabIndex);
+				if (this.tabIndex == 0) {
+					uni.navigateTo({
+						url: '/pages/investigation/TranscriptAdd'
+					})
+				} else if (this.tabIndex == 1) {
+					uni.navigateTo({
+						url: '/pages/investigation/investigationEdit'
+					})
+				}
+				// uni.navigateTo({
+				// 	url: '/pages/investigation/investigationEdit'
+				// })
 			},
 			onswiperchange(e) {
-				// console.log('onswiperchangee', e)
+				console.log('onswiperchangee', e)
 				this.getitemTab(e.detail.current)
-
+				if (e.detail.current == 0) {
+					this.transcriptpageList()
+				}
 
 			},
 			onnodeclick(e) {
@@ -143,7 +206,7 @@
 				let c = 0
 				for (var i = 0; i < this.tabList.length; i++) {
 					// this.tab[i]
-					console.log("iiiii", i)
+					// console.log("iiiii", i)
 					let that = this
 					let infoxx = uni.createSelectorQuery().in(this);
 					infoxx.select(`#ctsbox${i}`).boundingClientRect().exec(res => {
@@ -153,12 +216,12 @@
 							c++
 							// getlist[i].boxnumleft = 
 							// getlist.push(res[0].left + res[0].width - uni.upx2px(this.bothLeft))
-							console.log("this.this", res[0])
+							// console.log("this.this", res[0])
 							let allleft = uni.upx2px(33, this.$store.state.phoneInfo.playerWidth)
 
 							that.tabList[c - 1].boxnumleft = res[0].width + allleft
 							// console.log("getlist",i)
-							console.log("this.this.tabList[i]", that.tabList)
+							// console.log("this.this.tabList[i]", that.tabList)
 						} else {
 							console.log("错误")
 						}
@@ -175,7 +238,7 @@
 				let info = uni.createSelectorQuery().in(this);
 				info.select(`#ctsbox${e}`).boundingClientRect().exec(res => {
 					if (res[0]) {
-						console.log("ctsDome", res[0])
+						// console.log("ctsDome", res[0])
 						// this.boxwidth = res[0].width
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth
@@ -187,7 +250,7 @@
 						if (!this.boxnumleft) {
 
 							this.boxnumleft = res[0].left + res[0].width - allleft
-							console.log("this.boxnumleft", this.boxnumleft)
+							// console.log("this.boxnumleft", this.boxnumleft)
 						}
 
 

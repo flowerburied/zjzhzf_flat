@@ -47,6 +47,13 @@ let prospect = {
 	
 		})
 	},
+	// 删除
+	delete(params) {
+		return request.request({
+			url: `/zhzf/siteSurvey/delete?id=${params}`,
+			method: 'DELETE',
+		})
+	},
 }
 // 用户授权
 export default prospect

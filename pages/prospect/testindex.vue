@@ -49,7 +49,7 @@
 		// 	let token = uni.getStorageSync('token')
 		// 	this.option = {
 		// 		// 上传服务器地址，此地址需要替换为你的接口地址
-		// 		url: 'http://172.16.0.54:8090/jeecg-boot/sys/common/upload',
+		// 		url: 'http://192.168.10.171:8090/jeecg-boot/sys/common/upload',
 		// 		// 上传附件的key
 		// 		name: 'file',
 		// 		// 根据你接口需求自定义请求头

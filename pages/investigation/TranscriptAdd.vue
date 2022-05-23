@@ -29,18 +29,10 @@
 
 			</view>
 		</view>
-		<!-- <image class="home_position_img" src="@/static/img/public/002.png"></image> -->
 
+		<TranscriptFrom v-model="model"></TranscriptFrom>
 
-		<!-- <publicContent backcolor="#FFFFFF"> -->
-		<!-- <view :style="{width:$store.state.phoneInfo.playerWidth+'px' }"> -->
-		<prospectFrom  v-model="model" ></prospectFrom>
-<!-- v-model="model" -->
 		<SecurityBox></SecurityBox>
-		<!-- </view> -->
-
-		<!-- </publicContent> -->
-
 	</view>
 </template>
 
@@ -48,18 +40,15 @@
 	import SecurityBox from '@/components/public/SecurityBox.vue'
 	import publicContent from '@/components/public/publicContent.vue'
 
-	import prospectFrom from '@/components/prospect/prospectFrom.vue'
+	import TranscriptFrom from '@/components/investigation/TranscriptFrom.vue'
 
 	import upAllFile from '@/components/public/from/upAllFile.vue'
 	export default {
 		data() {
 			return {
 				tabList: [{
-						name: "现场踏勘情况",
-
-					},
-
-				],
+					name: "询问笔录",
+				}, ],
 				scrollInto: "",
 				tabIndex: 0,
 				taberWidth: 1700,
@@ -68,17 +57,6 @@
 				getList: [],
 				boxnumleft: null,
 
-				// 数据
-				classes: '2022',
-				items: [{
-						text: "2022",
-						value: "2022"
-					},
-					{
-						text: "2023",
-						value: "2023"
-					}
-				],
 				// addlist
 				bothsides: '0 12rpx',
 				bothLeft: 34,
@@ -89,7 +67,7 @@
 		components: {
 			SecurityBox,
 			publicContent,
-			prospectFrom,
+			TranscriptFrom,
 			upAllFile
 		},
 		onLoad(e) {

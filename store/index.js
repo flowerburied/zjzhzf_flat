@@ -18,7 +18,7 @@ const store = new Vuex.Store({
 			state.searchContent = step
 		},
 		SET_PHONE_INFO(state, step) {
-			console.log("phoneInfo", step)
+			// console.log("phoneInfo", step)
 			state.phoneInfo = step
 		},
 		SET_SYS_NEWS_ARTICLE(state, step) {
@@ -46,7 +46,7 @@ const store = new Vuex.Store({
 				success: (res) => {
 					let allheight = uni.upx2px(44, res.windowWidth)
 					// let allheight = 50
-					console.log("uni.upx2px(44)", allheight)
+					// console.log("uni.upx2px(44)", allheight)
 					let option = {
 						playerWidth: res.windowWidth,
 						playerHeight: res.windowHeight,
@@ -60,7 +60,7 @@ const store = new Vuex.Store({
 						allList: res,
 						mineCon: res.windowHeight - res.statusBarHeight
 					}
-					console.log("屏幕数据option", option)
+					// console.log("屏幕数据option", option)
 					commit("SET_PHONE_INFO", option)
 				}
 			})

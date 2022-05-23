@@ -24,7 +24,7 @@
 
 		<publicContent @scrolltolower="scrolltolower">
 
-			<prospectContent :dataSource="getList"></prospectContent>
+			<prospectContent @callbackCon="callbackCon" :dataSource="getList"></prospectContent>
 			<SecurityBox></SecurityBox>
 
 		</publicContent>
@@ -73,13 +73,22 @@
 			prospectContent
 
 		},
-		onLoad() {
-			this.getlist()
 
+		onShow() {
+			this.getList = []
+			this.ismore = true
+			this.pageNo = 1
+			this.getlist()
 		},
+		
 
 		methods: {
-
+			callbackCon() {
+				this.getList = []
+				this.ismore = true
+				this.pageNo = 1
+				this.getlist()
+			},
 
 			onnodeclick(e) {
 				this.getList = []

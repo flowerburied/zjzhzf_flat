@@ -1,6 +1,7 @@
 <template>
 	<view>
-		<uni-datetime-picker type="date" :clear-icon="false" v-model="datetimesingle" @change="timechange" />
+		<uni-datetime-picker rangeSeparator="至" :type="dateType" :clear-icon="false" v-model="datetimesingle"
+			@change="timechange" />
 	</view>
 </template>
 
@@ -30,9 +31,13 @@
 		},
 		props: {
 			datetimesingle1: {
-				type: String,
+				type: [String,Array],
 				default: "",
 			},
+			dateType: {
+				type: String,
+				default: 'date'
+			}
 		},
 		methods: {
 			// maskClick(e) {

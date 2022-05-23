@@ -71,7 +71,7 @@
 						</myRow>
 						<myRow widthPercentage='3'>
 
-							<dataTreePicker></dataTreePicker>
+							<dataTreePicker v-model="treePicker"></dataTreePicker>
 						</myRow>
 
 					</myCol>
@@ -280,7 +280,8 @@
 				isshowimg: false,
 				isdraw: false,
 				// 录音
-				voicePath: ''
+				voicePath: '',
+				treePicker: 'czx,caoxiaodong,liuq'
 			}
 		},
 

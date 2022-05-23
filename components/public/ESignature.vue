@@ -36,7 +36,7 @@
 				isshowimg: false,
 				isdraw: false,
 				resultImg: "",
-				url: 'http://172.16.0.54:8090/jeecg-boot'
+				url: 'http://192.168.10.171:8090/jeecg-boot'
 			}
 		},
 		watch: {
@@ -71,6 +71,7 @@
 						console.log('res', res)
 
 						let token = uni.getStorageSync('token')
+						console.log("token", token)
 						uni.uploadFile({
 							url: this.url + '/sys/common/upload', //仅为示例，非真实的接口地址
 							filePath: res.tempFilePath,
