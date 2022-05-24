@@ -93,7 +93,7 @@
 						id: getrotuer.id,
 					}
 					console.log("option", option)
-					const res = await this.api.prospect.queryById(option)
+					const res = await this.api.fieldInvestigation.TreeListqueryById(option)
 					console.log("queryById", res)
 					const {
 						code,
@@ -102,8 +102,11 @@
 					} = res
 					if (code == 200) {
 						//处理办案人
-
+						result.startEndTime = []
+						result.startEndTime[0] = result.inquiryStarttime
+						result.startEndTime[1] = result.inquiryEndtime
 						this.model = result
+
 						console.log("this.model", this.model)
 					} else {
 						uni.showToast({

@@ -11,9 +11,8 @@
 	export default {
 		data() {
 			return {
-				imageValue: [
-
-				],
+				imageValue: [],
+				imageValueAdd: [],
 				imageStyles: {
 					width: 88,
 					height: 88,
@@ -27,9 +26,14 @@
 		watch: {
 			resultImg1: {
 				handler(val, oldValue) {
-					console.log('val', val)
+					// console.log('val', val)
 					if (val) {
-						this.imageValue = val;
+						if (typeof val == "string") {
+							this.imageValue = val.split(",")
+						} else {
+							this.imageValue = val;
+						}
+
 					}
 
 				},
@@ -43,53 +47,71 @@
 		},
 		props: {
 			resultImg1: {
-				type: [Array,String],
+				type: [Array, String],
 
 			},
 		},
 		methods: {
 			deleteimg(e) {
+				console.log('e.tempFilePath', e.tempFilePath)
+				let handleimg = []
+
+				if (typeof this.imageValue == "string") {
+					this.imageValue = this.imageValue.split(",");
+					for (var i = 0; i < this.imageValue.length; i++) {
+						handleimg.push(`${this.url}/${this.imageValue[i]}`)
+					}
+				} else {
+					for (var i = 0; i < this.imageValue.length; i++) {
+						handleimg.push(`${this.url}/${this.imageValue[i]}`)
+					}
+				}
+
 				console.log('this.imageValue', this.imageValue)
-				console.log('e', e)
-				let getindex = this.imageValue.indexOf(e.tempFile);
-				// console.log('getindex', getindex)
+				let getindex = handleimg.indexOf(e.tempFilePath);
+				console.log('getindex', getindex)
 				if (getindex != -1) {
+
 					this.imageValue.splice(getindex, 1)
-					// this.$emit("change", this.imageValue);
+					console.log('this.imageValue', this.imageValue)
+					this.$emit("change", this.imageValue);
 				}
 			},
 			getAvatarView(avatar) {
-				console.log('avatar', avatar)
-				if (avatar.length != 0) {
-					if (typeof avatar == "string") {
-						avatar = avatar.split(",");
-						let getarr = []
-						for (let i = 0; i < avatar.length; i++) {
-							let option = {
-								name: "file.txt",
-								extname: "txt",
-								url: `${this.url}/${avatar[i]}`
+				// console.log('avatar', avatar)
+				if (avatar) {
+					if (avatar.length != 0) {
+						if (typeof avatar == "string") {
+							avatar = avatar.split(",");
+							let getarr = []
+							for (let i = 0; i < avatar.length; i++) {
+								let option = {
+									name: "file.txt",
+									extname: "txt",
+									url: `${this.url}/${avatar[i]}`
+								}
+								getarr.push(option)
 							}
-							getarr.push(option)
+							console.log('getarr', getarr)
+							return getarr
+						} else {
+							let getarr = []
+							for (let i = 0; i < avatar.length; i++) {
+								let option = {
+									name: "file.txt",
+									extname: "txt",
+									url: `${this.url}/${avatar[i]}`
+								}
+								getarr.push(option)
+							}
+							console.log('getarr', getarr)
+							return getarr
 						}
-						console.log('getarr', getarr)
-						return getarr
 					} else {
-						let getarr = []
-						for (let i = 0; i < avatar.length; i++) {
-							let option = {
-								name: "file.txt",
-								extname: "txt",
-								url: `${this.url}/${avatar[i]}`
-							}
-							getarr.push(option)
-						}
-						console.log('getarr', getarr)
-						return getarr
+						return []
 					}
-				} else {
-					return []
 				}
+
 
 			},
 			success(e) {
@@ -105,11 +127,11 @@
 					this.updata(e.tempFiles[i].path)
 					// await getArrayImg.push(getimg)
 				}
-				console.log('getArrayImg', getArrayImg)
+				await console.log('getArrayImg', getArrayImg)
 
 			},
 			updata(val) {
-				console.log('val', val)
+				// console.log('val', val)
 				let token = uni.getStorageSync('token')
 				uni.uploadFile({
 					url: this.url + '/sys/common/upload', //仅为示例，非真实的接口地址
@@ -119,14 +141,15 @@
 					},
 					name: 'file',
 					success: (uploadFileRes) => {
-						console.log(uploadFileRes.data);
+						// console.log(uploadFileRes.data);
 						let getimg = JSON.parse(uploadFileRes.data)
-						console.log('getimg', getimg)
+
 						// return getimg
 						// this.resultImg = getimg.message
 						// this.$emit("change", getimg.message);
 						this.imageValue.push(getimg.message)
 						this.$emit("change", this.imageValue);
+
 					},
 					complete: (e) => {
 						console.log("e", e)

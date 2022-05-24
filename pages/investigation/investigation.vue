@@ -9,8 +9,8 @@
 				:style="{ width: $store.state.phoneInfo.playerWidth+'px',height: $store.state.phoneInfo.BarHeightDown+'px' }">
 
 				<view class="tabber_down_checken">
-					<uni-data-picker style="height: 24rpx;" v-model="classes" :localdata="items" @change="onchange"
-						@nodeclick="onnodeclick">
+					<uni-data-picker style="height: 24rpx;" v-model="particularYear" :localdata="items"
+						@change="onchange" @nodeclick="onnodeclick">
 					</uni-data-picker>
 				</view>
 				<image @click="toadd" class="tabber_down_img" src="@/static/img/public/005.svg"></image>
@@ -45,8 +45,24 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
 						class="scroll-Y">
-						<TranscriptContent :dataSource="tranList">
+						<TranscriptContent @callbackCon="callbackContranscript" :dataSource="tranList">
 						</TranscriptContent>
+						<SecurityBox></SecurityBox>
+					</scroll-view>
+				</swiper-item>
+				<swiper-item class="swiper-item ">
+					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
+						class="scroll-Y">
+						<AudioVisualContent @callbackCon="callbackContranscript" :dataSource="audioList">
+						</AudioVisualContent>
+						<SecurityBox></SecurityBox>
+					</scroll-view>
+				</swiper-item>
+				<swiper-item class="swiper-item ">
+					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
+						class="scroll-Y">
+						<InspectionContent @callbackCon="callbackContranscript" :dataSource="inspectionList">
+						</InspectionContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
@@ -61,6 +77,9 @@
 	import publicContent from '@/components/public/publicContent.vue'
 	import homeContent from '@/components/homePage/homeContent.vue'
 	import TranscriptContent from '@/components/investigation/TranscriptContent.vue'
+
+	import AudioVisualContent from '@/components/investigation/AudioVisualContent.vue'
+	import InspectionContent from '@/components/investigation/InspectionContent.vue'
 	export default {
 		data() {
 			return {
@@ -90,7 +109,8 @@
 				boxnumleft: null,
 
 				// 数据
-				classes: '2022',
+				// classes: '2022',
+				particularYear: '2022',
 				items: [{
 						text: "2022",
 						value: "2022"
@@ -105,18 +125,37 @@
 				bothLeft: 123,
 
 				ismore: true,
-				tranList: []
+				tranList: [],
+				audioList: [],
+				inspectionList: []
 			}
 		},
 		components: {
 			SecurityBox,
 			publicContent,
 			homeContent,
-			TranscriptContent
+			TranscriptContent,
+			AudioVisualContent,
+			InspectionContent
 
 		},
+		onShow() {
+			this.ismore = true
+			this.pageNo = 1
+			// console.log('onswiperchangee', e)
+			if (this.tabIndex == 0) {
+				this.tranList = []
+				this.transcriptpageList()
+			} else if (this.tabIndex == 1) {
+				this.audioList = []
+				this.audioVisualList()
+			} else if (this.tabIndex == 2) {
+				this.inspectionList = []
+				this.inspectionListFun()
+			}
+		},
 		onLoad() {
-			this.transcriptpageList()
+			// this.transcriptpageList()
 			this.$nextTick(() => {
 				this.getitemTab(0)
 				this.getnumwidth()
@@ -124,6 +163,112 @@
 
 		},
 		methods: {
+			callbackContranscript() {
+				this.ismore = true
+				this.pageNo = 1
+				// console.log('onswiperchangee', e)
+				if (this.tabIndex == 0) {
+					this.tranList = []
+					this.transcriptpageList()
+				} else if (this.tabIndex == 1) {
+					this.audioList = []
+					this.audioVisualList()
+				} else if (this.tabIndex == 2) {
+					this.inspectionList = []
+					this.inspectionListFun()
+				}
+			},
+			async inspectionListFun() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						pageNo: this.pageNo,
+						pageSize: 8,
+						year: this.particularYear
+					}
+					// console.log("option", option)
+					const res = await this.api.fieldInvestigation.inspectionList(option)
+					console.log("pagelist", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						if (result.records.length != 0) {
+							for (var i = 0; i < result.records.length; i++) {
+								this.inspectionList.push(result.records[i])
+							}
+						} else {
+							this.ismore = false
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+						uni.hideLoading();
+						// console.log("this.getList", this.getList)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+				} catch (e) {
+					uni.hideLoading();
+					console.log('try:e:', e)
+				}
+			},
+			async audioVisualList() {
+				try {
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						pageNo: this.pageNo,
+						pageSize: 8,
+						year: this.particularYear
+					}
+					// console.log("option", option)
+					const res = await this.api.fieldInvestigation.audioVisualList(option)
+					console.log("pagelist", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						if (result.records.length != 0) {
+							for (var i = 0; i < result.records.length; i++) {
+								this.audioList.push(result.records[i])
+							}
+						} else {
+							this.ismore = false
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+						uni.hideLoading();
+						// console.log("this.getList", this.getList)
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+				} catch (e) {
+					uni.hideLoading();
+					console.log('try:e:', e)
+				}
+			},
+
 			async transcriptpageList() {
 				try {
 					uni.showLoading({
@@ -132,6 +277,7 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
+						year: this.particularYear
 					}
 					// console.log("option", option)
 					const res = await this.api.fieldInvestigation.transcriptpageList(option)
@@ -177,7 +323,11 @@
 					})
 				} else if (this.tabIndex == 1) {
 					uni.navigateTo({
-						url: '/pages/investigation/investigationEdit'
+						url: '/pages/investigation/AudioVisualAdd'
+					})
+				} else if (this.tabIndex == 2) {
+					uni.navigateTo({
+						url: '/pages/investigation/InspectionAdd'
 					})
 				}
 				// uni.navigateTo({
@@ -185,15 +335,38 @@
 				// })
 			},
 			onswiperchange(e) {
+				this.ismore = true
+				this.pageNo = 1
 				console.log('onswiperchangee', e)
 				this.getitemTab(e.detail.current)
 				if (e.detail.current == 0) {
+					this.tranList = []
 					this.transcriptpageList()
+				} else if (e.detail.current == 1) {
+					this.audioList = []
+					this.audioVisualList()
+				} else if (e.detail.current == 2) {
+					this.inspectionList = []
+					this.inspectionListFun()
 				}
+
 
 			},
 			onnodeclick(e) {
 				console.log(e);
+				this.ismore = true
+				this.pageNo = 1
+				// console.log('onswiperchangee', e)
+				if (this.tabIndex == 0) {
+					this.tranList = []
+					this.transcriptpageList()
+				} else if (this.tabIndex == 1) {
+					this.audioList = []
+					this.audioVisualList()
+				} else if (this.tabIndex == 2) {
+					this.inspectionList = []
+					this.inspectionListFun()
+				}
 			},
 
 			onchange(e) {
@@ -202,7 +375,7 @@
 
 			getnumwidth() {
 
-				var getlist = []
+
 				let c = 0
 				for (var i = 0; i < this.tabList.length; i++) {
 					// this.tab[i]

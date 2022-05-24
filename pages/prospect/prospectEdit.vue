@@ -93,13 +93,13 @@
 			upAllFile
 		},
 		onLoad(e) {
-			console.log("e", e)
+			// console.log("e", e)
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
 			if (e.dataSource) {
 				let getrotuer = JSON.parse(e.dataSource)
-				console.log("getrotuer", getrotuer)
+				// console.log("getrotuer", getrotuer)
 				this.getlist(getrotuer)
 			}
 

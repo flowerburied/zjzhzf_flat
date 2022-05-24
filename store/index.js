@@ -26,6 +26,10 @@ const store = new Vuex.Store({
 		},
 		SET_USER_INFO(state, step) {
 			state.userInfo = step
+			uni.setStorage({
+				key: "userInfo",
+				data: step
+			})
 		},
 		SET_TOKEN(state, step) {
 			// console.log("执行了SET_TOKEN")

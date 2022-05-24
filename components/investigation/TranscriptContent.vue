@@ -50,12 +50,64 @@
 			}
 		},
 		methods: {
+			changeList(val) {
+				console.log("val", val)
+				uni.navigateTo({
+					url: `/pages/investigation/TranscriptAdd?dataSource=${JSON.stringify(val)}`
+				})
+			},
 			tolist(val) {
 				console.log("34567", val)
 				uni.navigateTo({
 					url: `/pages/homePage/homeSecond/caseAdmin?dataSource=${JSON.stringify(val)}`
 				})
-			}
+			},
+			delList(val) {
+				console.log("val", val)
+				let that = this
+				uni.showModal({
+					title: '提示',
+					content: '再次确认删除',
+					success: function(res) {
+						if (res.confirm) {
+							that.deleteTrue(val.id)
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			},
+			async deleteTrue(val) {
+				try {
+					const res = await this.api.fieldInvestigation.transcriptDelete(val)
+					console.log("edit", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+			
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+						this.$emit("callbackCon")
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			
 		},
 		components: {
 			publicBtn
@@ -64,88 +116,5 @@
 </script>
 
 <style lang="scss">
-	.home_content {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		.home_content_box {
-			margin: 0 0 0 -8rpx;
-			width: 632rpx;
-			// background-color: #007AFF;
-			display: flex;
-			flex-wrap: wrap;
-			flex-direction: row;
-
-			.content_box_item {
-				border-radius: 2rpx;
-				margin: 8rpx 0 0 8rpx;
-				width: 308rpx;
-				height: 132rpx;
-				display: flex;
-				flex-direction: column;
-				background-color: #ffffff;
-
-				.box_line {
-					margin: 6rpx 0 6rpx 0;
-					width: 308rpx;
-					height: 0.5rpx;
-					background-color: #e5e5e5;
-
-				}
-
-				.box_btn_add {
-					width: 308rpx;
-					display: flex;
-					flex-direction: row-reverse;
-
-					.box_btn {
-						margin-right: 16rpx;
-
-					}
-				}
-
-
-
-				.box_item_box {
-					margin-top: 6rpx;
-
-					display: flex;
-					flex-direction: row;
-
-					.item_box_title {
-						line-height: 150%;
-						font-size: 10rpx;
-						// line-height: 10rpx;
-						margin-left: 10rpx;
-						color: #909090;
-					}
-
-					.item_box_text {
-						width: 230rpx;
-						font-size: 11rpx;
-						line-height: 150%;
-						color: #505050;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-						overflow: hidden;
-						word-break: break-all;
-					}
-
-					.item_box_text2 {
-						width: 230rpx;
-						font-size: 10rpx;
-						line-height: 150%;
-						color: #909090;
-						white-space: nowrap;
-						text-overflow: ellipsis;
-						overflow: hidden;
-						word-break: break-all;
-					}
-				}
-			}
-		}
-
-
-	}
+	@import '@/commons/cardMy.scss'
 </style>

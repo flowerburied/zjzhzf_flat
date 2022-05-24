@@ -348,7 +348,7 @@
 					surveyTime: "",
 					signatureQuestioned: "",
 					surveyorQuestioned: "",
-					schematicDiagram: [],
+					schematicDiagram: null,
 					fileUrl: ""
 				},
 				rules: {
@@ -672,7 +672,14 @@
 					uni.showLoading({
 						title: '加载中'
 					});
-					const res = await this.api.prospect.edit(this.model)
+					let getModel = JSON.parse(JSON.stringify(this.model));
+					if (getModel.schematicDiagram) {
+						if (typeof getModel.schematicDiagram == "object") {
+							getModel.schematicDiagram = getModel.schematicDiagram.join(",");
+						}
+					}
+					console.log("getModel", getModel)
+					const res = await this.api.prospect.edit(getModel)
 					console.log("edit", res)
 					const {
 						code,
@@ -703,8 +710,14 @@
 					uni.showLoading({
 						title: '加载中'
 					});
-					this.model.schematicDiagram = JSON.stringify(this.model.schematicDiagram)
-					const res = await this.api.prospect.add(this.model)
+					let getModel = JSON.parse(JSON.stringify(this.model));
+					if (getModel.schematicDiagram) {
+						if (typeof getModel.schematicDiagram == "object") {
+							getModel.schematicDiagram = getModel.schematicDiagram.join(",");
+						}
+					}
+					console.log("getModel", getModel)
+					const res = await this.api.prospect.add(getModel)
 					console.log("add", res)
 					const {
 						code,

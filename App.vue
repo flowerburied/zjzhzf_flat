@@ -16,12 +16,28 @@
 			let phoneInfo = this.$store.state.phoneInfo
 			// console.log("phoneInfo", phoneInfo)
 			if (!phoneInfo) {
-
 				this.$store.dispatch("getPhoneInfo")
 			}
+
 		},
 		onShow: function() {
 			console.log('App Show')
+			let userInfo = this.$store.state.userInfo
+			console.log('userInfo', userInfo)
+			if (!userInfo) {
+				uni.getStorage({
+					key: "userInfo",
+					complete: (val) => {
+						console.log('val', val)
+						if (val.data) {
+							this.$store.commit("SET_USER_INFO", val.data)
+						} else {
+
+						}
+					}
+				})
+
+			}
 		},
 		onHide: function() {
 			console.log('App Hide')

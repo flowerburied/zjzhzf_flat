@@ -119,7 +119,7 @@
 						result
 					} = res
 					if (code == 0) {
-						console.log('数据回显', result)
+						// console.log('数据回显', result)
 
 						// let getobject = this.selectedItems(result.records)
 						// console.log('getobject', getobject)

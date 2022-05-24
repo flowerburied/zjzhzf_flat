@@ -101,7 +101,7 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="sex">
-								<uni-data-checkbox v-model="model.sex" :localdata="sex">
+								<uni-data-checkbox v-model="model.sex" :localdata="sexlocaldata">
 								</uni-data-checkbox>
 								<!-- 	<uni-easyinput v-model="model.sex" placeholder="请输入联系人姓名">
 								</uni-easyinput> -->
@@ -296,16 +296,38 @@
 	import askAnswer from '@/components/public/from/askAnswer.vue'
 
 	export default {
+		watch: {
+			resultList: {
+				handler(val, oldValue) {
+					if (val.id) {
+						console.log("valllllll", val)
+						this.model = val;
+					}
 
+				},
+				//立刻执行handler
+				immediate: true,
+			},
+		},
+		model: {
+			prop: "resultList",
+			event: "change",
+		},
+		props: {
+			resultList: {
+				type: Object,
+
+			},
+		},
 
 		data() {
 			return {
-				sex: [{
+				sexlocaldata: [{
 					text: '男',
-					value: 1
+					value: '1'
 				}, {
 					text: '女',
-					value: 2
+					value: '2'
 				}, ],
 				testfile: '2022-05-15_log_1653014036228.txt',
 				fileLists: [],

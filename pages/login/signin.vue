@@ -84,11 +84,16 @@
 
 		},
 		onLoad() {
-			let getToken = uni.getStorage({
+
+
+		},
+		onShow() {
+			uni.getStorage({
 				key: "token",
-				success: function(res) {
-					console.log(res.data);
-					if (res.data) {
+
+				complete: (val) => {
+					// console.log(val);
+					if (val.data) {
 						uni.switchTab({
 							url: '/pages/homePage/home'
 						})
@@ -97,8 +102,6 @@
 					}
 				}
 			})
-			// console.log("getkone", getToken)
-			// this.handleChangeCheckCode()
 		},
 
 		methods: {

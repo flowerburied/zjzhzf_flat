@@ -14,12 +14,23 @@
 
 					<view class="content_view_list"
 						:style="{ top: $store.state.phoneInfo.statusBarHeight+'px',height:$store.state.phoneInfo.mineCon+'px'}">
-						<image class="view_list_img" src="@/static/img/tabber/005.png"></image>
-						<text class="view_list_name">姓名：Alisa</text>
+						<image class="view_list_img" :src="$store.state.userInfo.avatar"></image>
+						<text class="view_list_name">姓名：{{$store.state.userInfo.realname}}</text>
 					</view>
 
 					<view class="content_view_other">
-						<view class="view_other_box">
+						<view class="view_other_box" v-if="infotype==0">
+							<view class="other_box_bao" @click="infoclick">
+								<text class="box_bao_text">个人信息</text>
+								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+							</view>
+							<view class="other_box_bao">
+								<text class="box_bao_text">系统设置</text>
+								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+							</view>
+						</view>
+
+						<view class="view_other_box" v-if="infotype==1">
 							<view class="other_box_bao">
 								<text class="box_bao_text">个人信息</text>
 								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
@@ -29,11 +40,8 @@
 								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
 							</view>
 						</view>
-					<!-- 	<view class="view_other_canvas">
-							<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="300rpx">
-							</drawing-board>
-						</view> -->
-						
+
+
 						<view class="view_other_btn" @click="outsign">
 							退出登录
 						</view>
@@ -58,13 +66,22 @@
 		components: {
 			drawingBoard
 		},
+		data() {
+			return {
+				infotype: 0
+			}
+		},
 
 		methods: {
-
+			infoclick() {
+				this.infotype = 1
+			},
 			touchmove222() {
 				console.log("hual")
 			},
 			outsign() {
+				this.$store.commit("SET_USER_INFO", null)
+				uni.clearStorage();
 				uni.reLaunch({
 					url: '/pages/login/signin'
 				})

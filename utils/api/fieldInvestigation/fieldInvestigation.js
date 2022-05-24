@@ -29,6 +29,16 @@ let fieldInvestigation = {
 
 		})
 	},
+	//询问笔录id查询
+	TreeListqueryById(params) {
+		return request.request({
+			url: '/zhzf/transcriptQuestioning/queryById',
+			method: 'GET',
+			params: params
+
+		})
+	},
+
 	//询问笔录添加
 	TreeListlistadd(params) {
 		return request.request({
@@ -55,7 +65,15 @@ let fieldInvestigation = {
 		})
 	},
 
+	//询问笔录id查询
+	audioVisualqueryById(params) {
+		return request.request({
+			url: '/zhzf/audioVisualMaterials/queryById',
+			method: 'GET',
+			params: params
 
+		})
+	},
 	// 视听资料列表
 	audioVisualList(params) {
 		return request.request({
@@ -92,11 +110,19 @@ let fieldInvestigation = {
 	},
 
 
+	//现场检查id查询
+	inspectionqueryById(params) {
+		return request.request({
+			url: '/zhzf/inspectionRecord/queryById',
+			method: 'GET',
+			params: params
 
+		})
+	},
 	// 现场检查笔录列表
 	inspectionList(params) {
 		return request.request({
-			url: '/zhzf/inspectionRecordList/pageList',
+			url: '/zhzf/inspectionRecord/pageList',
 			method: 'GET',
 			params: params
 
@@ -105,7 +131,7 @@ let fieldInvestigation = {
 	//现场检查笔录添加
 	inspectionadd(params) {
 		return request.request({
-			url: '/zhzf/inspectionRecordList/add',
+			url: '/zhzf/inspectionRecord/add',
 			method: 'POST',
 			data: params
 
@@ -114,7 +140,7 @@ let fieldInvestigation = {
 	//现场检查笔录修改
 	inspectionedit(params) {
 		return request.request({
-			url: '/zhzf/inspectionRecordList/edit',
+			url: '/zhzf/inspectionRecord/edit',
 			method: 'PUT',
 			data: params
 
@@ -123,7 +149,7 @@ let fieldInvestigation = {
 	//现场检查笔录删除
 	inspectionDelete(params) {
 		return request.request({
-			url: `/zhzf/inspectionRecordList/delete?id=${params}`,
+			url: `/zhzf/inspectionRecord/delete?id=${params}`,
 			method: 'DELETE',
 		})
 	},

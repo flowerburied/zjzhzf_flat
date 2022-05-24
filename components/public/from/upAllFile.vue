@@ -2,17 +2,20 @@
 	<view class="upallfile">
 
 
-
-		<view class="padding">
-			<view v-for="(item,index) in files.values()" :key="index">
-				<text>{{item.name}}</text>
-				<!-- <text style="margin-left: 10rpx;">大小：{{item.size}}</text>
-				<text style="margin-left: 10rpx;">状态：{{item.type}}</text>
-				<text style="margin-left: 10rpx;">进度：{{item.progress}}</text> -->
-				<text @click="clear(item.name)"
-					style="margin-left: 10rpx;padding: 0 10rpx;border: 1rpx solid #007AFF;">删除</text>
+		<view class="sound_record_right">
+			<view>
+				{{fileName}}
 			</view>
+			<button @click="clear" class="record_right_btn" v-if="fileName" type="default">删除</button>
 		</view>
+		<!-- <view class="padding">
+			<view>
+				<text>{{fileName}}</text>
+				
+				<button v-if="fileName" @click="clear" type="default">删除</button>
+				
+			</view>
+		</view> -->
 
 		<lsj-upload ref="lsjUpload" childId="upload" width="100px" :height="height" :option="option" :size="size"
 			:debug="debug" :instantly="instantly" @progress="onprogress" @change="onChange">
@@ -28,7 +31,7 @@
 		data() {
 			return {
 				option: {},
-				height: '50rpx',
+				height: '30rpx',
 				size: 10,
 				debug: true,
 				// 选择文件后是否立即自动上传
@@ -41,24 +44,27 @@
 				// 演示用
 				tabIndex: 0,
 				list: [],
+				// add
+				fileName: ''
 			}
 		},
 		watch: {
 			resultFile1: {
 				handler(val, oldValue) {
 					// this.imageValue = val;
-					console.log('watchjiantin', val)
-					console.log('watchjiantin', oldValue)
-					if (oldValue === undefined) {
-						let option = {
-							file: {},
-							name: val,
-							size: 0,
-							progress: 100,
-							type: 'success',
-							responseText: ''
-						}
-						this.files.set(val, option);
+					// console.log('watchjiantin', val)
+					// console.log('watchjiantin', oldValue)
+					if (val) {
+						// let option = {
+						// 	file: {},
+						// 	name: val,
+						// 	size: 0,
+						// 	progress: 100,
+						// 	type: 'success',
+						// 	responseText: ''
+						// }
+						// this.files.set(val, option);
+						this.fileName = val
 					}
 
 				},
@@ -96,7 +102,7 @@
 					// 'orderId': 1000
 				}
 			};
-			console.log("初始化！！", this.option)
+			// console.log("初始化！！", this.option)
 		},
 
 		methods: {
@@ -116,6 +122,7 @@
 				let isAll = [...this.files.values()].find(item => item.type !== 'success');
 				if (!isAll) {
 					console.log('已全部上传完毕', item);
+
 					let getlist = JSON.parse(item.responseText)
 					this.$emit("change", getlist.message);
 					// this.$emit("change", getlist);
@@ -140,9 +147,23 @@
 				this.$refs.lsjUpload.upload();
 			},
 			// 移除某个文件
-			clear(name) {
+			clear() {
+				let that = this
+				uni.showModal({
+					title: '提示',
+					content: '再次确认删除',
+					success: function(res) {
+						if (res.confirm) {
+							that.fileName = ''
+							that.$emit("change", '');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+
 				// name=指定文件名，不传name默认移除所有文件
-				this.$refs.lsjUpload.clear(name);
+				// this.$refs.lsjUpload.clear(name);
 			},
 
 
@@ -178,9 +199,22 @@
 		display: flex;
 		align-items: center;
 		justify-content: space-between;
+		flex-direction: row;
 
 		.padding {
 			padding: 10rpx;
+		}
+
+		.sound_record_right {
+			padding: 10rpx;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+
+			// width: 100rpx;
+			.record_right_btn {
+				margin: 10rpx;
+			}
 		}
 	}
 </style>

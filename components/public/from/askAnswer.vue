@@ -14,7 +14,6 @@
 		data() {
 			return {
 				aaList: "问:\r\n答:\r\n",
-
 			}
 		},
 		methods: {

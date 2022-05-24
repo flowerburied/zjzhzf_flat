@@ -77,6 +77,18 @@
 			}
 		},
 		{
+			"path": "pages/investigation/AudioVisualAdd",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
+			"path": "pages/investigation/InspectionAdd",
+			"style": {
+				"navigationStyle": "custom"
+			}
+		},
+		{
 			"path": "pages/index/index",
 			"style": {
 				"navigationBarTitleText": "uni-app"
