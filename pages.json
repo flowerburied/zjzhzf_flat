@@ -113,30 +113,33 @@
 		"selectedColor": "#118ee9",
 		"borderStyle": "black",
 		"backgroundColor": "#F2F2F2",
+		"height": "80px",
+		"fontSize": "20px",
+		"iconWidth": "32px",
 		"list": [{
 				"pagePath": "pages/homePage/home",
-				"iconPath": "./static/img/tabber/01.svg",
-				"selectedIconPath": "./static/img/tabber/001.svg",
+				"iconPath": "./static/img/tabber/01.png",
+				"selectedIconPath": "./static/img/tabber/001.png",
 				"text": "我的案件"
 			},
 
 
 			{
 				"pagePath": "pages/prospect/prospect",
-				"iconPath": "./static/img/tabber/02.svg",
-				"selectedIconPath": "./static/img/tabber/002.svg",
+				"iconPath": "./static/img/tabber/02.png",
+				"selectedIconPath": "./static/img/tabber/002.png",
 				"text": "现场踏勘"
 			},
 			{
 				"pagePath": "pages/investigation/investigation",
-				"iconPath": "./static/img/tabber/03.svg",
-				"selectedIconPath": "./static/img/tabber/003.svg",
+				"iconPath": "./static/img/tabber/03.png",
+				"selectedIconPath": "./static/img/tabber/003.png",
 				"text": "现场调查"
 			},
 			{
 				"pagePath": "pages/mine/mine",
-				"iconPath": "./static/img/tabber/04.svg",
-				"selectedIconPath": "./static/img/tabber/04.svg",
+				"iconPath": "./static/img/tabber/04.png",
+				"selectedIconPath": "./static/img/tabber/004.png",
 				"text": "个人中心"
 			}
 

@@ -31,7 +31,7 @@
 		data() {
 			return {
 				option: {},
-				height: '30rpx',
+				height: '40rpx',
 				size: 10,
 				debug: true,
 				// 选择文件后是否立即自动上传

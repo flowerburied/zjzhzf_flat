@@ -5,9 +5,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							收集时间
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -18,9 +19,9 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text ">
 							收集方式
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -34,9 +35,10 @@
 
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							收集地点
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -51,9 +53,10 @@
 
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+
 							资料路径
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -66,9 +69,10 @@
 
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+
 							资料说明
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -81,9 +85,10 @@
 				</myCol>
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+
 							录音
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -111,9 +116,10 @@
 			<view class="second_view_box">
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+
 							当事人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -124,9 +130,9 @@
 
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text ">
 							收集人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -166,6 +172,7 @@
 	import dataTreePicker from '@/components/public/from/dataTreePicker.vue'
 
 	import soundRecording from '@/components/public/from/soundRecording.vue'
+	import requiredText from '@/components/public/requiredText.vue'
 	export default {
 		watch: {
 			resultList: {
@@ -207,6 +214,7 @@
 				bothLeft: 34,
 
 				model: {
+					collectionTime: "",
 					informationDescription: "拍摄时间:\r\n拍摄地点:\r\n拍摄内容:\r\n拍摄张数:\r\n拍摄人:\r\n"
 				},
 				rules: {
@@ -215,7 +223,7 @@
 							required: true,
 							errorMessage: "请选择收集时间!",
 							trigger: "change"
-						}, ]
+						}]
 					},
 					collectionMethod: {
 						rules: [{
@@ -245,7 +253,7 @@
 			filePicker,
 			upAllFile,
 			dataTreePicker,
-
+			requiredText,
 			soundRecording,
 		},
 

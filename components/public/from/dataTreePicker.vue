@@ -1,7 +1,13 @@
 <template>
 	<view>
-		<!-- <button @click="open">打开弹窗</button> -->
-		<uni-easyinput disabled class="uni-mt-5" suffixIcon="search" v-model="userNames" placeholder="右侧图标" @iconClick="open">
+		<view class="my_datatree_picker">
+			<view class="datatree_picker_name" v-if="userNames">
+				{{userNames}}
+			</view>
+			<button class="mini-btn" type="primary" size="mini" @click="open">设置</button>
+		</view>
+
+		<!-- 	<uni-easyinput disabled class="uni-mt-5" suffixIcon="search" v-model="userNames" placeholder="右侧图标" @iconClick="open"> -->
 		</uni-easyinput>
 		<uni-popup ref="popup" type="bottom">
 			<view class="table_padding_my">
@@ -294,6 +300,18 @@
 </script>
 
 <style lang="scss" scoped>
+	.my_datatree_picker {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+
+		.datatree_picker_name {
+			border-radius: 5rpx;
+			border: 1px solid #bdc3c7;
+			padding: 5rpx 10rpx;
+		}
+	}
+
 	.table_padding_my {
 		margin: 10rpx;
 		padding: 10rpx;

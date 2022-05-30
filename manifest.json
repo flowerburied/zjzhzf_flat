@@ -6,7 +6,8 @@
     "versionCode" : "100",
     "transformPx" : false,
     "app-plus" : {
-		"orientation" : [ "landscape-primary","landscape-secondary" ],//重力感应、横竖屏配置"landscape-primary", "landscape-secondary"  分别是 横屏正方向 横屏反方向
+        "orientation" : [ "landscape-primary", "landscape-secondary" ], //重力感应、横竖屏配置"landscape-primary", "landscape-secondary"  分别是 横屏正方向 横屏反方向
+
         /* 5+App特有相关 */
         "usingComponents" : true,
         "nvueCompiler" : "uni-app",

@@ -80,11 +80,23 @@
 				console.log("hual")
 			},
 			outsign() {
-				this.$store.commit("SET_USER_INFO", null)
-				uni.clearStorage();
-				uni.reLaunch({
-					url: '/pages/login/signin'
-				})
+				let that = this
+				uni.showModal({
+					title: '提示',
+					content: '再次确认退出',
+					success: function(res) {
+						if (res.confirm) {
+							that.$store.commit("SET_USER_INFO", null)
+							uni.clearStorage();
+							uni.reLaunch({
+								url: '/pages/login/signin'
+							})
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+
 			},
 			scrolltolower(e) {
 				// this.$emit("scrolltolower")

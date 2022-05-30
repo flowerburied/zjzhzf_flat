@@ -21,12 +21,12 @@
 					</view>
 				</view>
 			</view>
-			<view class="signup_agreement">
+			<!-- <view class="signup_agreement">
 				<view @click="changeAgreemenet" class="signup_agreement_box"
 					:class="[isAgreement?'agreement_box_active':'']">
 				</view>
 				<text class="signup_agreement_text">我已阅读并同意金坛的《用户服务协议》与《隐私政策》</text>
-			</view>
+			</view> -->
 			<view class="signup_reset">
 				忘记密码?
 			</view>

@@ -5,9 +5,10 @@
 
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							案由
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -22,9 +23,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							询问时间
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -35,9 +37,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text">
+							<requiredText></requiredText>
 							询问地点
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -52,9 +55,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							调查询问人
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -65,9 +69,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text">
+							<requiredText></requiredText>
 							记录人
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -81,9 +86,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							被询问人
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -94,9 +100,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							性别
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -110,9 +117,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							身份证
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -127,9 +135,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							工作单位
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -140,9 +149,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							职务
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -154,9 +164,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							出生年月
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -174,9 +185,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							住址
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -187,9 +199,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							联系电话
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -202,9 +215,10 @@
 					</myRow>
 
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							邮政编码
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -240,9 +254,10 @@
 			<view class="second_view_box">
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+
 							被询问人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -253,9 +268,9 @@
 
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text ">
 							调查询问人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -295,6 +310,7 @@
 	import dataTreePicker from '@/components/public/from/dataTreePicker.vue'
 	import askAnswer from '@/components/public/from/askAnswer.vue'
 
+	import requiredText from '@/components/public/requiredText.vue'
 	export default {
 		watch: {
 			resultList: {
@@ -459,6 +475,7 @@
 			upAllFile,
 			dataTreePicker,
 			askAnswer,
+			requiredText
 		},
 
 

@@ -4,9 +4,11 @@
 			<view class="second_view_box">
 				<myCol>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+
+						<view class="public_text">
+							<requiredText></requiredText>
 							建设单位
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -17,9 +19,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							联系人姓名
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -31,9 +34,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							联系人电话
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -50,9 +54,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							施工单位
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -63,9 +68,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							联系人姓名
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -77,9 +83,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							联系人电话
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -95,9 +102,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							工程名称
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='1.66'>
 						<view class="public_input">
@@ -108,9 +116,10 @@
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							工程地址
-						</text>
+						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
@@ -123,9 +132,10 @@
 				</myCol>
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							现场工程检查情况
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -144,9 +154,10 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							现场踏勘示意图
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_updata">
@@ -160,9 +171,10 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							现场踏勘情况
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 
@@ -177,9 +189,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							勘查人
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -191,9 +204,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text">
+							<requiredText></requiredText>
 							勘查时间
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -206,9 +220,10 @@
 
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							勘查人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -219,9 +234,10 @@
 
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<text class="public_text ">
+						<view class="public_text">
+							<requiredText></requiredText>
 							当事人签名
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
@@ -234,9 +250,10 @@
 
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							附件
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
@@ -245,9 +262,6 @@
 
 									<upAllFile v-model="model.fileUrl"></upAllFile>
 								</view>
-
-
-
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -255,9 +269,10 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
-						<text class="public_text">
+						<view class="public_text">
+							<requiredText></requiredText>
 							处理意见
-						</text>
+						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 
@@ -309,7 +324,7 @@
 
 	import upAllFile from '@/components/public/from/upAllFile.vue'
 
-
+	import requiredText from '@/components/public/requiredText.vue'
 
 	export default {
 		watch: {
@@ -486,7 +501,7 @@
 			ESignature,
 			filePicker,
 			upAllFile,
-
+			requiredText
 		},
 		mounted() {
 			this.option = {

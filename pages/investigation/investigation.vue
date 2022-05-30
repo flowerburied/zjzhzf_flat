@@ -20,7 +20,7 @@
 					<view class="tabber_down_con" :style="{ marginLeft:bothLeft +'rpx'}">
 						<view class="down_con_box">
 							<view class="con_box_add" v-for="(tab,indextab) in tabList" :key="indextab">
-								<view class="box_add_num" :style="{ left: tab.boxnumleft+'px'}">
+								<view class="box_add_num" v-if="tab.num" :style="{ left: tab.boxnumleft+'px'}">
 									{{tab.num}}
 								</view>
 								<text :style="{ margin:bothsides }" :class="[indextab==tabIndex?'con_active_color':'']"
@@ -86,17 +86,17 @@
 
 				tabList: [{
 						name: "询问笔录",
-						num: 8,
+						num: 0,
 						boxnumleft: 1
 					},
 					{
 						name: "视听资料",
-						num: 6,
+						num: 0,
 						boxnumleft: 1
 					},
 					{
 						name: "现场检查笔录",
-						num: 6,
+						num: 0,
 						boxnumleft: 1
 					},
 				],
@@ -118,16 +118,24 @@
 					{
 						text: "2023",
 						value: "2023"
-					}
+					},
+					{
+						text: "2024",
+						value: "2024"
+					},
+					{
+						text: "2025",
+						value: "2025"
+					},
 				],
 				// addlist
 				bothsides: '0 33rpx',
 				bothLeft: 123,
 
 				ismore: true,
-				tranList: [],
-				audioList: [],
-				inspectionList: []
+				tranList: [], //询问笔录
+				audioList: [], //视听资料
+				inspectionList: [], //现场检查
 			}
 		},
 		components: {
@@ -197,6 +205,7 @@
 						result
 					} = res
 					if (code == 200) {
+						this.tabList[2].num = result.total
 						if (result.records.length != 0) {
 							for (var i = 0; i < result.records.length; i++) {
 								this.inspectionList.push(result.records[i])
@@ -242,6 +251,7 @@
 						result
 					} = res
 					if (code == 200) {
+						this.tabList[1].num = result.total
 						if (result.records.length != 0) {
 							for (var i = 0; i < result.records.length; i++) {
 								this.audioList.push(result.records[i])
@@ -288,6 +298,7 @@
 						result
 					} = res
 					if (code == 200) {
+						this.tabList[0].num = result.total
 						if (result.records.length != 0) {
 							for (var i = 0; i < result.records.length; i++) {
 								this.tranList.push(result.records[i])

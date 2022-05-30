@@ -13,14 +13,14 @@
 			播放录音
 		</text> -->
 		<view class="sound_record_right">
-			<view>
+			<view @click="download" class="record_right_down">
 				{{fileName}}
 			</view>
 			<button @click="delFile" class="record_right_btn" v-if="fileName" type="default">删除</button>
 		</view>
-		
-		<view class="sound_record_right">
 
+		<view class="sound_record_right">
+			<button v-if="fileName" type="primary" @tap="playVoice">播放录音</button>
 			<button v-if="!isvoice" type="primary" @tap="startRecord">开始录音</button>
 			<button v-if="isvoice" type="primary" @tap="endRecord">结束录音</button>
 		</view>
@@ -32,7 +32,7 @@
 	// 录音
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
-
+	innerAudioContext.autoplay = true;
 	export default {
 		props: {
 			value: {
@@ -64,6 +64,60 @@
 			}
 		},
 		methods: {
+			download() {
+
+				let downUrl = this.url + '/' + this.fileName;
+
+				let dtask = plus.downloader.createDownload(downUrl, {
+						//本地路径开头使用file://，跟上手机文件本地目录storage/emulated/0，就是用户文件管理器能看到的了，之后我创建微垠作为文件夹，后缀是用于文件命名和格式修改，大家可以使用变量。
+						filename: "file://storage/emulated/0/zjxf/" + "test.mp3" //利用保存路径，实现下载文件的重命名
+					},
+					function(d, status) {
+						console.log("d", d)
+						console.log("status", status)
+						//d为下载的文件对象
+						if (status == 200) {
+							//下载成功,d.filename是文件在保存在本地的相对路径，使用下面的API可转为平台绝对路径
+							let fileSaveUrl = plus.io.convertLocalFileSystemURL(d.filename);
+							console.log('fileSaveUrl', fileSaveUrl)
+							plus.runtime.openFile(d.filename); //选择软件打开文件
+							uni.showToast({
+								icon: "none",
+								title: "保存成功",
+								duration: 2000
+							});
+
+						} else {
+							//下载失败
+							plus.downloader.clear(); //清除下载任务
+						}
+					})
+				dtask.start();
+				// const downloadTask = uni.downloadFile({
+				// 	url: downUrl, //仅为示例，并非真实的资源
+				// 	success: (res) => {
+				// 		if (res.statusCode === 200) {
+				// 			console.log('下载成功', res);
+				// 			const addstrin1 = plus.io.convertLocalFileSystemURL(res
+				// 				.tempFilePath)
+				// 			console.log('保存文件2', addstrin1);
+				// 			uni.saveFile({
+				// 				tempFilePath: addstrin1,
+				// 				success: function(res1) {
+
+				// 					console.log('保存文件', res1);
+				// 				}
+				// 			});
+				// 		}
+				// 	}
+				// });
+				// downloadTask.onProgressUpdate((res) => {
+				// 	console.log('下载进度' + res.progress);
+
+				// });
+			},
+
+
 			delFile() {
 				let that = this
 				uni.showModal({
@@ -97,10 +151,11 @@
 			playVoice() {
 				console.log('播放录音');
 
-				if (this.voicePath) {
-					innerAudioContext.src = this.voicePath;
+				if (this.fileName) {
+					innerAudioContext.src = this.url + '/' + this.fileName;
 					// this.updata()
-					console.log('getimg', getimg);
+					console.log("innerAudioContext.src", innerAudioContext.src)
+					// console.log('getimg', getimg);
 					innerAudioContext.play();
 				}
 			},
@@ -157,6 +212,11 @@
 			display: flex;
 			flex-direction: row;
 			align-items: center;
+
+			.record_right_down {
+				color: #2ecc71;
+				text-decoration: underline;
+			}
 
 			// width: 100rpx;
 			.record_right_btn {

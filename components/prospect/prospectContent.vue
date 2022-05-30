@@ -1,6 +1,6 @@
 <template>
 	<view class="home_content">
-		<view class="home_content_box">
+		<view class="home_content_box" v-if="dataSource.length!=0">
 			<view class="content_box_item" v-for="(item,index) in dataSource" :key="index">
 				<view class="box_item_box" style="margin-top: 10rpx;">
 					<text class="item_box_title">工程名称：</text>
@@ -30,19 +30,17 @@
 					</view>
 				</view>
 			</view>
-			<!-- 	<view class="content_box_item" @click="tolist">
-				1234
-			</view>
-			<view class="content_box_item">
-				1234
-			</view> -->
+
 		</view>
+
+		<nodata v-if="dataSource.length==0"></nodata>
 
 	</view>
 </template>
 
 <script>
 	import publicBtn from '@/components/public/publicBtn.vue'
+	import nodata from '@/components/public/noData.vue'
 	export default {
 		props: {
 			dataSource: {
@@ -112,7 +110,8 @@
 
 		},
 		components: {
-			publicBtn
+			publicBtn,
+			nodata
 		}
 	}
 </script>

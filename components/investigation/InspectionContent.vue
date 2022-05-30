@@ -1,6 +1,6 @@
 <template>
 	<view class="home_content">
-		<view class="home_content_box">
+		<view class="home_content_box" v-if="dataSource.length!=0">
 			<view class="content_box_item" v-for="(item,index) in dataSource" :key="index">
 				<view>
 					<view class="box_item_box" style="margin-top: 10rpx;">
@@ -11,9 +11,14 @@
 						<text class="item_box_title">名称：</text>
 						<text class="item_box_text">{{item.companyName}}</text>
 					</view>
+					
 					<view class="box_item_box" v-if="item.partyType==2">
-						<text class="item_box_title">项目名称：</text>
-						<text class="item_box_text">{{item.companyProjectName}}</text>
+						<text class="item_box_title">姓名：</text>
+						<text class="item_box_text">{{item.personalName}}</text>
+					</view>
+					<view class="box_item_box" >
+						<text class="item_box_title">项目地址：</text>
+						<text class="item_box_text">{{item.companyProjectLocation}}</text>
 					</view>
 				</view>
 				<!-- <view v-if="item.partyType==1">
@@ -42,10 +47,13 @@
 
 		</view>
 
+		<nodata v-if="dataSource.length==0"></nodata>
+
 	</view>
 </template>
 
 <script>
+	import nodata from '@/components/public/noData.vue'
 	export default {
 		props: {
 			dataSource: {
@@ -108,7 +116,7 @@
 
 		},
 		components: {
-
+			nodata
 		}
 	}
 </script>

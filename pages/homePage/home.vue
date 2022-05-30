@@ -19,7 +19,7 @@
 					<view class="tabber_down_con" :style="{ marginLeft:bothLeft +'rpx'}">
 						<view class="down_con_box">
 							<view class="con_box_add" v-for="(tab,indextab) in tabList" :key="indextab">
-								<view class="box_add_num" :style="{ left: boxnumleft+'px'}">
+								<view class="box_add_num" v-if="tab.num" :style="{ left: boxnumleft+'px'}">
 									{{tab.num}}
 								</view>
 								<text :style="{ margin:bothsides }" :class="[indextab==tabIndex?'con_active_color':'']"
@@ -71,11 +71,11 @@
 
 				tabList: [{
 						name: "进行中",
-						num: 8
+						num: 0
 					},
 					{
 						name: "已办结",
-						num: 6
+						num: 0
 					},
 
 				],
@@ -96,7 +96,16 @@
 					{
 						text: "2023",
 						value: "2023"
-					}
+					},
+					{
+						text: "2024",
+						value: "2024"
+					},
+					{
+						text: "2025",
+						value: "2025"
+					},
+
 				],
 				// addlist
 				bothsides: '0 33rpx',
@@ -149,7 +158,7 @@
 						case_state: this.caseState,
 						year: this.classes
 					}
-					console.log("option", option)
+					// console.log("option", option)
 					const res = await this.api.myCaseHomePage.pagelist(option)
 					// console.log("pagelist", res)
 					const {
@@ -158,6 +167,12 @@
 						result
 					} = res
 					if (code == 200) {
+						if (this.caseState == 1) {
+							this.tabList[0].num = result.total
+						} else {
+							this.tabList[1].num = result.total
+						}
+						// console.log("result", result)
 						if (result.records.length != 0) {
 							for (var i = 0; i < result.records.length; i++) {
 								this.getList.push(result.records[i])
@@ -214,7 +229,7 @@
 				let info = uni.createSelectorQuery().in(this);
 				info.select(`#ctsbox${e}`).boundingClientRect().exec(res => {
 					if (res[0]) {
-						console.log("ctsDome", res[0])
+						// console.log("ctsDome", res[0])
 						// this.boxwidth = res[0].width
 						let firstwidth = res[0].width / 2
 						this.boxwidth = firstwidth
