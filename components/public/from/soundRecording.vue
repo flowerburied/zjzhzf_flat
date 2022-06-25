@@ -60,7 +60,7 @@
 				fileName: '',
 				voicePath: '',
 				isvoice: false,
-				url: 'http://192.168.10.171:8090/jeecg-boot'
+				url: 'http://192.168.10.171:8088/jeecg-boot'
 			}
 		},
 		methods: {

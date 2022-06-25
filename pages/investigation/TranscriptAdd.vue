@@ -106,6 +106,15 @@
 						result.startEndTime[0] = result.inquiryStarttime
 						result.startEndTime[1] = result.inquiryEndtime
 						this.model = result
+						
+						// if (this.model.companyStartTime) {
+						// 	this.companyTime[0] = this.model.companyStartTime;
+						// 	this.companyTime[1] = this.model.companyEndTime;
+						// }
+						// if (this.model.personalStartTime) {
+						// 	this.personalTime[0] = this.model.personalStartTime;
+						// 	this.personalTime[1] = this.model.personalEndTime;
+						// }
 
 						console.log("this.model", this.model)
 					} else {

@@ -20,25 +20,74 @@
 
 					<view class="content_view_other">
 						<view class="view_other_box" v-if="infotype==0">
-							<view class="other_box_bao" @click="infoclick">
+							<view class="other_box_bao" @click="infoclick(1)">
 								<text class="box_bao_text">个人信息</text>
 								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
 							</view>
-							<view class="other_box_bao">
+							<view class="other_box_bao" @click="infoclick(2)">
 								<text class="box_bao_text">系统设置</text>
 								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
 							</view>
 						</view>
 
 						<view class="view_other_box" v-if="infotype==1">
-							<view class="other_box_bao">
-								<text class="box_bao_text">个人信息</text>
-								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+							<view class="other_box_bao" @click="infoclick(0)">
+								<text class="box_bao_text">返回</text>
+								<view class="box_bao_right">
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
 							</view>
 							<view class="other_box_bao">
-								<text class="box_bao_text">系统设置</text>
-								<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								<text class="box_bao_text">姓名</text>
+								<view class="box_bao_right">
+									<text class="box_bao_text">{{$store.state.userInfo.realname}}</text>
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+
 							</view>
+
+							<view class="other_box_bao">
+								<text class="box_bao_text">部门</text>
+								<view class="box_bao_right">
+									<text class="box_bao_text">{{$store.state.userInfo.orgCodeTxt}}</text>
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+
+							</view>
+							<view class="other_box_bao">
+								<text class="box_bao_text">手机号</text>
+								<view class="box_bao_right">
+									<text class="box_bao_text">{{$store.state.userInfo.mobile}}</text>
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+							</view>
+							<view class="other_box_bao">
+								<text class="box_bao_text">执法证号</text>
+								<view class="box_bao_right">
+									<text class="box_bao_text">{{$store.state.userInfo.enforcementCertificate}}</text>
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+
+							</view>
+
+						</view>
+						<view class="view_other_box" v-if="infotype==2">
+							<view class="other_box_bao" @click="infoclick(0)">
+								<text class="box_bao_text">返回</text>
+								<view class="box_bao_right">
+
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+							</view>
+							<view class="other_box_bao">
+								<text class="box_bao_text">版本号</text>
+								<view class="box_bao_right">
+									<text class="box_bao_text">1.0.1</text>
+									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+								</view>
+							</view>
+
+
 						</view>
 
 
@@ -73,8 +122,8 @@
 		},
 
 		methods: {
-			infoclick() {
-				this.infotype = 1
+			infoclick(val) {
+				this.infotype = val
 			},
 			touchmove222() {
 				console.log("hual")
@@ -176,6 +225,12 @@
 								width: 16rpx;
 								height: 16rpx;
 								margin-right: 12rpx;
+							}
+
+							.box_bao_right {
+								display: flex;
+								flex-direction: row;
+								align-items: center;
 							}
 						}
 

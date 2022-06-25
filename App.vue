@@ -32,7 +32,15 @@
 						if (val.data) {
 							this.$store.commit("SET_USER_INFO", val.data)
 						} else {
-
+							console.log('userInfo', userInfo)
+							try {
+								uni.clearStorageSync();
+								uni.navigateTo({
+									url: "/pages/login/signin"
+								})
+							} catch (e) {
+								// error
+							}
 						}
 					}
 				})

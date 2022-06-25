@@ -24,6 +24,43 @@
 
 				<!-- 单位 -->
 				<myCol v-if="model.partyType==1">
+					<myRow widthPercentage='1.66' background="#f0f0f0">
+						<view class="public_text">
+
+							地点
+						</view>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyLocation">
+								<uni-easyinput v-model="model.companyLocation" placeholder="请输入名称">
+								</uni-easyinput>
+
+							</uni-forms-item>
+						</view>
+
+					</myRow>
+
+				</myCol>
+				<myCol v-if="model.partyType==1">
+					<myRow widthPercentage='1.66' background="#f0f0f0">
+						<view class="public_text">
+
+							案由
+						</view>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+						<view class="public_input">
+							<uni-forms-item name="caseDesc">
+								<uni-easyinput v-model="model.caseDesc" placeholder="请输入名称">
+								</uni-easyinput>
+
+							</uni-forms-item>
+						</view>
+
+					</myRow>
+				</myCol>
+				<myCol v-if="model.partyType==1">
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 							<requiredText></requiredText>
@@ -33,7 +70,6 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyName">
-
 								<uni-easyinput v-model="model.companyName" placeholder="请输入名称">
 								</uni-easyinput>
 							</uni-forms-item>
@@ -42,44 +78,49 @@
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text ">
 							<requiredText></requiredText>
-							负责人
+							时间
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyTime">
+								<!-- <uni-easyinput v-model="model.companyPerson" placeholder="请输入负责人">
+								</uni-easyinput> -->
+
+								<datetimePicker dateType="datetimerange" v-model="model.companyTime">
+								</datetimePicker>
+
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+				<myCol v-if="model.partyType==1">
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							现场负责人
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyPerson">
-								<uni-easyinput v-model="model.companyPerson" placeholder="请输入负责人">
+
+								<uni-easyinput v-model="model.companyPerson" placeholder="请输入现场负责人">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
 					</myRow>
-				</myCol>
-				<myCol v-if="model.partyType==1">
+
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 							<requiredText></requiredText>
-							统一社会信用代码
+							身份证号码
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companySocialCredit">
-
-								<uni-easyinput v-model="model.companySocialCredit" placeholder="请输入统一社会信用代码">
-								</uni-easyinput>
-							</uni-forms-item>
-						</view>
-					</myRow>
-					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<view class="public_text">
-							<requiredText></requiredText>
-							职务
-						</view>
-					</myRow>
-					<myRow widthPercentage='3.34'>
-						<view class="public_input">
-							<uni-forms-item name="companyPersonPostion">
-								<uni-easyinput v-model="model.companyPersonPostion" placeholder="请输入职务">
+								<uni-easyinput v-model="model.companySocialCredit" placeholder="请输入身份证号码">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -90,14 +131,14 @@
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 							<requiredText></requiredText>
-							住址
+							工作岗位
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
-							<uni-forms-item name="companyAddress">
+							<uni-forms-item name="companyPersonPostion">
 
-								<uni-easyinput v-model="model.companyAddress" placeholder="请输入住址">
+								<uni-easyinput v-model="model.companyPersonPostion" placeholder="请输入工作岗位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -116,12 +157,114 @@
 							</uni-forms-item>
 						</view>
 					</myRow>
+
+
+				</myCol>
+				<myCol v-if="model.partyType==1">
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							在场人员
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyPeople">
+								<uni-easyinput v-model="model.companyPeople" placeholder="请输入在场人员">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							身份证号码
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyRepresentative">
+								<uni-easyinput v-model="model.companyRepresentative" placeholder="请输入身份证号码">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+
+				<myCol v-if="model.partyType==1">
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							工作岗位
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyProjectPostion">
+								<uni-easyinput v-model="model.companyProjectPostion" placeholder="请输入工作岗位">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							联系电话
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="companyProjectTel">
+								<uni-easyinput v-model="model.companyProjectTel" placeholder="请输入联系电话">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
 				</myCol>
 
 
 				<!-- 单位end -->
 
 				<!-- 个人 -->
+
+				<myCol v-if="model.partyType==2">
+					<myRow widthPercentage='1.66' background="#f0f0f0">
+						<view class="public_text">
+							<requiredText></requiredText>
+							地点
+						</view>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+						<view class="public_input">
+							<uni-forms-item name="personalSex">
+								<uni-easyinput v-model="model.personalSex" placeholder="请输入地点">
+								</uni-easyinput>
+
+							</uni-forms-item>
+						</view>
+
+					</myRow>
+				</myCol>
+				<myCol v-if="model.partyType==2">
+					<myRow widthPercentage='1.66' background="#f0f0f0">
+						<view class="public_text">
+
+							案由
+						</view>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+						<view class="public_input">
+							<uni-forms-item name="caseDesc">
+								<uni-easyinput v-model="model.caseDesc" placeholder="请输入名称">
+								</uni-easyinput>
+
+							</uni-forms-item>
+						</view>
+
+					</myRow>
+				</myCol>
 				<myCol v-if="model.partyType==2">
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
@@ -141,93 +284,34 @@
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 							<requiredText></requiredText>
-							性别
+							时间
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
-							<uni-forms-item name="personalSex">
-								<uni-data-checkbox v-model="model.personalSex" :localdata="sexlocaldata">
-								</uni-data-checkbox>
-							</uni-forms-item>
-						</view>
-					</myRow>
-				</myCol>
+							<uni-forms-item name="personalTime">
+								<!-- 	<datetimePicker v-model="model.personalTime">
+								</datetimePicker> -->
 
-				<myCol v-if="model.partyType==2">
-					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<view class="public_text">
-							<requiredText></requiredText>
-							身份证
-						</view>
-					</myRow>
-					<myRow widthPercentage='3.34'>
-						<view class="public_input">
-							<uni-forms-item name="personalCard">
-
-								<uni-easyinput v-model="model.personalCard" placeholder="请输入身份证">
-								</uni-easyinput>
-							</uni-forms-item>
-						</view>
-					</myRow>
-					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<view class="public_text">
-							<requiredText></requiredText>
-							出生年月
-						</view>
-					</myRow>
-					<myRow widthPercentage='3.34'>
-						<view class="public_input">
-							<uni-forms-item name="personalBirthday">
-								<datetimePicker v-model="model.personalBirthday">
+								<datetimePicker dateType="datetimerange" v-model="model.personalTime">
 								</datetimePicker>
 							</uni-forms-item>
 						</view>
 					</myRow>
 				</myCol>
-				<myCol v-if="model.partyType==2">
-					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<view class="public_text">
-							<requiredText></requiredText>
-							工作单位
-						</view>
-					</myRow>
-					<myRow widthPercentage='3.34'>
-						<view class="public_input">
-							<uni-forms-item name="personalWork">
 
-								<uni-easyinput v-model="model.personalWork" placeholder="请输入工作单位">
-								</uni-easyinput>
-							</uni-forms-item>
-						</view>
-					</myRow>
-					<myRow background="#f0f0f0" widthPercentage='1.66'>
-						<view class="public_text">
-							<requiredText></requiredText>
-							职务
-						</view>
-					</myRow>
-					<myRow widthPercentage='3.34'>
-						<view class="public_input">
-							<uni-forms-item name="personalPost">
-								<uni-easyinput v-model="model.personalPost" placeholder="请输入职务">
-								</uni-easyinput>
-							</uni-forms-item>
-						</view>
-					</myRow>
-				</myCol>
 				<myCol v-if="model.partyType==2">
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 							<requiredText></requiredText>
-							住所
+							家庭住址
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalResidence">
 
-								<uni-easyinput v-model="model.personalResidence" placeholder="请输入住所">
+								<uni-easyinput v-model="model.personalResidence" placeholder="请输入家庭住址">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -241,16 +325,142 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalTel">
-								<uni-easyinput v-model="model.personalTel" placeholder="请输入联系电话">
+								<uni-easyinput v-model="model.personalTel" placeholder="请输入家庭住址">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+				<myCol v-if="model.partyType==2">
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							在场人员
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="personalPeople">
+
+								<uni-easyinput v-model="model.personalPeople" placeholder="请输入在场人员">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							身份证
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="personalCard">
+								<uni-easyinput v-model="model.personalCard" placeholder="请输入身份证">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+				<myCol v-if="model.partyType==2">
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							工作岗位
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="personalWork">
+
+								<uni-easyinput v-model="model.personalWork" placeholder="请输入工作岗位">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							联系电话
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="personalBirthday">
+								<uni-easyinput v-model="model.personalBirthday" placeholder="请输入联系电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
 					</myRow>
 				</myCol>
 
+
+
 				<!-- 个人end -->
 
+
 				<myCol>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							检查（勘察）人
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="checkedBy">
+
+								<dataTreePicker v-model="model.checkedBy">
+								</dataTreePicker>
+							</uni-forms-item>
+						</view>
+					</myRow>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							记录人
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="noteTakers">
+								<dataTreePicker v-model="model.noteTakers">
+								</dataTreePicker>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+
+				<myCol>
+
+					<myRow widthPercentage='10'>
+						<view class="public_input">
+							<uni-forms-item name="checkedByNotice">
+
+								<uni-easyinput type="textarea" autoHeight v-model="model.checkedByNotice"
+									placeholder="请输入检查人告知!">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol>
+				<!-- <myCol>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							<requiredText></requiredText>
+							被检查人答
+						</view>
+					</myRow>
+					<myRow widthPercentage='8.34'>
+						<view class="public_input">
+							<uni-forms-item name="checkedBys">
+								<uni-easyinput type="textarea" v-model="model.checkedBys" placeholder="请输入被检查人答!">
+								</uni-easyinput>
+							</uni-forms-item>
+						</view>
+					</myRow>
+				</myCol> -->
+				<!-- <myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
 
@@ -294,7 +504,10 @@
 							</uni-forms-item>
 						</view>
 					</myRow>
-				</myCol>
+				</myCol> -->
+
+
+
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
@@ -305,7 +518,7 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="inspectionRecords">
-								<uni-easyinput type="textarea" v-model="model.inspectionRecords"
+								<uni-easyinput type="textarea" autoHeight v-model="model.inspectionRecords"
 									placeholder="请输入现场检查记录情况!">
 								</uni-easyinput>
 
@@ -380,6 +593,9 @@
 							<uni-forms-item name="signatureQuestioned">
 								<ESignature v-model="model.signatureQuestioned"></ESignature>
 							</uni-forms-item>
+
+							<uni-datetime-picker type="datetime" v-model="model.signatureQuestionedTime" />
+
 						</view>
 
 					</myRow>
@@ -392,6 +608,8 @@
 						<view class="public_input">
 							<uni-forms-item name="witnessInquirer">
 								<ESignature v-model="model.witnessInquirer"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.witnessInquirerTime" />
+
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -408,6 +626,8 @@
 						<view class="public_input">
 							<uni-forms-item name="surveyorQuestioned">
 								<ESignature v-model="model.surveyorQuestioned"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.surveyorQuestionedTime" />
+
 							</uni-forms-item>
 						</view>
 
@@ -421,6 +641,8 @@
 						<view class="public_input">
 							<uni-forms-item name="noteTaker">
 								<ESignature v-model="model.noteTaker"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.noteTakerTime" />
+
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -504,9 +726,11 @@
 
 				model: {
 					inspectionInvestigation: '',
-					personalSex: "1",
+					personalSex: "",
 					partyType: '1',
-					inspectionDesc: "时间:\r\n方位:\r\n绘制人姓名:\r\n身份:\r\n"
+					inspectionDesc: "时间:\r\n方位:\r\n绘制人姓名:\r\n身份:\r\n",
+					checkedByNotice: "我们是无锡市住房和城乡建设局的执法人员（出示执法证件），现依法进行检查。依据《中华人民共和国行政处罚法》第四十二条第一款、第五十五条第一款的规定，如执法人员少于两人或执法证件与身份不符，你有权拒绝检查，你是否接受检查？\n被检查（勘验）人答：\n问：根据《中华人民共和国行政处罚法》第四十三条第二款的规定，如认为执法人员与案件有直接利害关系或者有其他关系可能影响公正执法的，你有权申请执法人员回避。你是否申请回避？\n答：\n问：根据《中华人民共和国行政处罚法》五十五条第二款的规定，你应当如实回答询问并协助检查，不得拒绝或者阻挠。如作虚假陈述或拒绝、阻挠检查，将依法追究法律责任。请你配合我们检查。以上告知你是否清楚？\n答：",
+
 				},
 				rules: {
 
@@ -619,6 +843,8 @@
 
 				},
 
+
+
 			}
 		},
 		components: {
@@ -635,6 +861,8 @@
 
 
 		methods: {
+
+
 			async submitexamine() {
 				try {
 					uni.showLoading({
@@ -709,6 +937,18 @@
 							getModel.inspectionInvestigation = getModel.inspectionInvestigation.join(",");
 						}
 					}
+					if (getmodel.companyTime) {
+						getmodel.companyStartTime = getmodel.companyTime[0]
+						getmodel.companyEndTime = getmodel.companyTime[1]
+						delete getmodel.companyTime
+					}
+
+					if (getmodel.personalTime) {
+						getmodel.personalStartTime = getmodel.personalTime[0]
+						getmodel.personalEndTime = getmodel.personalTime[1]
+						delete getmodel.personalTime
+					}
+
 
 					const res = await this.api.fieldInvestigation.inspectionedit(getModel)
 					console.log("edit", res)
@@ -746,6 +986,17 @@
 						if (typeof getModel.inspectionInvestigation == "object") {
 							getModel.inspectionInvestigation = getModel.inspectionInvestigation.join(",");
 						}
+					}
+					if (getmodel.companyTime) {
+						getmodel.companyStartTime = getmodel.companyTime[0]
+						getmodel.companyEndTime = getmodel.companyTime[1]
+						delete getmodel.companyTime
+					}
+
+					if (getmodel.personalTime) {
+						getmodel.personalStartTime = getmodel.personalTime[0]
+						getmodel.personalEndTime = getmodel.personalTime[1]
+						delete getmodel.personalTime
 					}
 					const res = await this.api.fieldInvestigation.inspectionadd(getModel)
 					console.log("add", res)

@@ -77,8 +77,10 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="noteTaker">
-								<uni-easyinput v-model="model.noteTaker" placeholder="请输入记录人">
-								</uni-easyinput>
+								<!-- <uni-easyinput v-model="model.noteTaker" placeholder="请输入记录人">
+								</uni-easyinput> -->
+								<dataTreePicker v-model="model.noteTaker">
+								</dataTreePicker>
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -263,6 +265,7 @@
 						<view class="public_input">
 							<uni-forms-item name="personQuestionedSign">
 								<ESignature v-model="model.personQuestionedSign"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.personQuestionedTime" />
 							</uni-forms-item>
 						</view>
 
@@ -276,11 +279,33 @@
 						<view class="public_input">
 							<uni-forms-item name="callInquirerSign">
 								<ESignature v-model="model.callInquirerSign"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.callInquirerTime" />
 							</uni-forms-item>
 						</view>
 					</myRow>
+
+
 				</myCol>
 
+
+				<myCol>
+					<myRow background="#f0f0f0" widthPercentage='1.66'>
+						<view class="public_text">
+							记录人签名
+						</view>
+					</myRow>
+					<myRow widthPercentage='3.34'>
+						<view class="public_input">
+							<uni-forms-item name="personQuestionedSign">
+								<ESignature v-model="model.noteTakerSign"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.noteTakerTime" />
+							</uni-forms-item>
+						</view>
+
+					</myRow>
+					<myRow widthPercentage='5'>
+					</myRow>
+				</myCol>
 
 			</view>
 		</uni-forms>
@@ -535,9 +560,6 @@
 					if (this.model.id) {
 						this.submitForm()
 					} else {
-						this.model.inquiryStarttime = this.model.startEndTime[0]
-						this.model.inquiryEndtime = this.model.startEndTime[1]
-						delete this.model.startEndTime
 						this.submitFormAdd()
 					}
 				}).catch(err => {
@@ -584,8 +606,11 @@
 					uni.showLoading({
 						title: '加载中'
 					});
-
-					const res = await this.api.fieldInvestigation.TreeListlistadd(this.model)
+					let getmodel = this.model
+					getmodel.inquiryStarttime = getmodel.startEndTime[0]
+					getmodel.inquiryEndtime = getmodel.startEndTime[1]
+					delete getmodel.startEndTime
+					const res = await this.api.fieldInvestigation.TreeListlistadd(getmodel)
 					console.log("add", res)
 					const {
 						code,

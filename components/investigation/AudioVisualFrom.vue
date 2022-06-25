@@ -125,6 +125,7 @@
 						<view class="public_input">
 							<uni-forms-item name="signatureQuestioned">
 								<ESignature v-model="model.signatureQuestioned"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.signatureQuestionedTime" />
 							</uni-forms-item>
 						</view>
 
@@ -138,6 +139,7 @@
 						<view class="public_input">
 							<uni-forms-item name="collectorInquirer">
 								<ESignature v-model="model.collectorInquirer"></ESignature>
+								<uni-datetime-picker type="datetime" v-model="model.collectorInquirerTime" />
 							</uni-forms-item>
 						</view>
 					</myRow>

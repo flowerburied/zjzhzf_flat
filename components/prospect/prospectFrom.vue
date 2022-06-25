@@ -574,7 +574,13 @@
 							duration: 2000
 						});
 					}
+
 					uni.hideLoading();
+					uni.navigateBack({
+						delta: 1,
+						animationType: 'pop-out',
+						animationDuration: 200
+					})
 				} catch (e) {
 					console.log('try:e:', e)
 				}
@@ -656,7 +662,7 @@
 			// 		// #ifdef APP-PLUS
 			// 		currentWebview: this.$mp.page.$getAppWebview(),
 			// 		// #endif
-			// 		url: 'http://192.168.10.171:8090/jeecg-boot/sys/common/upload', //测试地址，记得更换
+			// 		url: 'http://192.168.10.171:8088/jeecg-boot/sys/common/upload', //测试地址，记得更换
 			// 		name: 'file',
 			// 		//header: {'Content-Type':'类型','Authorization':'token'},
 			// 		//...其他参数

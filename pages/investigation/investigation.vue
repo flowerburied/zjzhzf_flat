@@ -43,24 +43,24 @@
 			<swiper :style="{height:$store.state.phoneInfo.publicCon+'px'}" class="tab-view" ref="swiper1"
 				id="tab-bar-view" :current="tabIndex" :duration="300" @change="onswiperchange">
 				<swiper-item class="swiper-item ">
-					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
-						class="scroll-Y">
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
+						scroll-y="true" class="scroll-Y">
 						<TranscriptContent @callbackCon="callbackContranscript" :dataSource="tranList">
 						</TranscriptContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item class="swiper-item ">
-					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
-						class="scroll-Y">
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
+						scroll-y="true" class="scroll-Y">
 						<AudioVisualContent @callbackCon="callbackContranscript" :dataSource="audioList">
 						</AudioVisualContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
 				<swiper-item class="swiper-item ">
-					<scroll-view :style="{height:$store.state.phoneInfo.publicCon+'px'}" scroll-y="true"
-						class="scroll-Y">
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
+						scroll-y="true" class="scroll-Y">
 						<InspectionContent @callbackCon="callbackContranscript" :dataSource="inspectionList">
 						</InspectionContent>
 						<SecurityBox></SecurityBox>
@@ -171,6 +171,27 @@
 
 		},
 		methods: {
+			scrolltolower(e) {
+				console.log('e', e)
+				if (this.ismore) {
+					this.pageNo += 1
+					if (this.tabIndex == 0) {
+						this.transcriptpageList()
+					} else if (this.tabIndex == 1) {
+						this.audioVisualList()
+					} else if (this.tabIndex == 2) {
+						this.inspectionListFun()
+					}
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: '没有数据了！',
+						duration: 2000
+					});
+				}
+
+			},
+
 			callbackContranscript() {
 				this.ismore = true
 				this.pageNo = 1

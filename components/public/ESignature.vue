@@ -9,8 +9,8 @@
 		<uni-popup ref="popup" type="center">
 			<view class="recti_popup">
 				<view class="recti_popup_canvas">
-					<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="300rpx"
-						canvasHeight="200rpx">
+					<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="500rpx"
+						canvasHeight="225rpx">
 					</drawing-board>
 				</view>
 				<view class="recti_popup_btn">
@@ -36,7 +36,7 @@
 				isshowimg: false,
 				isdraw: false,
 				resultImg: "",
-				url: 'http://192.168.10.171:8090/jeecg-boot'
+				url: 'http://192.168.10.171:8088/jeecg-boot'
 			}
 		},
 		watch: {
@@ -121,7 +121,7 @@
 
 <style lang="scss">
 	.recti_popup {
-		width: 500rpx;
+		width: 600rpx;
 		// height: 305rpx;
 		border-radius: 4rpx;
 		background-color: #ffffff;
@@ -131,8 +131,8 @@
 
 		.recti_popup_canvas {
 			margin-top: 20rpx;
-			width: 300rpx;
-			height: 200rpx;
+			width: 500rpx;
+			height: 225rpx;
 			border: 1rpx solid #cccccc;
 		}
 
@@ -180,8 +180,8 @@
 
 	.public_img {
 		padding: 8rpx 16rpx;
-		width: 50rpx;
-		height: 50rpx;
+		width: 60rpx;
+		height: 27rpx;
 	}
 
 	.active_text {

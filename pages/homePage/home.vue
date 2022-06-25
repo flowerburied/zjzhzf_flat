@@ -128,7 +128,7 @@
 			this.$nextTick(() => {
 				this.getitemTab(0)
 			})
-			this.getlist()
+			this.getlistFun()
 
 		},
 		methods: {
@@ -136,7 +136,7 @@
 				console.log('e', e)
 				if (this.caseState1) {
 					this.pageNo += 1
-					this.getlist()
+					this.getlistFun()
 				} else {
 					uni.showToast({
 						icon: "none",
@@ -146,7 +146,7 @@
 				}
 
 			},
-			async getlist() {
+			async getlistFun() {
 
 				try {
 					uni.showLoading({
@@ -155,10 +155,10 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						case_state: this.caseState,
+						caseState: this.caseState,
 						year: this.classes
 					}
-					// console.log("option", option)
+					console.log("option", option)
 					const res = await this.api.myCaseHomePage.pagelist(option)
 					// console.log("pagelist", res)
 					const {
@@ -211,14 +211,14 @@
 				}
 				this.caseState1 = true
 				this.pageNo = 1
-				this.getlist()
+				this.getlistFun()
 			},
 			onnodeclick(e) {
 				console.log('this.this.classes', this.classes);
 				this.getList = []
 				this.caseState1 = true
 				this.pageNo = 1
-				this.getlist()
+				this.getlistFun()
 			},
 			onchange(e) {
 				console.log('onchange:', e);

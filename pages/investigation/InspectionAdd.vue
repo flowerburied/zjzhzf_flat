@@ -102,6 +102,17 @@
 					} = res
 					if (code == 200) {
 						//处理办案人
+						if (result.companyStartTime) {
+							result.companyTime = []
+							result.companyTime[0] = result.companyStartTime
+							result.companyTime[1] = result.companyEndTime
+						}
+						if (result.personalStartTime) {
+							result.personalTime = []
+							result.personalTime[0] = result.personalStartTime
+							result.personalTime[1] = result.personalEndTime
+						}
+
 
 						this.model = result
 

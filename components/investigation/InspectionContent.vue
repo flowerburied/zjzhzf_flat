@@ -11,14 +11,14 @@
 						<text class="item_box_title">名称：</text>
 						<text class="item_box_text">{{item.companyName}}</text>
 					</view>
-					
+
 					<view class="box_item_box" v-if="item.partyType==2">
 						<text class="item_box_title">姓名：</text>
 						<text class="item_box_text">{{item.personalName}}</text>
 					</view>
-					<view class="box_item_box" >
-						<text class="item_box_title">项目地址：</text>
-						<text class="item_box_text">{{item.companyProjectLocation}}</text>
+					<view class="box_item_box">
+						<text class="item_box_title">案由：</text>
+						<text class="item_box_text">{{item.caseDesc}}</text>
 					</view>
 				</view>
 				<!-- <view v-if="item.partyType==1">
