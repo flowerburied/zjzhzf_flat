@@ -45,7 +45,8 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
 						scroll-y="true" class="scroll-Y">
-						<TranscriptContent @callbackCon="callbackContranscript" :dataSource="tranList">
+						<TranscriptContent @openPopup="openPopup" @callbackCon="callbackContranscript"
+							:dataSource="tranList">
 						</TranscriptContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
@@ -53,7 +54,8 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
 						scroll-y="true" class="scroll-Y">
-						<AudioVisualContent @callbackCon="callbackContranscript" :dataSource="audioList">
+						<AudioVisualContent @openPopup="openPopup" @callbackCon="callbackContranscript"
+							:dataSource="audioList">
 						</AudioVisualContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
@@ -61,14 +63,41 @@
 				<swiper-item class="swiper-item ">
 					<scroll-view @scrolltolower="scrolltolower" :style="{height:$store.state.phoneInfo.publicCon+'px'}"
 						scroll-y="true" class="scroll-Y">
-						<InspectionContent @callbackCon="callbackContranscript" :dataSource="inspectionList">
+						<InspectionContent @openPopup="openPopup" @callbackCon="callbackContranscript"
+							:dataSource="inspectionList">
 						</InspectionContent>
 						<SecurityBox></SecurityBox>
 					</scroll-view>
 				</swiper-item>
 			</swiper>
-
 		</publicContent>
+
+		<uni-popup ref="popup" type="center">
+			<uni-section title="销毁" type="line">
+				<uni-card :is-shadow="false" is-full>
+
+					<uni-forms ref="valiForm" :rules="rules" :modelValue="valiFormData">
+						<uni-forms-item label="销毁理由" required name="reason">
+							<uni-easyinput v-model="valiFormData.reason" placeholder="请输入销毁理由" />
+						</uni-forms-item>
+					</uni-forms>
+
+					<view class="investigation_popup">
+						<button type="primary" @click="closePopup">取消</button>
+						<button type="primary" @click="submit('valiForm')">提交</button>
+
+					</view>
+
+				</uni-card>
+			</uni-section>
+		</uni-popup>
+
+		<!-- 		<uni-popup ref="inputDialog" type="dialog">
+			<uni-popup-dialog ref="inputClose" mode="input" title="输入内容" value="对话框预置提示内容!" placeholder="请输入内容"
+				@confirm="dialogInputConfirm"></uni-popup-dialog>
+		</uni-popup> -->
+
+
 	</view>
 </template>
 
@@ -83,7 +112,21 @@
 	export default {
 		data() {
 			return {
-
+				// 校验规则
+				rules: {
+					reason: {
+						rules: [{
+							required: true,
+							errorMessage: '销毁理由不能为空'
+						}]
+					},
+				},
+				// 校验表单数据
+				valiFormData: {
+					reason: '',
+					id: ""
+				},
+				// 页面数据
 				tabList: [{
 						name: "询问笔录",
 						num: 0,
@@ -136,6 +179,10 @@
 				tranList: [], //询问笔录
 				audioList: [], //视听资料
 				inspectionList: [], //现场检查
+				selectForm: {
+					roleId: "",
+					roleType: ""
+				}
 			}
 		},
 		components: {
@@ -150,20 +197,12 @@
 		onShow() {
 			this.ismore = true
 			this.pageNo = 1
+			this.queryDeptId()
 			// console.log('onswiperchangee', e)
-			if (this.tabIndex == 0) {
-				this.tranList = []
-				this.transcriptpageList()
-			} else if (this.tabIndex == 1) {
-				this.audioList = []
-				this.audioVisualList()
-			} else if (this.tabIndex == 2) {
-				this.inspectionList = []
-				this.inspectionListFun()
-			}
+
 		},
 		onLoad() {
-			// this.transcriptpageList()
+
 			this.$nextTick(() => {
 				this.getitemTab(0)
 				this.getnumwidth()
@@ -171,6 +210,168 @@
 
 		},
 		methods: {
+			submit(ref) {
+				this.$refs[ref].validate().then(res => {
+					console.log('success', this.valiFormData);
+					// uni.showToast({
+					// 	title: `校验通过`
+					// })
+					this.ismore = true
+					this.pageNo = 1
+					let option = {
+						id: this.valiFormData.id,
+						state: 2,
+						reason: this.valiFormData.reason,
+					}
+					if (this.tabIndex == 0) {
+						this.transcriptupdateFun(option)
+					} else if (this.tabIndex == 1) {
+
+						this.audioVisualupdateFun(option)
+					} else if (this.tabIndex == 2) {
+
+						this.inspectionupdateFun(option)
+					}
+				}).catch(err => {
+					console.log('err', err);
+				})
+			},
+			openPopup(val) {
+				this.valiFormData.id = val
+				this.valiFormData.reason = ""
+				console.log("openPopup", val)
+				// 通过组件定义的ref调用uni-popup方法 ,如果传入参数 ，type 属性将失效 ，仅支持 ['top','left','bottom','right','center']
+				this.$refs.popup.open('center')
+			},
+			closePopup() {
+				this.$refs.popup.close()
+			},
+
+			async transcriptupdateFun(option) {
+				try {
+					const res = await this.api.fieldInvestigation.transcriptupdate(option)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+						this.tranList = []
+						this.transcriptpageList()
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					this.closePopup()
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			async audioVisualupdateFun(option) {
+				try {
+					const res = await this.api.fieldInvestigation.audioVisualupdate(option)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+						this.audioList = []
+						this.audioVisualList()
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					this.closePopup()
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+			async inspectionupdateFun(option) {
+				try {
+					const res = await this.api.fieldInvestigation.inspectionupdate(option)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+						this.inspectionList = []
+						this.inspectionListFun()
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					this.closePopup()
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+
+
+			async queryDeptId() {
+				try {
+					let option = {
+						id: this.$store.state.token,
+					}
+					const res = await this.api.publics.queryDeptId(option)
+					console.log("queryDeptId", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						this.selectForm.roleId = result.roleId;
+						this.selectForm.roleType = result.roleType;
+						if (this.tabIndex == 0) {
+							this.tranList = []
+							this.transcriptpageList()
+						} else if (this.tabIndex == 1) {
+							this.audioList = []
+							this.audioVisualList()
+						} else if (this.tabIndex == 2) {
+							this.inspectionList = []
+							this.inspectionListFun()
+						}
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					console.log("this.selectForm", this.selectForm)
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+
+
 			scrolltolower(e) {
 				console.log('e', e)
 				if (this.ismore) {
@@ -215,7 +416,11 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						year: this.particularYear
+						year: this.particularYear,
+						roleId: this.selectForm.roleId,
+						roleType: this.selectForm.roleType,
+						column: "createTime",
+						order: "desc",
 					}
 					// console.log("option", option)
 					const res = await this.api.fieldInvestigation.inspectionList(option)
@@ -261,9 +466,13 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						year: this.particularYear
+						year: this.particularYear,
+						roleId: this.selectForm.roleId,
+						roleType: this.selectForm.roleType,
+						column: "createTime",
+						order: "desc",
 					}
-					// console.log("option", option)
+					console.log("option", option)
 					const res = await this.api.fieldInvestigation.audioVisualList(option)
 					console.log("pagelist", res)
 					const {
@@ -308,9 +517,13 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						year: this.particularYear
+						year: this.particularYear,
+						roleId: this.selectForm.roleId,
+						roleType: this.selectForm.roleType,
+						column: "createTime",
+						order: "desc",
 					}
-					// console.log("option", option)
+					console.log("option", option)
 					const res = await this.api.fieldInvestigation.transcriptpageList(option)
 					console.log("pagelist", res)
 					const {
@@ -471,6 +684,12 @@
 
 <style lang="scss">
 	.home {
+
+		.investigation_popup {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+		}
 
 		.tab-view {
 			display: flex;

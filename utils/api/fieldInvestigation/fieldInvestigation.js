@@ -5,7 +5,7 @@ let fieldInvestigation = {
 	// 询问笔录列表
 	transcriptpageList(params) {
 		return request.request({
-			url: '/zhzf/transcriptQuestioning/pageList',
+			url: '/zhzf/transcriptQuestioning/list',
 			method: 'GET',
 			params: params
 
@@ -77,7 +77,7 @@ let fieldInvestigation = {
 	// 视听资料列表
 	audioVisualList(params) {
 		return request.request({
-			url: '/zhzf/audioVisualMaterials/pageList',
+			url: '/zhzf/audioVisualMaterials/list',
 			method: 'GET',
 			params: params
 
@@ -122,7 +122,7 @@ let fieldInvestigation = {
 	// 现场检查笔录列表
 	inspectionList(params) {
 		return request.request({
-			url: '/zhzf/inspectionRecord/pageList',
+			url: '/zhzf/inspectionRecord/list',
 			method: 'GET',
 			params: params
 
@@ -155,6 +155,35 @@ let fieldInvestigation = {
 	},
 
 
+
+
+	//视听资料销毁
+	audioVisualupdate(params) {
+		return request.request({
+			url: '/zhzf/audioVisualMaterials/updateTranscriptId',
+			method: 'GET',
+			params: params
+
+		})
+	},
+	//现场检查笔录销毁
+	inspectionupdate(params) {
+		return request.request({
+			url: '/zhzf/inspectionRecord/updateTranscriptId',
+			method: 'GET',
+			params: params
+
+		})
+	},
+	//现场检查笔录销毁
+	transcriptupdate(params) {
+		return request.request({
+			url: '/zhzf/transcriptQuestioning/updateTranscriptId',
+			method: 'GET',
+			params: params
+
+		})
+	},
 
 }
 // 用户授权

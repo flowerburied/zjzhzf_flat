@@ -18,10 +18,17 @@
 					<text class="item_box_title">开始时间：</text>
 					<text class="item_box_text2">{{item.inquiryStarttime}}</text>
 				</view>
+				<view class="box_item_box">
+					<text class="item_box_title">状态：</text>
+					<text class="item_box_text">{{item.state_dictText}}</text>
+				</view>
 				<view class="box_line">
 
 				</view>
 				<view class="box_btn_add">
+					<view class="box_btn" v-if="item.state != '2'">
+						<button @click="Destruction(item)" type="default">销毁</button>
+					</view>
 					<view class="box_btn">
 						<button @click="delList(item)" type="default">删除</button>
 					</view>
@@ -53,6 +60,11 @@
 			}
 		},
 		methods: {
+			Destruction(val) {
+				console.log("val", val)
+
+				this.$emit("openPopup", val.id)
+			},
 			changeList(val) {
 				console.log("val", val)
 				uni.navigateTo({

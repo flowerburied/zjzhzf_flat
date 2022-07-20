@@ -16,13 +16,14 @@
 			<view @click="download" class="record_right_down">
 				{{fileName}}
 			</view>
-			<button @click="delFile" class="record_right_btn" v-if="fileName" type="default">删除</button>
+			<button :disabled="disabled" @click="delFile" class="record_right_btn" v-if="fileName"
+				type="default">删除</button>
 		</view>
 
 		<view class="sound_record_right">
 			<button v-if="fileName" type="primary" @tap="playVoice">播放录音</button>
-			<button v-if="!isvoice" type="primary" @tap="startRecord">开始录音</button>
-			<button v-if="isvoice" type="primary" @tap="endRecord">结束录音</button>
+			<button :disabled="disabled" v-if="!isvoice" type="primary" @tap="startRecord">开始录音</button>
+			<button :disabled="disabled" v-if="isvoice" type="primary" @tap="endRecord">结束录音</button>
 		</view>
 
 	</view>
@@ -39,6 +40,10 @@
 				type: String,
 				required: false
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
 		},
 		watch: {
 			value: {
@@ -60,7 +65,7 @@
 				fileName: '',
 				voicePath: '',
 				isvoice: false,
-				url: 'http://192.168.10.171:8088/jeecg-boot'
+				url: 'http://39.100.93.133:8088/jeecg-boot'
 			}
 		},
 		methods: {
@@ -140,9 +145,9 @@
 				recorderManager.start();
 			},
 			endRecord() {
-				uni.showLoading({
-					title: '加载中'
-				});
+				// uni.showLoading({
+				// 	title: '加载中'
+				// });
 
 				this.isvoice = false
 				console.log('录音结束');
@@ -160,7 +165,7 @@
 				}
 			},
 			updata(val) {
-				// console.log('val', val)
+				console.log('updata上传', val)
 				let token = uni.getStorageSync('token')
 				uni.uploadFile({
 					url: this.url + '/sys/common/upload', //仅为示例，非真实的接口地址

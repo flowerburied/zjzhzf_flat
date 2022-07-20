@@ -13,7 +13,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionTime">
-								<datetimePicker v-model="model.collectionTime">
+								<datetimePicker :disabled="model.state=='2'" v-model="model.collectionTime"
+									dateType="datetime">
 								</datetimePicker>
 							</uni-forms-item>
 						</view>
@@ -26,7 +27,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionMethod">
-								<uni-easyinput v-model="model.collectionMethod" placeholder="请输入记录人">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.collectionMethod"
+									placeholder="请输入记录人">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -43,7 +45,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionLocation">
-								<uni-easyinput type="textarea" v-model="model.collectionLocation" placeholder="请输入案由!">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea"
+									v-model="model.collectionLocation" placeholder="请输入案由!">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -61,7 +64,10 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="informationUrl">
-								<upAllFile v-model="model.informationUrl"></upAllFile>
+
+								<filePicker :disabled="model.state=='2'" v-model="model.informationUrl">
+								</filePicker>
+								<!-- <upAllFile :disabled="model.state=='2'" v-model="model.informationUrl"></upAllFile> -->
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -77,7 +83,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="informationDescription">
-								<uni-easyinput type="textarea" autoHeight v-model="model.informationDescription">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea" autoHeight
+									v-model="model.informationDescription">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -93,7 +100,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="informationDescription">
-								<soundRecording v-model="model.soundrecordingUrl"></soundRecording>
+								<soundRecording :disabled="model.state=='2'" v-model="model.soundrecordingUrl">
+								</soundRecording>
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -103,7 +111,11 @@
 			</view>
 			<view class="prosp_from_btn">
 				<view>
-					<button class="from_btn" @click="submit" type="primary">保存</button>
+					<exportPdf pdfName="视听资料" :model="model" excelConfigId="695848109943812096"></exportPdf>
+				</view>
+				<view>
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+						type="primary">保存</button>
 				</view>
 			</view>
 
@@ -125,7 +137,8 @@
 						<view class="public_input">
 							<uni-forms-item name="signatureQuestioned">
 								<ESignature v-model="model.signatureQuestioned"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.signatureQuestionedTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.signatureQuestionedTime" />
 							</uni-forms-item>
 						</view>
 
@@ -139,7 +152,8 @@
 						<view class="public_input">
 							<uni-forms-item name="collectorInquirer">
 								<ESignature v-model="model.collectorInquirer"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.collectorInquirerTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.collectorInquirerTime" />
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -175,6 +189,8 @@
 
 	import soundRecording from '@/components/public/from/soundRecording.vue'
 	import requiredText from '@/components/public/requiredText.vue'
+
+	import exportPdf from '@/components/public/exportPdf.vue'
 	export default {
 		watch: {
 			resultList: {
@@ -245,6 +261,8 @@
 
 				},
 
+				loading: false
+
 			}
 		},
 		components: {
@@ -257,6 +275,7 @@
 			dataTreePicker,
 			requiredText,
 			soundRecording,
+			exportPdf
 		},
 
 
@@ -325,11 +344,19 @@
 			},
 			async submitForm() {
 				try {
+					this.loading = true
 					uni.showLoading({
 						title: '加载中'
 					});
+					let getModel = JSON.parse(JSON.stringify(this.model))
 
-					const res = await this.api.fieldInvestigation.audioVisualedit(this.model)
+					if (getModel.informationUrl) {
+						if (typeof getModel.informationUrl == "object") {
+							getModel.informationUrl = getModel.informationUrl.join(",");
+						}
+					}
+					console.log("getModel", getModel)
+					const res = await this.api.fieldInvestigation.audioVisualedit(getModel)
 					console.log("edit", res)
 					const {
 						code,
@@ -351,7 +378,9 @@
 						});
 					}
 					uni.hideLoading();
+					this.loading = false
 				} catch (e) {
+					this.loading = false
 					console.log('try:e:', e)
 				}
 			},
@@ -361,7 +390,15 @@
 						title: '加载中'
 					});
 
-					const res = await this.api.fieldInvestigation.audioVisualadd(this.model)
+					let getModel = JSON.parse(JSON.stringify(this.model))
+
+					if (getModel.informationUrl) {
+						if (typeof getModel.informationUrl == "object") {
+							getModel.informationUrl = getModel.informationUrl.join(",");
+						}
+					}
+					console.log("getModel", getModel)
+					const res = await this.api.fieldInvestigation.audioVisualadd(getModel)
 					console.log("add", res)
 					const {
 						code,
@@ -375,6 +412,11 @@
 							duration: 2000
 						});
 
+						uni.navigateBack({
+							delta: 1,
+							animationType: 'pop-out',
+							animationDuration: 200
+						})
 					} else {
 						uni.showToast({
 							icon: "none",
@@ -383,11 +425,6 @@
 						});
 					}
 					uni.hideLoading();
-					uni.navigateBack({
-						delta: 1,
-						animationType: 'pop-out',
-						animationDuration: 200
-					})
 				} catch (e) {
 					console.log('try:e:', e)
 				}

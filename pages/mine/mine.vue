@@ -14,7 +14,8 @@
 
 					<view class="content_view_list"
 						:style="{ top: $store.state.phoneInfo.statusBarHeight+'px',height:$store.state.phoneInfo.mineCon+'px'}">
-						<image class="view_list_img" :src="$store.state.userInfo.avatar"></image>
+						<image class="view_list_img" v-if="$store.state.userInfo.avatar"
+							:src="`${avatarurl+$store.state.userInfo.avatar}`"></image>
 						<text class="view_list_name">姓名：{{$store.state.userInfo.realname}}</text>
 					</view>
 
@@ -31,17 +32,18 @@
 						</view>
 
 						<view class="view_other_box" v-if="infotype==1">
-							<view class="other_box_bao" @click="infoclick(0)">
+							<view class="other_box_bao1" @click="infoclick(0)">
+								<image class="box_bao_img" src="@/static/img/public/back001.svg"></image>
 								<text class="box_bao_text">返回</text>
-								<view class="box_bao_right">
+								<!-- <view class="box_bao_right">
 									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
-								</view>
+								</view> -->
 							</view>
 							<view class="other_box_bao">
 								<text class="box_bao_text">姓名</text>
 								<view class="box_bao_right">
 									<text class="box_bao_text">{{$store.state.userInfo.realname}}</text>
-									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+									<!-- <image class="box_bao_img" src="@/static/img/public/004.svg"></image> -->
 								</view>
 
 							</view>
@@ -50,7 +52,7 @@
 								<text class="box_bao_text">部门</text>
 								<view class="box_bao_right">
 									<text class="box_bao_text">{{$store.state.userInfo.orgCodeTxt}}</text>
-									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+									<!-- <image class="box_bao_img" src="@/static/img/public/004.svg"></image> -->
 								</view>
 
 							</view>
@@ -58,32 +60,33 @@
 								<text class="box_bao_text">手机号</text>
 								<view class="box_bao_right">
 									<text class="box_bao_text">{{$store.state.userInfo.mobile}}</text>
-									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+									<!-- <image class="box_bao_img" src="@/static/img/public/004.svg"></image> -->
 								</view>
 							</view>
 							<view class="other_box_bao">
 								<text class="box_bao_text">执法证号</text>
 								<view class="box_bao_right">
 									<text class="box_bao_text">{{$store.state.userInfo.enforcementCertificate}}</text>
-									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+									<!-- <image class="box_bao_img" src="@/static/img/public/004.svg"></image> -->
 								</view>
 
 							</view>
 
 						</view>
 						<view class="view_other_box" v-if="infotype==2">
-							<view class="other_box_bao" @click="infoclick(0)">
+							<view class="other_box_bao1" @click="infoclick(0)">
+								<image class="box_bao_img" src="@/static/img/public/back001.svg"></image>
 								<text class="box_bao_text">返回</text>
-								<view class="box_bao_right">
+								<!-- 	<view class="box_bao_right">
 
 									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
-								</view>
+								</view> -->
 							</view>
 							<view class="other_box_bao">
 								<text class="box_bao_text">版本号</text>
 								<view class="box_bao_right">
 									<text class="box_bao_text">1.0.1</text>
-									<image class="box_bao_img" src="@/static/img/public/004.svg"></image>
+									<!-- <image class="box_bao_img" src="@/static/img/public/004.svg"></image> -->
 								</view>
 							</view>
 
@@ -117,7 +120,8 @@
 		},
 		data() {
 			return {
-				infotype: 0
+				infotype: 0,
+				avatarurl: "http://39.100.93.133:8088/jeecg-boot/"
 			}
 		},
 
@@ -204,6 +208,30 @@
 						margin-top: 16rpx;
 
 						// border-radius: 5rpx;
+						.other_box_bao1 {
+							height: 32rpx;
+							width: 424rpx;
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							margin-top: 1rpx;
+
+							.box_bao_img {
+								width: 16rpx;
+								height: 16rpx;
+
+							}
+
+							.box_bao_text {
+								margin-left: 5rpx;
+								font-size: 10rpx;
+								color: #505050;
+								line-height: 150%;
+							}
+						}
+
+
+
 						.other_box_bao {
 							height: 32rpx;
 							width: 424rpx;
@@ -219,6 +247,8 @@
 								font-size: 10rpx;
 								color: #505050;
 								line-height: 150%;
+
+								margin-right: 16rpx;
 							}
 
 							.box_bao_img {

@@ -1,7 +1,7 @@
 <template>
 	<view>
-		<uni-datetime-picker rangeSeparator="至" :type="dateType" :clear-icon="false" v-model="datetimesingle"
-			@change="timechange" />
+		<uni-datetime-picker :disabled="disabled" rangeSeparator="至" :type="dateType" :clear-icon="false"
+			v-model="datetimesingle" @change="timechange" />
 	</view>
 </template>
 
@@ -10,7 +10,6 @@
 		data() {
 			return {
 				datetimesingle: '',
-
 			}
 		},
 		watch: {
@@ -31,12 +30,16 @@
 		},
 		props: {
 			datetimesingle1: {
-				type: [String,Array],
+				type: [String, Array],
 				default: "",
 			},
 			dateType: {
 				type: String,
 				default: 'date'
+			},
+			disabled: {
+				type: Boolean,
+				default: false
 			}
 		},
 		methods: {

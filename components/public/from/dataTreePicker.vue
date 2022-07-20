@@ -4,7 +4,7 @@
 			<view class="datatree_picker_name" v-if="userNames">
 				{{userNames}}
 			</view>
-			<button class="mini-btn" type="primary" size="mini" @click="open">设置</button>
+			<button :disabled="disabled" class="mini-btn" type="primary" size="mini" @click="open">设置</button>
 		</view>
 
 		<!-- 	<uni-easyinput disabled class="uni-mt-5" suffixIcon="search" v-model="userNames" placeholder="右侧图标" @iconClick="open"> -->
@@ -80,6 +80,10 @@
 				type: String,
 				required: false
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
 		},
 		watch: {
 			value: {

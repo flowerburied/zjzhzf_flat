@@ -71,7 +71,10 @@
 				ismore: true,
 
 
-
+				selectForm: {
+					roleId: "",
+					roleType: ""
+				},
 
 			}
 		},
@@ -86,11 +89,45 @@
 			this.getList = []
 			this.ismore = true
 			this.pageNo = 1
-			this.getlist()
+			this.queryDeptId()
 		},
-		
+		// onLoad() {
+
+		// },
 
 		methods: {
+
+			async queryDeptId() {
+				try {
+					let option = {
+						id: this.$store.state.userInfo.id,
+					}
+					console.log("option", option)
+					const res = await this.api.publics.queryDeptId(option)
+					console.log("queryDeptId", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						this.selectForm.roleId = result.roleId;
+						this.selectForm.roleType = result.roleType;
+						this.getlist()
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					console.log("this.selectForm", this.selectForm)
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+
+
 			callbackCon() {
 				this.getList = []
 				this.ismore = true
@@ -140,8 +177,9 @@
 					let option = {
 						pageNo: this.pageNo,
 						pageSize: 8,
-						year: this.classes
-
+						year: this.classes,
+						roleId: this.selectForm.roleId,
+						roleType: this.selectForm.roleType,
 					}
 					console.log("option", option)
 					const res = await this.api.prospect.siteSurveyList(option)

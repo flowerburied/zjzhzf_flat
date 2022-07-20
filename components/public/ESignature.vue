@@ -36,7 +36,7 @@
 				isshowimg: false,
 				isdraw: false,
 				resultImg: "",
-				url: 'http://192.168.10.171:8088/jeecg-boot'
+				url: 'http://39.100.93.133:8088/jeecg-boot'
 			}
 		},
 		watch: {

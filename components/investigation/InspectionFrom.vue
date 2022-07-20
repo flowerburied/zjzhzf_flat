@@ -14,7 +14,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="partyType">
-								<uni-data-checkbox v-model="model.partyType" :localdata="typelocaldata">
+								<uni-data-checkbox :disabled="model.state=='2'" v-model="model.partyType"
+									:localdata="typelocaldata">
 								</uni-data-checkbox>
 							</uni-forms-item>
 						</view>
@@ -33,7 +34,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyLocation">
-								<uni-easyinput v-model="model.companyLocation" placeholder="请输入名称">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyLocation"
+									placeholder="请输入名称">
 								</uni-easyinput>
 
 							</uni-forms-item>
@@ -52,7 +54,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="caseDesc">
-								<uni-easyinput v-model="model.caseDesc" placeholder="请输入名称">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.caseDesc"
+									placeholder="请输入名称">
 								</uni-easyinput>
 
 							</uni-forms-item>
@@ -70,7 +73,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyName">
-								<uni-easyinput v-model="model.companyName" placeholder="请输入名称">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyName"
+									placeholder="请输入名称">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -87,7 +91,8 @@
 								<!-- <uni-easyinput v-model="model.companyPerson" placeholder="请输入负责人">
 								</uni-easyinput> -->
 
-								<datetimePicker dateType="datetimerange" v-model="model.companyTime">
+								<datetimePicker :disabled="model.state=='2'" dateType="datetimerange"
+									v-model="model.companyTime">
 								</datetimePicker>
 
 							</uni-forms-item>
@@ -105,7 +110,8 @@
 						<view class="public_input">
 							<uni-forms-item name="companyPerson">
 
-								<uni-easyinput v-model="model.companyPerson" placeholder="请输入现场负责人">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyPerson"
+									placeholder="请输入现场负责人">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -120,7 +126,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companySocialCredit">
-								<uni-easyinput v-model="model.companySocialCredit" placeholder="请输入身份证号码">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companySocialCredit"
+									placeholder="请输入身份证号码">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -138,7 +145,8 @@
 						<view class="public_input">
 							<uni-forms-item name="companyPersonPostion">
 
-								<uni-easyinput v-model="model.companyPersonPostion" placeholder="请输入工作岗位">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyPersonPostion"
+									placeholder="请输入工作岗位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -152,7 +160,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyTel">
-								<uni-easyinput v-model="model.companyTel" placeholder="请输入联系电话">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyTel"
+									placeholder="请输入联系电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -170,7 +179,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyPeople">
-								<uni-easyinput v-model="model.companyPeople" placeholder="请输入在场人员">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyPeople"
+									placeholder="请输入在场人员">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -185,7 +195,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyRepresentative">
-								<uni-easyinput v-model="model.companyRepresentative" placeholder="请输入身份证号码">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyRepresentative"
+									placeholder="请输入身份证号码">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -202,7 +213,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyProjectPostion">
-								<uni-easyinput v-model="model.companyProjectPostion" placeholder="请输入工作岗位">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyProjectPostion"
+									placeholder="请输入工作岗位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -217,7 +229,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="companyProjectTel">
-								<uni-easyinput v-model="model.companyProjectTel" placeholder="请输入联系电话">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyProjectTel"
+									placeholder="请输入联系电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -239,7 +252,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalSex">
-								<uni-easyinput v-model="model.personalSex" placeholder="请输入地点">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalSex"
+									placeholder="请输入地点">
 								</uni-easyinput>
 
 							</uni-forms-item>
@@ -257,7 +271,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="caseDesc">
-								<uni-easyinput v-model="model.caseDesc" placeholder="请输入名称">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.caseDesc"
+									placeholder="请输入名称">
 								</uni-easyinput>
 
 							</uni-forms-item>
@@ -276,7 +291,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personalName">
 
-								<uni-easyinput v-model="model.personalName" placeholder="请输入名称">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalName"
+									placeholder="请输入名称">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -293,7 +309,8 @@
 								<!-- 	<datetimePicker v-model="model.personalTime">
 								</datetimePicker> -->
 
-								<datetimePicker dateType="datetimerange" v-model="model.personalTime">
+								<datetimePicker :disabled="model.state=='2'" dateType="datetimerange"
+									v-model="model.personalTime">
 								</datetimePicker>
 							</uni-forms-item>
 						</view>
@@ -311,7 +328,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personalResidence">
 
-								<uni-easyinput v-model="model.personalResidence" placeholder="请输入家庭住址">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalResidence"
+									placeholder="请输入家庭住址">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -325,7 +343,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalTel">
-								<uni-easyinput v-model="model.personalTel" placeholder="请输入家庭住址">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalTel"
+									placeholder="请输入家庭住址">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -342,7 +361,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personalPeople">
 
-								<uni-easyinput v-model="model.personalPeople" placeholder="请输入在场人员">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalPeople"
+									placeholder="请输入在场人员">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -356,7 +376,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalCard">
-								<uni-easyinput v-model="model.personalCard" placeholder="请输入身份证">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalCard"
+									placeholder="请输入身份证">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -373,7 +394,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personalWork">
 
-								<uni-easyinput v-model="model.personalWork" placeholder="请输入工作岗位">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalWork"
+									placeholder="请输入工作岗位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -387,7 +409,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="personalBirthday">
-								<uni-easyinput v-model="model.personalBirthday" placeholder="请输入联系电话">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personalBirthday"
+									placeholder="请输入联系电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -410,7 +433,7 @@
 						<view class="public_input">
 							<uni-forms-item name="checkedBy">
 
-								<dataTreePicker v-model="model.checkedBy">
+								<dataTreePicker :disabled="model.state=='2'" v-model="model.checkedBy">
 								</dataTreePicker>
 							</uni-forms-item>
 						</view>
@@ -424,7 +447,7 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="noteTakers">
-								<dataTreePicker v-model="model.noteTakers">
+								<dataTreePicker :disabled="model.state=='2'" v-model="model.noteTakers">
 								</dataTreePicker>
 							</uni-forms-item>
 						</view>
@@ -437,8 +460,8 @@
 						<view class="public_input">
 							<uni-forms-item name="checkedByNotice">
 
-								<uni-easyinput type="textarea" autoHeight v-model="model.checkedByNotice"
-									placeholder="请输入检查人告知!">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea" autoHeight
+									v-model="model.checkedByNotice" placeholder="请输入检查人告知!">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -518,8 +541,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="inspectionRecords">
-								<uni-easyinput type="textarea" autoHeight v-model="model.inspectionRecords"
-									placeholder="请输入现场检查记录情况!">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea" autoHeight
+									v-model="model.inspectionRecords" placeholder="请输入现场检查记录情况!">
 								</uni-easyinput>
 
 							</uni-forms-item>
@@ -536,7 +559,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="inspectionRecords">
-								<filePicker v-model="model.inspectionInvestigation"></filePicker>
+								<filePicker :disabled="model.state=='2'" v-model="model.inspectionInvestigation">
+								</filePicker>
 
 							</uni-forms-item>
 						</view>
@@ -556,7 +580,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="inspectionDesc">
-								<uni-easyinput type="textarea" autoHeight v-model="model.inspectionDesc">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea" autoHeight
+									v-model="model.inspectionDesc">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -570,7 +595,11 @@
 			</view>
 			<view class="prosp_from_btn">
 				<view>
-					<button class="from_btn" @click="submit" type="primary">保存</button>
+					<exportPdf pdfName="现场检查笔录" :model="model" excelConfigId="698678799710285824"></exportPdf>
+				</view>
+				<view>
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+						type="primary">保存</button>
 				</view>
 			</view>
 
@@ -594,7 +623,8 @@
 								<ESignature v-model="model.signatureQuestioned"></ESignature>
 							</uni-forms-item>
 
-							<uni-datetime-picker type="datetime" v-model="model.signatureQuestionedTime" />
+							<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+								v-model="model.signatureQuestionedTime" />
 
 						</view>
 
@@ -608,7 +638,8 @@
 						<view class="public_input">
 							<uni-forms-item name="witnessInquirer">
 								<ESignature v-model="model.witnessInquirer"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.witnessInquirerTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.witnessInquirerTime" />
 
 							</uni-forms-item>
 						</view>
@@ -626,7 +657,8 @@
 						<view class="public_input">
 							<uni-forms-item name="surveyorQuestioned">
 								<ESignature v-model="model.surveyorQuestioned"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.surveyorQuestionedTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.surveyorQuestionedTime" />
 
 							</uni-forms-item>
 						</view>
@@ -641,7 +673,8 @@
 						<view class="public_input">
 							<uni-forms-item name="noteTaker">
 								<ESignature v-model="model.noteTaker"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.noteTakerTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.noteTakerTime" />
 
 							</uni-forms-item>
 						</view>
@@ -677,6 +710,8 @@
 	import dataTreePicker from '@/components/public/from/dataTreePicker.vue'
 	import requiredText from '@/components/public/requiredText.vue'
 	import soundRecording from '@/components/public/from/soundRecording.vue'
+
+	import exportPdf from '@/components/public/exportPdf.vue'
 	export default {
 		watch: {
 			resultList: {
@@ -725,7 +760,7 @@
 				bothLeft: 34,
 
 				model: {
-					inspectionInvestigation: '',
+
 					personalSex: "",
 					partyType: '1',
 					inspectionDesc: "时间:\r\n方位:\r\n绘制人姓名:\r\n身份:\r\n",
@@ -842,7 +877,7 @@
 
 
 				},
-
+				loading: false
 
 
 			}
@@ -857,6 +892,7 @@
 			dataTreePicker,
 			requiredText,
 			soundRecording,
+			exportPdf
 		},
 
 
@@ -927,6 +963,7 @@
 			},
 			async submitForm() {
 				try {
+					this.loading = true
 					uni.showLoading({
 						title: '加载中'
 					});
@@ -937,16 +974,16 @@
 							getModel.inspectionInvestigation = getModel.inspectionInvestigation.join(",");
 						}
 					}
-					if (getmodel.companyTime) {
-						getmodel.companyStartTime = getmodel.companyTime[0]
-						getmodel.companyEndTime = getmodel.companyTime[1]
-						delete getmodel.companyTime
+					if (getModel.companyTime) {
+						getModel.companyStartTime = getModel.companyTime[0]
+						getModel.companyEndTime = getModel.companyTime[1]
+						delete getModel.companyTime
 					}
 
-					if (getmodel.personalTime) {
-						getmodel.personalStartTime = getmodel.personalTime[0]
-						getmodel.personalEndTime = getmodel.personalTime[1]
-						delete getmodel.personalTime
+					if (getModel.personalTime) {
+						getModel.personalStartTime = getModel.personalTime[0]
+						getModel.personalEndTime = getModel.personalTime[1]
+						delete getModel.personalTime
 					}
 
 
@@ -972,7 +1009,9 @@
 						});
 					}
 					uni.hideLoading();
+					this.loading = false
 				} catch (e) {
+					this.loading = false
 					console.log('try:e:', e)
 				}
 			},
@@ -982,21 +1021,22 @@
 						title: '加载中'
 					});
 					let getModel = JSON.parse(JSON.stringify(this.model));
+
 					if (getModel.inspectionInvestigation) {
 						if (typeof getModel.inspectionInvestigation == "object") {
 							getModel.inspectionInvestigation = getModel.inspectionInvestigation.join(",");
 						}
 					}
-					if (getmodel.companyTime) {
-						getmodel.companyStartTime = getmodel.companyTime[0]
-						getmodel.companyEndTime = getmodel.companyTime[1]
-						delete getmodel.companyTime
+					if (getModel.companyTime) {
+						getModel.companyStartTime = getModel.companyTime[0]
+						getModel.companyEndTime = getModel.companyTime[1]
+						delete getModel.companyTime
 					}
 
-					if (getmodel.personalTime) {
-						getmodel.personalStartTime = getmodel.personalTime[0]
-						getmodel.personalEndTime = getmodel.personalTime[1]
-						delete getmodel.personalTime
+					if (getModel.personalTime) {
+						getModel.personalStartTime = getModel.personalTime[0]
+						getModel.personalEndTime = getModel.personalTime[1]
+						delete getModel.personalTime
 					}
 					const res = await this.api.fieldInvestigation.inspectionadd(getModel)
 					console.log("add", res)

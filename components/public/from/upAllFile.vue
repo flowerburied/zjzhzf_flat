@@ -6,7 +6,8 @@
 			<view>
 				{{fileName}}
 			</view>
-			<button @click="clear" class="record_right_btn" v-if="fileName" type="default">删除</button>
+			<button :disabled="disabled" @click="clear" class="record_right_btn" v-if="fileName"
+				type="default">删除</button>
 		</view>
 		<!-- <view class="padding">
 			<view>
@@ -21,7 +22,7 @@
 			:debug="debug" :instantly="instantly" @progress="onprogress" @change="onChange">
 			<!-- <view class="btn">选择附件</view> -->
 			<!-- :style="{height: height}" -->
-			<button type="primary">选择附件</button>
+			<button :disabled="disabled" type="primary">选择附件</button>
 		</lsj-upload>
 	</view>
 </template>
@@ -82,6 +83,10 @@
 				default: ''
 
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
 		},
 
 		mounted() {
@@ -90,7 +95,7 @@
 			this.option = {
 
 				// 上传服务器地址，此地址需要替换为你的接口地址
-				url: 'http://192.168.10.171:8088/jeecg-boot/sys/common/upload',
+				url: 'http://39.100.93.133:8088/jeecg-boot/sys/common/upload',
 				// 上传附件的key
 				name: 'file',
 				// 根据你接口需求自定义请求头

@@ -1,6 +1,6 @@
 <template>
 	<view>
-		<uni-file-picker limit="5" @delete="deleteimg" @select="select" @success="success"
+		<uni-file-picker :disabled="disabled" limit="5" @delete="deleteimg" @select="select" @success="success"
 			:value="getAvatarView(imageValue)" :imageStyles="imageStyles" file-mediatype="image">
 			<!-- <button>选择文件</button> -->
 		</uni-file-picker>
@@ -20,13 +20,13 @@
 						radius: '2rpx'
 					}
 				},
-				url: 'http://192.168.10.171:8088/jeecg-boot'
+				url: 'http://39.100.93.133:8088/jeecg-boot'
 			}
 		},
 		watch: {
 			resultImg1: {
 				handler(val, oldValue) {
-					// console.log('val', val)
+					console.log('new111val', val)
 					if (val) {
 						if (typeof val == "string") {
 							this.imageValue = val.split(",")
@@ -50,12 +50,16 @@
 				type: [Array, String],
 
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
 		},
 		methods: {
 			deleteimg(e) {
 				console.log('e.tempFilePath', e.tempFilePath)
 				let handleimg = []
-
+				e = JSON.parse(JSON.stringify(e))
 				if (typeof this.imageValue == "string") {
 					this.imageValue = this.imageValue.split(",");
 					for (var i = 0; i < this.imageValue.length; i++) {
@@ -79,6 +83,7 @@
 			},
 			getAvatarView(avatar) {
 				// console.log('avatar', avatar)
+				avatar = JSON.parse(JSON.stringify(avatar))
 				if (avatar) {
 					if (avatar.length != 0) {
 						if (typeof avatar == "string") {
@@ -148,6 +153,8 @@
 						// this.resultImg = getimg.message
 						// this.$emit("change", getimg.message);
 						this.imageValue.push(getimg.message)
+
+						console.log("this.imageValue", this.imageValue)
 						this.$emit("change", this.imageValue);
 
 					},

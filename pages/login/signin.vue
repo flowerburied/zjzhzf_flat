@@ -10,8 +10,8 @@
 						type="text" placeholder="请输入账户名" />
 				</view>
 				<view class="signup_from_box">
-					<input class="from_item_input" v-model="formData.password" placeholder-class="from_item_inputpla"
-						type="text" placeholder="请输入密码" />
+					<input password class="from_item_input" v-model="formData.password"
+						placeholder-class="from_item_inputpla" type="text" placeholder="请输入密码" />
 				</view>
 				<view class="signup_from_box">
 					<input class="from_item_input" v-model="formData.captcha" placeholder-class="from_item_inputpla"
@@ -44,8 +44,8 @@
 				isAgreement: false,
 				// 表单数据
 				formData: {
-					username: 'admin',
-					password: '123456',
+					username: '',
+					password: '',
 					captcha: ""
 				},
 				rules: {
@@ -150,17 +150,21 @@
 						this.$store.commit("SET_TOKEN", token)
 						let userinfo = res.result.userInfo
 						this.$store.commit("SET_USER_INFO", userinfo)
-						// uni.setStorage({
-						// 	key: "token",
-						// 	data: res.token
-						// })
+						uni.setStorage({
+							key: "token",
+							data: token
+						})
+						uni.setStorage({
+							key: "userInfo",
+							data: userinfo
+						})
 						// setTimeout(() => {
 						// 	this.$store.dispatch("setuserinfo")
 						// 	this.routes.goIndex()
 						// }, 500)
 						console.log("userinfo", userinfo)
 						uni.switchTab({
-							url: '/pages/homePage/home'
+							url: '/pages/prospect/prospect'
 						})
 					} else {
 						uni.showToast({

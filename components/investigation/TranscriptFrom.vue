@@ -13,7 +13,8 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="causeAction">
-								<uni-easyinput type="textarea" v-model="model.causeAction" placeholder="请输入案由!">
+								<uni-easyinput :disabled="model.state=='2'" type="textarea" v-model="model.causeAction"
+									placeholder="请输入案由!">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -31,7 +32,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="startEndTime">
-								<datetimePicker dateType="datetimerange" v-model="model.startEndTime">
+								<datetimePicker :disabled="model.state=='2'" dateType="datetimerange"
+									v-model="model.startEndTime">
 								</datetimePicker>
 							</uni-forms-item>
 						</view>
@@ -45,7 +47,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="inquiryLocation">
-								<uni-easyinput v-model="model.inquiryLocation" placeholder="请输入询问地点">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.inquiryLocation"
+									placeholder="请输入询问地点">
 								</uni-easyinput>
 								<!-- <datetimePicker v-model="model.inquiryLocation"></datetimePicker> -->
 							</uni-forms-item>
@@ -63,7 +66,7 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="callInquirer">
-								<dataTreePicker v-model="model.callInquirer">
+								<dataTreePicker :disabled="model.state=='2'" v-model="model.callInquirer">
 								</dataTreePicker>
 							</uni-forms-item>
 						</view>
@@ -79,7 +82,7 @@
 							<uni-forms-item name="noteTaker">
 								<!-- <uni-easyinput v-model="model.noteTaker" placeholder="请输入记录人">
 								</uni-easyinput> -->
-								<dataTreePicker v-model="model.noteTaker">
+								<dataTreePicker :disabled="model.state=='2'" v-model="model.noteTaker">
 								</dataTreePicker>
 							</uni-forms-item>
 						</view>
@@ -96,7 +99,8 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="personQuestioned">
-								<uni-easyinput v-model="model.personQuestioned" placeholder="请输入被询问人">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.personQuestioned"
+									placeholder="请输入被询问人">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -110,7 +114,8 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="sex">
-								<uni-data-checkbox v-model="model.sex" :localdata="sexlocaldata">
+								<uni-data-checkbox :disabled="model.state=='2'" v-model="model.sex"
+									:localdata="sexlocaldata">
 								</uni-data-checkbox>
 								<!-- 	<uni-easyinput v-model="model.sex" placeholder="请输入联系人姓名">
 								</uni-easyinput> -->
@@ -127,7 +132,7 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="card">
-								<uni-easyinput v-model="model.card" placeholder="请输入身份证">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.card" placeholder="请输入身份证">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -145,7 +150,8 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="working">
-								<uni-easyinput v-model="model.working" placeholder="请输入工作单位">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.working"
+									placeholder="请输入工作单位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -159,7 +165,7 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="post">
-								<uni-easyinput v-model="model.post" placeholder="请输入职务">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.post" placeholder="请输入职务">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -174,7 +180,7 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="birthday">
-								<datetimePicker v-model="model.birthday">
+								<datetimePicker :disabled="model.state=='2'" v-model="model.birthday">
 								</datetimePicker>
 							</uni-forms-item>
 						</view>
@@ -195,7 +201,8 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="location">
-								<uni-easyinput v-model="model.location" placeholder="请输入住址">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.location"
+									placeholder="请输入住址">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -209,7 +216,7 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="tel">
-								<uni-easyinput v-model="model.tel" placeholder="请输入联系电话">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.tel" placeholder="请输入联系电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -225,7 +232,8 @@
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="postal">
-								<uni-easyinput v-model="model.postal" placeholder="请输入邮政编码!">
+								<uni-easyinput :disabled="model.state=='2'" v-model="model.postal"
+									placeholder="请输入邮政编码!">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -236,17 +244,25 @@
 
 			</view>
 			<view class="prosp_from_btn">
-				<view>
-					<button class="from_btn" @click="submit" type="primary">保存</button>
-				</view>
+
+
+				<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+					type="primary">保存</button>
 			</view>
 
 
-			<askAnswer v-model="model.qaDes"></askAnswer>
+			<askAnswer :disabled="model.state=='2'" v-model="model.qaDes"></askAnswer>
 
 			<view class="prosp_from_btn">
 				<view>
-					<button class="from_btn" @click="submit" type="primary">保存</button>
+					<!-- 		<button class="from_btn" @click="submit" type="primary">导出PDF</button> -->
+					<exportPdf pdfName="询问笔录" :model="model" excelConfigId="691055234831872000"></exportPdf>
+
+				</view>
+				<view>
+
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+						type="primary">保存</button>
 				</view>
 			</view>
 
@@ -265,7 +281,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personQuestionedSign">
 								<ESignature v-model="model.personQuestionedSign"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.personQuestionedTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.personQuestionedTime" />
 							</uni-forms-item>
 						</view>
 
@@ -279,7 +296,8 @@
 						<view class="public_input">
 							<uni-forms-item name="callInquirerSign">
 								<ESignature v-model="model.callInquirerSign"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.callInquirerTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.callInquirerTime" />
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -298,7 +316,8 @@
 						<view class="public_input">
 							<uni-forms-item name="personQuestionedSign">
 								<ESignature v-model="model.noteTakerSign"></ESignature>
-								<uni-datetime-picker type="datetime" v-model="model.noteTakerTime" />
+								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.noteTakerTime" />
 							</uni-forms-item>
 						</view>
 
@@ -336,6 +355,10 @@
 	import askAnswer from '@/components/public/from/askAnswer.vue'
 
 	import requiredText from '@/components/public/requiredText.vue'
+
+	import exportPdf from '@/components/public/exportPdf.vue'
+
+
 	export default {
 		watch: {
 			resultList: {
@@ -380,7 +403,8 @@
 					birthday: '',
 					startEndTime: [],
 					inquiryStarttime: '',
-					inquiryEndtime: ''
+					inquiryEndtime: '',
+					qaDes: "调查（询问）人告知：我们是无锡市住房和城乡建设局的执法人员（出示执法证件），现依法进行调查。依据《中华人民共和国行政处罚法》第四十二条第一款、第五十五条第一款的规定，如执法人员少于两人或执法证件与身份不符，你有权拒绝调查，你是否接受调查？\n被调查（询问）人答：\n问：根据《中华人民共和国行政处罚法》第四十三条第二款的规定，如执法人员与案件有直接利害关系或者有其他关系可能影响公正执法的，你有权申请执法人员回避。你是否申请回避？\n答：\n问：根据《中华人民共和国行政处罚法》五十五条第二款的规定，你应当如实回答询问并协助调查，不得拒绝或者阻挠。如作虚假陈述或拒绝、阻挠调查，将依法追究法律责任。请你配合我们调查询问。以上告知你是否清楚？\n答：\n问：为保障你(单位)的合法权益,便于我们及时告知您依法享有的权利和义务,请问你的单位的名称、法定代表人（负责人）姓名与职务、住所（住址）、企业类型、经营范围、社会信用代码和联系电话吗？\n答：我叫     ，我单位名称叫     ，法定代表人（负责人）姓名与职务是    ；住所（住址）为：     ；单位企业类型为：      ；经营范围是：    ，单位社会信用代码为：      ；联系话：      。\n问：\n答：\n问：请你核对以上笔录，若记录属实，请你签名确认。你若阅读困难，我们可以读给你听。\n答：\n"
 				},
 				rules: {
 					causeAction: {
@@ -489,6 +513,8 @@
 					},
 				},
 
+				loading: false
+
 			}
 		},
 		components: {
@@ -500,7 +526,8 @@
 			upAllFile,
 			dataTreePicker,
 			askAnswer,
-			requiredText
+			requiredText,
+			exportPdf
 		},
 
 
@@ -568,6 +595,7 @@
 			},
 			async submitForm() {
 				try {
+					this.loading=true
 					uni.showLoading({
 						title: '加载中'
 					});
@@ -597,7 +625,9 @@
 						});
 					}
 					uni.hideLoading();
+					this.loading=false
 				} catch (e) {
+					this.loading=false
 					console.log('try:e:', e)
 				}
 			},

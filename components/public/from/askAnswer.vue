@@ -1,9 +1,10 @@
 <template>
 	<view class="second_view_questions">
-		<uni-easyinput @input="changeInput" v-model="aaList" type="textarea" autoHeight placeholder="请输入内容">
+		<uni-easyinput :disabled="disabled" @input="changeInput" v-model="aaList" type="textarea" autoHeight
+			placeholder="请输入内容">
 		</uni-easyinput>
 		<view class="view_questions_box">
-			<button type="primary" @click="addList">添加问答</button>
+			<button :disabled="disabled" type="primary" @click="addList">添加问答</button>
 			<!-- <button type="primary" @click="saveList">保存询问笔录</button> -->
 		</view>
 	</view>
@@ -37,6 +38,10 @@
 				type: String,
 				required: false
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
 		},
 		watch: {
 			value: {
