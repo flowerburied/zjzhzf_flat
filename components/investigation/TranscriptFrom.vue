@@ -6,7 +6,7 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							案由
 						</view>
 					</myRow>
@@ -25,7 +25,7 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							询问时间
 						</view>
 					</myRow>
@@ -40,7 +40,7 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							询问地点
 						</view>
 					</myRow>
@@ -59,7 +59,7 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							调查询问人
 						</view>
 					</myRow>
@@ -73,7 +73,7 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							记录人
 						</view>
 					</myRow>
@@ -92,7 +92,7 @@
 				<myCol>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							被询问人
 						</view>
 					</myRow>
@@ -107,7 +107,7 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							性别
 						</view>
 					</myRow>
@@ -125,7 +125,7 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							身份证
 						</view>
 					</myRow>
@@ -143,7 +143,7 @@
 				<myCol>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							工作单位
 						</view>
 					</myRow>
@@ -158,7 +158,7 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							职务
 						</view>
 					</myRow>
@@ -173,7 +173,7 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							出生年月
 						</view>
 					</myRow>
@@ -194,7 +194,7 @@
 				<myCol>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							住址
 						</view>
 					</myRow>
@@ -209,7 +209,7 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							联系电话
 						</view>
 					</myRow>
@@ -225,7 +225,7 @@
 
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							邮政编码
 						</view>
 					</myRow>
@@ -246,7 +246,7 @@
 			<view class="prosp_from_btn">
 
 
-				<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+				<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm(false)"
 					type="primary">保存</button>
 			</view>
 
@@ -259,10 +259,14 @@
 					<exportPdf pdfName="询问笔录" :model="model" excelConfigId="691055234831872000"></exportPdf>
 
 				</view>
-				<view>
 
-					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+				<view>
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm(false)"
 						type="primary">保存</button>
+				</view>
+				<view>
+					<button v-if="model.state!='1'" :loading="loading" :disabled="model.state=='2'" class="from_btn"
+						@click="handleOkupdata" type="primary">提交</button>
 				</view>
 			</view>
 
@@ -329,14 +333,7 @@
 			</view>
 		</uni-forms>
 
-		<!-- <view class="prosp_from_btn">
 
-
-			<view>
-				<button class="from_btn" @click="submit" type="primary">保存</button>
-			</view>
-
-		</view> -->
 
 	</view>
 </template>
@@ -577,100 +574,218 @@
 
 
 			// 触发提交表单
-			submit() {
-
-
-				console.log("this", this.model)
-				this.$refs.form.validate().then(res => {
-					console.log('表单数据信息：', res);
-
-					if (this.model.id) {
-						this.submitForm()
+			// 触发提交表单
+			handleOkupdata() {
+				if (this.model.id) {
+					this.handleOkupdataTrue(this.model.id);
+				} else {
+					if (this.getModelId) {
+						this.handleOkupdataTrue(this.getModelId);
 					} else {
-						this.submitFormAdd()
+						this.submitForm(true);
 					}
-				}).catch(err => {
-					console.log('表单错误信息：', err);
-				})
-			},
-			async submitForm() {
-				try {
-					this.loading=true
-					uni.showLoading({
-						title: '加载中'
-					});
-					let getmodel = this.model
-					getmodel.inquiryStarttime = getmodel.startEndTime[0]
-					getmodel.inquiryEndtime = getmodel.startEndTime[1]
-					delete getmodel.startEndTime
-					const res = await this.api.fieldInvestigation.TreeListlistedit(getmodel)
-					console.log("edit", res)
-					const {
-						code,
-						message,
-						result
-					} = res
-					if (code == 200) {
-
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-					} else {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-					}
-					uni.hideLoading();
-					this.loading=false
-				} catch (e) {
-					this.loading=false
-					console.log('try:e:', e)
 				}
 			},
-			async submitFormAdd() {
-				try {
-					uni.showLoading({
-						title: '加载中'
-					});
-					let getmodel = this.model
-					getmodel.inquiryStarttime = getmodel.startEndTime[0]
-					getmodel.inquiryEndtime = getmodel.startEndTime[1]
-					delete getmodel.startEndTime
-					const res = await this.api.fieldInvestigation.TreeListlistadd(getmodel)
-					console.log("add", res)
-					const {
-						code,
-						message,
-						result
-					} = res
-					if (code == 200) {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
 
-					} else {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-					}
-					uni.hideLoading();
+			async handleOkupdataTrue(value) {
+				let httpurl = "/zhzf/transcriptQuestioning/updateTranscriptId";
+				let option = {
+					id: value,
+					state: 1,
+					reason: "",
+				};
+				let method = "GET"
+
+				const res = await this.api.fieldInvestigation.TotolGetFun(option, httpurl, method)
+
+				if (res.success) {
 					uni.navigateBack({
 						delta: 1,
 						animationType: 'pop-out',
 						animationDuration: 200
 					})
+
+
+				} else {
+
+					uni.showToast({
+						icon: "none",
+						title: res.message,
+						duration: 2000
+					});
+				}
+
+			},
+			submitForm(isSubmit) {
+
+				this.$refs.form.validate().then(res => {
+					console.log('isSubmit：', isSubmit);
+					this.submitFormvalidate(isSubmit)
+
+				}).catch(err => {
+					console.log('表单错误信息：', err);
+				})
+
+
+
+
+			},
+			async submitFormvalidate(isSubmit) {
+				try {
+					this.loading = true
+					uni.showLoading({
+						title: '加载中'
+					});
+					let getModel = JSON.parse(JSON.stringify(this.model))
+					let url = ""
+					let method = ""
+					if (getModel.id) {
+						url = "/zhzf/transcriptQuestioning/edit"
+						method = "PUT"
+					} else {
+						url = "/zhzf/transcriptQuestioning/add"
+						method = "POST"
+					}
+					if (getModel.informationUrl) {
+						if (typeof getModel.informationUrl == "object") {
+							getModel.informationUrl = getModel.informationUrl.join(",");
+						}
+					}
+					console.log("getModel", getModel)
+					const res = await this.api.fieldInvestigation.TotolPostFun(getModel, url, method)
+					console.log("audioVisualTotol", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 200) {
+						this.getModelId = result
+						if (isSubmit) {
+							this.handleOkupdata();
+						} else {
+							if (!this.model.id) {
+								uni.navigateBack({
+									delta: 1,
+									animationType: 'pop-out',
+									animationDuration: 200
+								})
+							}
+						}
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+					this.loading = false
 				} catch (e) {
+					this.loading = false
 					console.log('try:e:', e)
 				}
 			},
+
+			// submit() {
+
+
+			// 	console.log("this", this.model)
+			// 	this.$refs.form.validate().then(res => {
+			// 		console.log('表单数据信息：', res);
+
+			// 		if (this.model.id) {
+			// 			this.submitForm()
+			// 		} else {
+			// 			this.submitFormAdd()
+			// 		}
+			// 	}).catch(err => {
+			// 		console.log('表单错误信息：', err);
+			// 	})
+			// },
+			// async submitForm() {
+			// 	try {
+			// 		this.loading=true
+			// 		uni.showLoading({
+			// 			title: '加载中'
+			// 		});
+			// 		let getmodel = this.model
+			// 		getmodel.inquiryStarttime = getmodel.startEndTime[0]
+			// 		getmodel.inquiryEndtime = getmodel.startEndTime[1]
+			// 		delete getmodel.startEndTime
+			// 		const res = await this.api.fieldInvestigation.TreeListlistedit(getmodel)
+			// 		console.log("edit", res)
+			// 		const {
+			// 			code,
+			// 			message,
+			// 			result
+			// 		} = res
+			// 		if (code == 200) {
+
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+			// 		} else {
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+			// 		}
+			// 		uni.hideLoading();
+			// 		this.loading=false
+			// 	} catch (e) {
+			// 		this.loading=false
+			// 		console.log('try:e:', e)
+			// 	}
+			// },
+			// async submitFormAdd() {
+			// 	try {
+			// 		uni.showLoading({
+			// 			title: '加载中'
+			// 		});
+			// 		let getmodel = this.model
+			// 		getmodel.inquiryStarttime = getmodel.startEndTime[0]
+			// 		getmodel.inquiryEndtime = getmodel.startEndTime[1]
+			// 		delete getmodel.startEndTime
+			// 		const res = await this.api.fieldInvestigation.TreeListlistadd(getmodel)
+			// 		console.log("add", res)
+			// 		const {
+			// 			code,
+			// 			message,
+			// 			result
+			// 		} = res
+			// 		if (code == 200) {
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+
+			// 		} else {
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+			// 		}
+			// 		uni.hideLoading();
+			// 		uni.navigateBack({
+			// 			delta: 1,
+			// 			animationType: 'pop-out',
+			// 			animationDuration: 200
+			// 		})
+			// 	} catch (e) {
+			// 		console.log('try:e:', e)
+			// 	}
+			// },
 
 
 

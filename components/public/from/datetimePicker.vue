@@ -15,9 +15,9 @@
 		watch: {
 			datetimesingle1: {
 				handler(val, oldValue) {
-					if (val) {
+					// if (val) {
 						this.datetimesingle = val;
-					}
+					// }
 
 				},
 				//立刻执行handler

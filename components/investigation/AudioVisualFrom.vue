@@ -115,7 +115,7 @@
 					<exportPdf pdfName="视听资料" :model="model" excelConfigId="695848109943812096"></exportPdf>
 				</view>
 				<view>
-					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm"
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm(false)"
 						type="primary">保存</button>
 				</view>
 				<view>
