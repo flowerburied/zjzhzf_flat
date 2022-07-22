@@ -2,7 +2,7 @@
 	<div>
 		<!-- v-if="!isshowimg" -->
 		<image class="public_img" :src="getAvatarView(resultImg)"></image>
-		<text class="public_text active_text" @click="openpopup">
+		<text v-if="!disabled" class="public_text active_text" @click="openpopup">
 			签名
 		</text>
 
@@ -57,6 +57,12 @@
 				type: String,
 				default: "",
 			},
+			disabled: {
+				type: Boolean,
+				default: false
+			}
+
+
 		},
 		components: {
 			drawingBoard

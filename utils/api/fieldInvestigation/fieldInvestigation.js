@@ -83,24 +83,45 @@ let fieldInvestigation = {
 
 		})
 	},
-	//视听资料添加
-	audioVisualadd(params) {
-		return request.request({
-			url: '/zhzf/audioVisualMaterials/add',
-			method: 'POST',
-			data: params
+	// //视听资料添加
+	// audioVisualadd(params) {
+	// 	return request.request({
+	// 		url: '/zhzf/audioVisualMaterials/add',
+	// 		method: 'POST',
+	// 		data: params
 
-		})
-	},
+	// 	})
+	// },
+	// //视听资料修改
+	// audioVisualedit(params) {
+	// 	return request.request({
+	// 		url: '/zhzf/audioVisualMaterials/edit',
+	// 		method: 'PUT',
+	// 		data: params
+
+	// 	})
+	// },
+
 	//视听资料修改
-	audioVisualedit(params) {
+	TotolPostFun(params, url, method) {
 		return request.request({
-			url: '/zhzf/audioVisualMaterials/edit',
-			method: 'PUT',
+			url: url,
+			method: method,
 			data: params
 
 		})
 	},
+	//现场检查id查询
+	TotolGetFun(params, url, method) {
+		return request.request({
+			url: url,
+			method: method,
+			data: params
+	
+		})
+	},
+
+
 	//视听资料删除
 	audioVisualDelete(params) {
 		return request.request({

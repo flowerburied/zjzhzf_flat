@@ -9323,21 +9323,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c(
     "v-uni-view",
-    { staticClass: _vm._$g(0, "sc"), class: _vm._$g(0, "c"), attrs: { _i: 0 } },
+    { staticClass: _vm._$g(0, "sc"), attrs: { _i: 0 } },
     [
       _c(
         "v-uni-form",
-        {
-          attrs: { _i: 1 },
-          on: {
-            submit: function($event) {
-              return _vm.$handleViewEvent($event, { stop: true })
-            },
-            reset: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
+        { attrs: { _i: 1 } },
         [_vm._t("default", null, { _i: 2 })],
         2
       )
@@ -9378,7 +9368,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
 {
-  name: "uniForms", props: ["value", "modelValue", "rules", "validateTrigger", "labelPosition", "labelWidth", "labelAlign", "errShowType", "border"],
+  name: "uniForms", props: ["value", "modelValue", "model", "rules", "errShowType", "validateTrigger", "labelPosition", "labelWidth", "labelAlign", "border"],
   data: function data() {
     return {
       wxsProps: {} };
@@ -9514,28 +9504,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "recyclableRender", function() { return recyclableRender; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "components", function() { return components; });
 var components
-try {
-  components = {
-    uniIcons: __webpack_require__(/*! @/uni_modules/uni-icons/components/uni-icons/uni-icons.vue */ 97)
-      .default
-  }
-} catch (e) {
-  if (
-    e.message.indexOf("Cannot find module") !== -1 &&
-    e.message.indexOf(".vue") !== -1
-  ) {
-    console.error(e.message)
-    console.error("1. 排查组件名称拼写是否正确")
-    console.error(
-      "2. 排查组件是否符合 easycom 规范，文档：https://uniapp.dcloud.net.cn/collocation/pages?id=easycom"
-    )
-    console.error(
-      "3. 若组件不符合 easycom 规范，需手动引入，并在 components 中注册该组件"
-    )
-  } else {
-    throw e
-  }
-}
 var render = function() {
   var _vm = this
   var _h = _vm.$createElement
@@ -9544,96 +9512,58 @@ var render = function() {
     "v-uni-view",
     { staticClass: _vm._$g(0, "sc"), class: _vm._$g(0, "c"), attrs: { _i: 0 } },
     [
-      _c(
-        "v-uni-view",
-        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
+      _vm._t(
+        "label",
         [
           _c(
             "v-uni-view",
             {
               staticClass: _vm._$g(2, "sc"),
               class: _vm._$g(2, "c"),
+              style: _vm._$g(2, "s"),
               attrs: { _i: 2 }
             },
             [
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(3, "sc"),
-                  style: _vm._$g(3, "s"),
-                  attrs: { _i: 3 }
-                },
-                [
-                  _vm._t(
-                    "label",
-                    [
-                      _vm._$g(5, "i")
-                        ? _c(
-                            "v-uni-text",
-                            { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-                            [_vm._v("*")]
-                          )
-                        : _vm._e(),
-                      _vm._$g(6, "i")
-                        ? _c("uni-icons", {
-                            staticClass: _vm._$g(6, "sc"),
-                            attrs: { _i: 6 }
-                          })
-                        : _vm._e(),
-                      _c(
-                        "v-uni-text",
-                        { staticClass: _vm._$g(7, "sc"), attrs: { _i: 7 } },
-                        [_vm._v(_vm._$g(7, "t0-0"))]
-                      ),
-                      _vm._$g(8, "i")
-                        ? _c("v-uni-view", {
-                            staticClass: _vm._$g(8, "sc"),
-                            attrs: { _i: 8 }
-                          })
-                        : _vm._e()
-                    ],
-                    { _i: 4 }
+              _vm._$g(3, "i")
+                ? _c(
+                    "v-uni-text",
+                    { staticClass: _vm._$g(3, "sc"), attrs: { _i: 3 } },
+                    [_vm._v("*")]
                   )
-                ],
-                2
-              ),
-              _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(9, "sc"),
-                  class: _vm._$g(9, "c"),
-                  attrs: { _i: 9 }
-                },
-                [_vm._t("default", null, { _i: 10 })],
-                2
-              )
+                : _vm._e(),
+              _c("v-uni-text", { attrs: { _i: 4 } }, [
+                _vm._v(_vm._$g(4, "t0-0"))
+              ])
             ],
             1
-          ),
-          _vm._$g(11, "i")
-            ? _c(
-                "v-uni-view",
-                {
-                  staticClass: _vm._$g(11, "sc"),
-                  class: _vm._$g(11, "c"),
-                  style: _vm._$g(11, "s"),
-                  attrs: { _i: 11 }
-                },
-                [
-                  _c(
-                    "v-uni-text",
-                    { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-                    [_vm._v(_vm._$g(12, "t0-0"))]
-                  )
-                ],
-                1
-              )
-            : _vm._e()
+          )
         ],
-        1
+        { _i: 1 }
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
+        [
+          _vm._t("default", null, { _i: 6 }),
+          _c(
+            "v-uni-view",
+            {
+              staticClass: _vm._$g(7, "sc"),
+              class: _vm._$g(7, "c"),
+              attrs: { _i: 7 }
+            },
+            [
+              _c("v-uni-text", { attrs: { _i: 8 } }, [
+                _vm._v(_vm._$g(8, "t0-0"))
+              ])
+            ],
+            1
+          )
+        ],
+        2
       )
     ],
-    1
+    2
   )
 }
 var recyclableRender = false
@@ -9669,7 +9599,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;var _default =
 
 {
-  name: "uniFormsItem", props: ["custom", "showMessage", "name", "required", "validateTrigger", "leftIcon", "iconColor", "label", "labelWidth", "labelAlign", "labelPosition", "errorMessage", "rules"],
+  name: "uniFormsItem", props: ["rules", "name", "required", "label", "labelWidth", "labelAlign", "errorMessage", "leftIcon", "iconColor"],
   data: function data() {
     return {
       wxsProps: {} };
@@ -9724,7 +9654,7 @@ if(false) {}
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(/*! ../../../../../../../ruanjian/HBuilderX/plugins/uniapp-cli/node_modules/css-loader/dist/runtime/api.js */ 10);
 exports = ___CSS_LOADER_API_IMPORT___(false);
 // Module
-exports.push([module.i, "@charset \"UTF-8\";\n/* 水平间距 */\n/* 水平间距 */\n.uni-forms-item[data-v-61dfc0d0] {\n  position: relative;\n  padding: 0px;\n  text-align: left;\n  color: #333;\n  font-size: 14px;\n}\n.uni-forms-item__box[data-v-61dfc0d0] {\n  position: relative;\n}\n.uni-forms-item__inner[data-v-61dfc0d0] {\n  display: flex;\n  padding-bottom: 22px;\n}\n.is-direction-left[data-v-61dfc0d0] {\n  flex-direction: row;\n}\n.is-direction-top[data-v-61dfc0d0] {\n  flex-direction: column;\n}\n.uni-forms-item__label[data-v-61dfc0d0] {\n  display: flex;\n  flex-shrink: 0;\n  box-sizing: border-box;\n  flex-direction: row;\n  align-items: center;\n  width: 65px;\n  padding: 5px 0;\n  height: 36px;\n}\n.uni-forms-item__label .label-text[data-v-61dfc0d0] {\n  font-size: 13px;\n  color: #666666;\n}\n.uni-forms-item__label .label-seat[data-v-61dfc0d0] {\n  margin-right: 5px;\n}\n.uni-forms-item__content[data-v-61dfc0d0] {\n  width: 100%;\n  box-sizing: border-box;\n  min-height: 36px;\n  flex: 1;\n}\n.label-icon[data-v-61dfc0d0] {\n  margin-right: 5px;\n  margin-top: -1px;\n}\n.is-required[data-v-61dfc0d0] {\n  color: #dd524d;\n  font-weight: bold;\n}\n.uni-error-message[data-v-61dfc0d0] {\n  position: absolute;\n  bottom: 0px;\n  left: 0;\n  text-align: left;\n}\n.uni-error-message-text[data-v-61dfc0d0] {\n  line-height: 22px;\n  color: #dd524d;\n  font-size: 12px;\n}\n.uni-error-msg--boeder[data-v-61dfc0d0] {\n  position: relative;\n  bottom: 0;\n  line-height: 22px;\n}\n.is-input-error-border[data-v-61dfc0d0] {\n  border-color: #dd524d;\n}\n.uni-forms-item--border[data-v-61dfc0d0] {\n  margin-bottom: 0;\n  padding: 10px 0;\n  border-top: 1px #eee solid;\n}\n.uni-forms-item--border .uni-forms-item__inner[data-v-61dfc0d0] {\n  padding: 0;\n}\n.is-first-border[data-v-61dfc0d0] {\n  border: none;\n}\n.uni-forms--no-padding[data-v-61dfc0d0] {\n  padding: 0;\n}\n", ""]);
+exports.push([module.i, "@charset \"UTF-8\";\n/* 水平间距 */\n/* 水平间距 */\n.uni-forms-item[data-v-61dfc0d0] {\n  position: relative;\n  display: flex;\n  margin-bottom: 22px;\n  flex-direction: row;\n}\n.uni-forms-item__label[data-v-61dfc0d0] {\n  display: flex;\n  flex-direction: row;\n  align-items: center;\n  text-align: left;\n  font-size: 14px;\n  color: #606266;\n  height: 36px;\n  padding: 0 12px 0 0;\n  vertical-align: middle;\n  flex-shrink: 0;\n  box-sizing: border-box;\n}\n.uni-forms-item__label.no-label[data-v-61dfc0d0] {\n  padding: 0;\n}\n.uni-forms-item__content[data-v-61dfc0d0] {\n  position: relative;\n  font-size: 14px;\n  flex: 1;\n  box-sizing: border-box;\n  flex-direction: row;\n}\n.uni-forms-item .uni-forms-item__nuve-content[data-v-61dfc0d0] {\n  display: flex;\n  flex-direction: column;\n  flex: 1;\n}\n.uni-forms-item__error[data-v-61dfc0d0] {\n  color: #f56c6c;\n  font-size: 12px;\n  line-height: 1;\n  padding-top: 4px;\n  position: absolute;\n  top: 100%;\n  left: 0;\n  transition: -webkit-transform 0.3s;\n  transition: transform 0.3s;\n  transition: transform 0.3s, -webkit-transform 0.3s;\n  -webkit-transform: translateY(-100%);\n          transform: translateY(-100%);\n  opacity: 0;\n}\n.uni-forms-item__error .error-text[data-v-61dfc0d0] {\n  color: #f56c6c;\n  font-size: 12px;\n}\n.uni-forms-item__error.msg--active[data-v-61dfc0d0] {\n  opacity: 1;\n  -webkit-transform: translateY(0%);\n          transform: translateY(0%);\n}\n.uni-forms-item.is-direction-left[data-v-61dfc0d0] {\n  flex-direction: row;\n}\n.uni-forms-item.is-direction-top[data-v-61dfc0d0] {\n  flex-direction: column;\n}\n.uni-forms-item.is-direction-top .uni-forms-item__label[data-v-61dfc0d0] {\n  padding: 0 0 8px;\n  line-height: 1.5715;\n  text-align: left;\n  white-space: initial;\n}\n.uni-forms-item .is-required[data-v-61dfc0d0] {\n  color: #dd524d;\n  font-weight: bold;\n}\n.uni-forms-item--border[data-v-61dfc0d0] {\n  margin-bottom: 0;\n  padding: 10px 0;\n  border-top: 1px #eee solid;\n}\n.uni-forms-item--border .uni-forms-item__content[data-v-61dfc0d0] {\n  flex-direction: column;\n  justify-content: flex-start;\n  align-items: flex-start;\n}\n.uni-forms-item--border .uni-forms-item__content .uni-forms-item__error[data-v-61dfc0d0] {\n  position: relative;\n  top: 5px;\n  left: 0;\n  padding-top: 0;\n}\n.is-first-border[data-v-61dfc0d0] {\n  border: none;\n}\n", ""]);
 // Exports
 module.exports = exports;
 
@@ -19411,19 +19341,21 @@ var render = function() {
         staticClass: _vm._$g(1, "sc"),
         attrs: { src: _vm._$g(1, "a-src"), _i: 1 }
       }),
-      _c(
-        "v-uni-text",
-        {
-          staticClass: _vm._$g(2, "sc"),
-          attrs: { _i: 2 },
-          on: {
-            click: function($event) {
-              return _vm.$handleViewEvent($event)
-            }
-          }
-        },
-        [_vm._v("签名")]
-      ),
+      _vm._$g(2, "i")
+        ? _c(
+            "v-uni-text",
+            {
+              staticClass: _vm._$g(2, "sc"),
+              attrs: { _i: 2 },
+              on: {
+                click: function($event) {
+                  return _vm.$handleViewEvent($event)
+                }
+              }
+            },
+            [_vm._v("签名")]
+          )
+        : _vm._e(),
       _c(
         "uni-popup",
         { ref: "popup", attrs: { _i: 3 } },
@@ -19524,7 +19456,7 @@ __webpack_require__.r(__webpack_exports__);
 Object.defineProperty(exports, "__esModule", { value: true });exports.default = void 0;
 var _drawingBoard = _interopRequireDefault(__webpack_require__(/*! @/components/qiao-drawingBoard/drawingBoard.vue */ 130));function _interopRequireDefault(obj) {return obj && obj.__esModule ? obj : { default: obj };}var _default =
 {
-  props: ["resultImg1"],
+  props: ["resultImg1", "disabled"],
   data: function data() {
     return {
       wxsProps: {} };
@@ -25916,27 +25848,31 @@ var render = function() {
                       _c(
                         "v-uni-view",
                         { staticClass: _vm._$g(12, "sc"), attrs: { _i: 12 } },
-                        [_vm._v("收集方式")]
+                        [
+                          _c("requiredText", { attrs: { _i: 13 } }),
+                          _vm._v("收集方式")
+                        ],
+                        1
                       )
                     ],
                     1
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 13 } },
+                    { attrs: { _i: 14 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(14, "sc"), attrs: { _i: 14 } },
+                        { staticClass: _vm._$g(15, "sc"), attrs: { _i: 15 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 15 } },
+                            { attrs: { _i: 16 } },
                             [
                               _c("uni-easyinput", {
-                                attrs: { _i: 16 },
+                                attrs: { _i: 17 },
                                 model: {
-                                  value: _vm._$g(16, "v-model"),
+                                  value: _vm._$g(17, "v-model"),
                                   callback: function() {},
                                   expression: "model.collectionMethod"
                                 }
@@ -25955,17 +25891,17 @@ var render = function() {
               ),
               _c(
                 "myCol",
-                { attrs: { _i: 17 } },
+                { attrs: { _i: 18 } },
                 [
                   _c(
                     "myRow",
-                    { attrs: { _i: 18 } },
+                    { attrs: { _i: 19 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(19, "sc"), attrs: { _i: 19 } },
+                        { staticClass: _vm._$g(20, "sc"), attrs: { _i: 20 } },
                         [
-                          _c("requiredText", { attrs: { _i: 20 } }),
+                          _c("requiredText", { attrs: { _i: 21 } }),
                           _vm._v("收集地点")
                         ],
                         1
@@ -25975,20 +25911,20 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 21 } },
+                    { attrs: { _i: 22 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(22, "sc"), attrs: { _i: 22 } },
+                        { staticClass: _vm._$g(23, "sc"), attrs: { _i: 23 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 23 } },
+                            { attrs: { _i: 24 } },
                             [
                               _c("uni-easyinput", {
-                                attrs: { _i: 24 },
+                                attrs: { _i: 25 },
                                 model: {
-                                  value: _vm._$g(24, "v-model"),
+                                  value: _vm._$g(25, "v-model"),
                                   callback: function() {},
                                   expression: "model.collectionLocation"
                                 }
@@ -26007,15 +25943,15 @@ var render = function() {
               ),
               _c(
                 "myCol",
-                { attrs: { _i: 25 } },
+                { attrs: { _i: 26 } },
                 [
                   _c(
                     "myRow",
-                    { attrs: { _i: 26 } },
+                    { attrs: { _i: 27 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(27, "sc"), attrs: { _i: 27 } },
+                        { staticClass: _vm._$g(28, "sc"), attrs: { _i: 28 } },
                         [_vm._v("资料路径")]
                       )
                     ],
@@ -26023,20 +25959,20 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 28 } },
+                    { attrs: { _i: 29 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(29, "sc"), attrs: { _i: 29 } },
+                        { staticClass: _vm._$g(30, "sc"), attrs: { _i: 30 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 30 } },
+                            { attrs: { _i: 31 } },
                             [
                               _c("filePicker", {
-                                attrs: { _i: 31 },
+                                attrs: { _i: 32 },
                                 model: {
-                                  value: _vm._$g(31, "v-model"),
+                                  value: _vm._$g(32, "v-model"),
                                   callback: function() {},
                                   expression: "model.informationUrl"
                                 }
@@ -26055,15 +25991,15 @@ var render = function() {
               ),
               _c(
                 "myCol",
-                { attrs: { _i: 32 } },
+                { attrs: { _i: 33 } },
                 [
                   _c(
                     "myRow",
-                    { attrs: { _i: 33 } },
+                    { attrs: { _i: 34 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(34, "sc"), attrs: { _i: 34 } },
+                        { staticClass: _vm._$g(35, "sc"), attrs: { _i: 35 } },
                         [_vm._v("资料说明")]
                       )
                     ],
@@ -26071,20 +26007,20 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 35 } },
+                    { attrs: { _i: 36 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(36, "sc"), attrs: { _i: 36 } },
+                        { staticClass: _vm._$g(37, "sc"), attrs: { _i: 37 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 37 } },
+                            { attrs: { _i: 38 } },
                             [
                               _c("uni-easyinput", {
-                                attrs: { _i: 38 },
+                                attrs: { _i: 39 },
                                 model: {
-                                  value: _vm._$g(38, "v-model"),
+                                  value: _vm._$g(39, "v-model"),
                                   callback: function() {},
                                   expression: "model.informationDescription"
                                 }
@@ -26103,15 +26039,15 @@ var render = function() {
               ),
               _c(
                 "myCol",
-                { attrs: { _i: 39 } },
+                { attrs: { _i: 40 } },
                 [
                   _c(
                     "myRow",
-                    { attrs: { _i: 40 } },
+                    { attrs: { _i: 41 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(41, "sc"), attrs: { _i: 41 } },
+                        { staticClass: _vm._$g(42, "sc"), attrs: { _i: 42 } },
                         [_vm._v("录音")]
                       )
                     ],
@@ -26119,20 +26055,20 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 42 } },
+                    { attrs: { _i: 43 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(43, "sc"), attrs: { _i: 43 } },
+                        { staticClass: _vm._$g(44, "sc"), attrs: { _i: 44 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 44 } },
+                            { attrs: { _i: 45 } },
                             [
                               _c("soundRecording", {
-                                attrs: { _i: 45 },
+                                attrs: { _i: 46 },
                                 model: {
-                                  value: _vm._$g(45, "v-model"),
+                                  value: _vm._$g(46, "v-model"),
                                   callback: function() {},
                                   expression: "model.soundrecordingUrl"
                                 }
@@ -26154,27 +26090,27 @@ var render = function() {
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(46, "sc"), attrs: { _i: 46 } },
+            { staticClass: _vm._$g(47, "sc"), attrs: { _i: 47 } },
             [
               _c(
                 "v-uni-view",
-                { attrs: { _i: 47 } },
-                [_c("exportPdf", { attrs: { _i: 48 } })],
+                { attrs: { _i: 48 } },
+                [_c("exportPdf", { attrs: { _i: 49 } })],
                 1
               ),
               _c(
                 "v-uni-view",
-                { attrs: { _i: 49 } },
+                { attrs: { _i: 50 } },
                 [
                   _c(
                     "v-uni-button",
                     {
-                      staticClass: _vm._$g(50, "sc"),
+                      staticClass: _vm._$g(51, "sc"),
                       attrs: {
-                        loading: _vm._$g(50, "a-loading"),
-                        disabled: _vm._$g(50, "a-disabled"),
+                        loading: _vm._$g(51, "a-loading"),
+                        disabled: _vm._$g(51, "a-disabled"),
                         type: "primary",
-                        _i: 50
+                        _i: 51
                       },
                       on: {
                         click: function($event) {
@@ -26186,25 +26122,52 @@ var render = function() {
                   )
                 ],
                 1
+              ),
+              _c(
+                "v-uni-view",
+                { attrs: { _i: 52 } },
+                [
+                  _vm._$g(53, "i")
+                    ? _c(
+                        "v-uni-button",
+                        {
+                          staticClass: _vm._$g(53, "sc"),
+                          attrs: {
+                            loading: _vm._$g(53, "a-loading"),
+                            disabled: _vm._$g(53, "a-disabled"),
+                            type: "primary",
+                            _i: 53
+                          },
+                          on: {
+                            click: function($event) {
+                              return _vm.$handleViewEvent($event)
+                            }
+                          }
+                        },
+                        [_vm._v("提交")]
+                      )
+                    : _vm._e()
+                ],
+                1
               )
             ],
             1
           ),
           _c(
             "v-uni-view",
-            { staticClass: _vm._$g(51, "sc"), attrs: { _i: 51 } },
+            { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
             [
               _c(
                 "myCol",
-                { attrs: { _i: 52 } },
+                { attrs: { _i: 55 } },
                 [
                   _c(
                     "myRow",
-                    { attrs: { _i: 53 } },
+                    { attrs: { _i: 56 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(54, "sc"), attrs: { _i: 54 } },
+                        { staticClass: _vm._$g(57, "sc"), attrs: { _i: 57 } },
                         [_vm._v("当事人签名")]
                       )
                     ],
@@ -26212,28 +26175,28 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 55 } },
+                    { attrs: { _i: 58 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(56, "sc"), attrs: { _i: 56 } },
+                        { staticClass: _vm._$g(59, "sc"), attrs: { _i: 59 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 57 } },
+                            { attrs: { _i: 60 } },
                             [
                               _c("ESignature", {
-                                attrs: { _i: 58 },
+                                attrs: { _i: 61 },
                                 model: {
-                                  value: _vm._$g(58, "v-model"),
+                                  value: _vm._$g(61, "v-model"),
                                   callback: function() {},
                                   expression: "model.signatureQuestioned"
                                 }
                               }),
                               _c("uni-datetime-picker", {
-                                attrs: { _i: 59 },
+                                attrs: { _i: 62 },
                                 model: {
-                                  value: _vm._$g(59, "v-model"),
+                                  value: _vm._$g(62, "v-model"),
                                   callback: function() {},
                                   expression: "model.signatureQuestionedTime"
                                 }
@@ -26249,11 +26212,11 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 60 } },
+                    { attrs: { _i: 63 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(61, "sc"), attrs: { _i: 61 } },
+                        { staticClass: _vm._$g(64, "sc"), attrs: { _i: 64 } },
                         [_vm._v("收集人签名")]
                       )
                     ],
@@ -26261,28 +26224,28 @@ var render = function() {
                   ),
                   _c(
                     "myRow",
-                    { attrs: { _i: 62 } },
+                    { attrs: { _i: 65 } },
                     [
                       _c(
                         "v-uni-view",
-                        { staticClass: _vm._$g(63, "sc"), attrs: { _i: 63 } },
+                        { staticClass: _vm._$g(66, "sc"), attrs: { _i: 66 } },
                         [
                           _c(
                             "uni-forms-item",
-                            { attrs: { _i: 64 } },
+                            { attrs: { _i: 67 } },
                             [
                               _c("ESignature", {
-                                attrs: { _i: 65 },
+                                attrs: { _i: 68 },
                                 model: {
-                                  value: _vm._$g(65, "v-model"),
+                                  value: _vm._$g(68, "v-model"),
                                   callback: function() {},
                                   expression: "model.collectorInquirer"
                                 }
                               }),
                               _c("uni-datetime-picker", {
-                                attrs: { _i: 66 },
+                                attrs: { _i: 69 },
                                 model: {
-                                  value: _vm._$g(66, "v-model"),
+                                  value: _vm._$g(69, "v-model"),
                                   callback: function() {},
                                   expression: "model.collectorInquirerTime"
                                 }
@@ -27086,11 +27049,11 @@ __webpack_require__.r(__webpack_exports__);
 var components
 try {
   components = {
+    uniDataCheckbox: __webpack_require__(/*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 308)
+      .default,
     uniForms: __webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms/uni-forms.vue */ 226)
       .default,
     uniFormsItem: __webpack_require__(/*! @/uni_modules/uni-forms/components/uni-forms-item/uni-forms-item.vue */ 234)
-      .default,
-    uniDataCheckbox: __webpack_require__(/*! @/uni_modules/uni-data-checkbox/components/uni-data-checkbox/uni-data-checkbox.vue */ 308)
       .default,
     uniEasyinput: __webpack_require__(/*! @/uni_modules/uni-easyinput/components/uni-easyinput/uni-easyinput.vue */ 167)
       .default,
@@ -27123,70 +27086,84 @@ var render = function() {
     { staticClass: _vm._$g(0, "sc"), style: _vm._$g(0, "s"), attrs: { _i: 0 } },
     [
       _c(
-        "uni-forms",
-        { ref: "form", attrs: { _i: 1 } },
+        "v-uni-view",
+        { staticClass: _vm._$g(1, "sc"), attrs: { _i: 1 } },
         [
           _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(2, "sc"), attrs: { _i: 2 } },
+            "myCol",
+            { attrs: { _i: 2 } },
             [
               _c(
-                "myCol",
+                "myRow",
                 { attrs: { _i: 3 } },
                 [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 4 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(5, "sc"), attrs: { _i: 5 } },
-                        [
-                          _c("requiredText", { attrs: { _i: 6 } }),
-                          _vm._v("当事人类型")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
+                    "v-uni-view",
+                    { staticClass: _vm._$g(4, "sc"), attrs: { _i: 4 } },
+                    [_vm._v("当事人类型")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 5 } },
+                [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 7 } },
+                    "v-uni-view",
+                    { staticClass: _vm._$g(6, "sc"), attrs: { _i: 6 } },
                     [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(8, "sc"), attrs: { _i: 8 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 9 } },
-                            [
-                              _c("uni-data-checkbox", {
-                                attrs: { _i: 10 },
-                                model: {
-                                  value: _vm._$g(10, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.partyType"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
+                      _c("uni-data-checkbox", {
+                        staticStyle: { "margin-bottom": "10rpx" },
+                        attrs: { _i: 7 },
+                        on: {
+                          change: function($event) {
+                            return _vm.$handleViewEvent($event)
+                          }
+                        },
+                        model: {
+                          value: _vm._$g(7, "v-model"),
+                          callback: function() {},
+                          expression: "model.partyType"
+                        }
+                      })
                     ],
                     1
                   )
                 ],
                 1
-              ),
-              _vm._$g(11, "i")
-                ? _c(
+              )
+            ],
+            1
+          ),
+          _vm._$g(8, "i")
+            ? _c(
+                "uni-forms",
+                {
+                  ref: "form",
+                  staticStyle: { width: "100%" },
+                  attrs: { _i: 8 }
+                },
+                [
+                  _c(
                     "myCol",
-                    { attrs: { _i: 11 } },
+                    { attrs: { _i: 9 } },
                     [
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 10 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(11, "sc"),
+                              attrs: { _i: 11 }
+                            },
+                            [_vm._v("地点")]
+                          )
+                        ],
+                        1
+                      ),
                       _c(
                         "myRow",
                         { attrs: { _i: 12 } },
@@ -27197,30 +27174,15 @@ var render = function() {
                               staticClass: _vm._$g(13, "sc"),
                               attrs: { _i: 13 }
                             },
-                            [_vm._v("地点")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 14 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(15, "sc"),
-                              attrs: { _i: 15 }
-                            },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 16 } },
+                                { attrs: { _i: 14 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 17 },
+                                    attrs: { _i: 15 },
                                     model: {
-                                      value: _vm._$g(17, "v-model"),
+                                      value: _vm._$g(15, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyLocation"
                                     }
@@ -27236,13 +27198,26 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(18, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 18 } },
+                    { attrs: { _i: 16 } },
                     [
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 17 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(18, "sc"),
+                              attrs: { _i: 18 }
+                            },
+                            [_vm._v("案由")]
+                          )
+                        ],
+                        1
+                      ),
                       _c(
                         "myRow",
                         { attrs: { _i: 19 } },
@@ -27253,30 +27228,15 @@ var render = function() {
                               staticClass: _vm._$g(20, "sc"),
                               attrs: { _i: 20 }
                             },
-                            [_vm._v("案由")]
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 21 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(22, "sc"),
-                              attrs: { _i: 22 }
-                            },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 23 } },
+                                { attrs: { _i: 21 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 24 },
+                                    attrs: { _i: 22 },
                                     model: {
-                                      value: _vm._$g(24, "v-model"),
+                                      value: _vm._$g(22, "v-model"),
                                       callback: function() {},
                                       expression: "model.caseDesc"
                                     }
@@ -27292,13 +27252,26 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(25, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 25 } },
+                    { attrs: { _i: 23 } },
                     [
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 24 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(25, "sc"),
+                              attrs: { _i: 25 }
+                            },
+                            [_vm._v("名称")]
+                          )
+                        ],
+                        1
+                      ),
                       _c(
                         "myRow",
                         { attrs: { _i: 26 } },
@@ -27310,33 +27283,14 @@ var render = function() {
                               attrs: { _i: 27 }
                             },
                             [
-                              _c("requiredText", { attrs: { _i: 28 } }),
-                              _vm._v("名称")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 29 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(30, "sc"),
-                              attrs: { _i: 30 }
-                            },
-                            [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 31 } },
+                                { attrs: { _i: 28 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 32 },
+                                    attrs: { _i: 29 },
                                     model: {
-                                      value: _vm._$g(32, "v-model"),
+                                      value: _vm._$g(29, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyName"
                                     }
@@ -27352,42 +27306,38 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 33 } },
+                        { attrs: { _i: 30 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(34, "sc"),
-                              attrs: { _i: 34 }
+                              staticClass: _vm._$g(31, "sc"),
+                              attrs: { _i: 31 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 35 } }),
-                              _vm._v("时间")
-                            ],
-                            1
+                            [_vm._v("时间")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 36 } },
+                        { attrs: { _i: 32 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(37, "sc"),
-                              attrs: { _i: 37 }
+                              staticClass: _vm._$g(33, "sc"),
+                              attrs: { _i: 33 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 38 } },
+                                { attrs: { _i: 34 } },
                                 [
                                   _c("datetimePicker", {
-                                    attrs: { _i: 39 },
+                                    attrs: { _i: 35 },
                                     model: {
-                                      value: _vm._$g(39, "v-model"),
+                                      value: _vm._$g(35, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyTime"
                                     }
@@ -27403,51 +27353,45 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(40, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 40 } },
+                    { attrs: { _i: 36 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 41 } },
+                        { attrs: { _i: 37 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(42, "sc"),
-                              attrs: { _i: 42 }
+                              staticClass: _vm._$g(38, "sc"),
+                              attrs: { _i: 38 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 43 } }),
-                              _vm._v("现场负责人")
-                            ],
-                            1
+                            [_vm._v("现场负责人")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 44 } },
+                        { attrs: { _i: 39 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(45, "sc"),
-                              attrs: { _i: 45 }
+                              staticClass: _vm._$g(40, "sc"),
+                              attrs: { _i: 40 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 46 } },
+                                { attrs: { _i: 41 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 47 },
+                                    attrs: { _i: 42 },
                                     model: {
-                                      value: _vm._$g(47, "v-model"),
+                                      value: _vm._$g(42, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyPerson"
                                     }
@@ -27463,42 +27407,38 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 48 } },
+                        { attrs: { _i: 43 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(49, "sc"),
-                              attrs: { _i: 49 }
+                              staticClass: _vm._$g(44, "sc"),
+                              attrs: { _i: 44 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 50 } }),
-                              _vm._v("身份证号码")
-                            ],
-                            1
+                            [_vm._v("身份证号码")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 51 } },
+                        { attrs: { _i: 45 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(52, "sc"),
-                              attrs: { _i: 52 }
+                              staticClass: _vm._$g(46, "sc"),
+                              attrs: { _i: 46 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 53 } },
+                                { attrs: { _i: 47 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 54 },
+                                    attrs: { _i: 48 },
                                     model: {
-                                      value: _vm._$g(54, "v-model"),
+                                      value: _vm._$g(48, "v-model"),
                                       callback: function() {},
                                       expression: "model.companySocialCredit"
                                     }
@@ -27514,51 +27454,45 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(55, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 55 } },
+                    { attrs: { _i: 49 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 56 } },
+                        { attrs: { _i: 50 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(57, "sc"),
-                              attrs: { _i: 57 }
+                              staticClass: _vm._$g(51, "sc"),
+                              attrs: { _i: 51 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 58 } }),
-                              _vm._v("工作岗位")
-                            ],
-                            1
+                            [_vm._v("工作岗位")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 59 } },
+                        { attrs: { _i: 52 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(60, "sc"),
-                              attrs: { _i: 60 }
+                              staticClass: _vm._$g(53, "sc"),
+                              attrs: { _i: 53 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 61 } },
+                                { attrs: { _i: 54 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 62 },
+                                    attrs: { _i: 55 },
                                     model: {
-                                      value: _vm._$g(62, "v-model"),
+                                      value: _vm._$g(55, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyPersonPostion"
                                     }
@@ -27574,42 +27508,38 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 63 } },
+                        { attrs: { _i: 56 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(64, "sc"),
-                              attrs: { _i: 64 }
+                              staticClass: _vm._$g(57, "sc"),
+                              attrs: { _i: 57 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 65 } }),
-                              _vm._v("联系电话")
-                            ],
-                            1
+                            [_vm._v("联系电话")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 66 } },
+                        { attrs: { _i: 58 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(67, "sc"),
-                              attrs: { _i: 67 }
+                              staticClass: _vm._$g(59, "sc"),
+                              attrs: { _i: 59 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 68 } },
+                                { attrs: { _i: 60 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 69 },
+                                    attrs: { _i: 61 },
                                     model: {
-                                      value: _vm._$g(69, "v-model"),
+                                      value: _vm._$g(61, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyTel"
                                     }
@@ -27625,51 +27555,45 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(70, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 70 } },
+                    { attrs: { _i: 62 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 71 } },
+                        { attrs: { _i: 63 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(72, "sc"),
-                              attrs: { _i: 72 }
+                              staticClass: _vm._$g(64, "sc"),
+                              attrs: { _i: 64 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 73 } }),
-                              _vm._v("在场人员")
-                            ],
-                            1
+                            [_vm._v("在场人员")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 74 } },
+                        { attrs: { _i: 65 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(75, "sc"),
-                              attrs: { _i: 75 }
+                              staticClass: _vm._$g(66, "sc"),
+                              attrs: { _i: 66 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 76 } },
+                                { attrs: { _i: 67 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 77 },
+                                    attrs: { _i: 68 },
                                     model: {
-                                      value: _vm._$g(77, "v-model"),
+                                      value: _vm._$g(68, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyPeople"
                                     }
@@ -27685,42 +27609,38 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 78 } },
+                        { attrs: { _i: 69 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(79, "sc"),
-                              attrs: { _i: 79 }
+                              staticClass: _vm._$g(70, "sc"),
+                              attrs: { _i: 70 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 80 } }),
-                              _vm._v("身份证号码")
-                            ],
-                            1
+                            [_vm._v("身份证号码")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 81 } },
+                        { attrs: { _i: 71 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(82, "sc"),
-                              attrs: { _i: 82 }
+                              staticClass: _vm._$g(72, "sc"),
+                              attrs: { _i: 72 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 83 } },
+                                { attrs: { _i: 73 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 84 },
+                                    attrs: { _i: 74 },
                                     model: {
-                                      value: _vm._$g(84, "v-model"),
+                                      value: _vm._$g(74, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyRepresentative"
                                     }
@@ -27736,51 +27656,45 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(85, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 85 } },
+                    { attrs: { _i: 75 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 86 } },
+                        { attrs: { _i: 76 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(87, "sc"),
-                              attrs: { _i: 87 }
+                              staticClass: _vm._$g(77, "sc"),
+                              attrs: { _i: 77 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 88 } }),
-                              _vm._v("工作岗位")
-                            ],
-                            1
+                            [_vm._v("工作岗位")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 89 } },
+                        { attrs: { _i: 78 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(90, "sc"),
-                              attrs: { _i: 90 }
+                              staticClass: _vm._$g(79, "sc"),
+                              attrs: { _i: 79 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 91 } },
+                                { attrs: { _i: 80 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 92 },
+                                    attrs: { _i: 81 },
                                     model: {
-                                      value: _vm._$g(92, "v-model"),
+                                      value: _vm._$g(81, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyProjectPostion"
                                     }
@@ -27796,42 +27710,38 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 93 } },
+                        { attrs: { _i: 82 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(94, "sc"),
-                              attrs: { _i: 94 }
+                              staticClass: _vm._$g(83, "sc"),
+                              attrs: { _i: 83 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 95 } }),
-                              _vm._v("联系电话")
-                            ],
-                            1
+                            [_vm._v("联系电话")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 96 } },
+                        { attrs: { _i: 84 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(97, "sc"),
-                              attrs: { _i: 97 }
+                              staticClass: _vm._$g(85, "sc"),
+                              attrs: { _i: 85 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 98 } },
+                                { attrs: { _i: 86 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 99 },
+                                    attrs: { _i: 87 },
                                     model: {
-                                      value: _vm._$g(99, "v-model"),
+                                      value: _vm._$g(87, "v-model"),
                                       callback: function() {},
                                       expression: "model.companyProjectTel"
                                     }
@@ -27848,50 +27758,57 @@ var render = function() {
                     ],
                     1
                   )
-                : _vm._e(),
-              _vm._$g(100, "i")
-                ? _c(
+                ],
+                1
+              )
+            : _vm._e(),
+          _vm._$g(88, "i")
+            ? _c(
+                "uni-forms",
+                {
+                  ref: "form",
+                  staticStyle: { width: "100%" },
+                  attrs: { _i: 88 }
+                },
+                [
+                  _c(
                     "myCol",
-                    { attrs: { _i: 100 } },
+                    { attrs: { _i: 89 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 101 } },
+                        { attrs: { _i: 90 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(102, "sc"),
-                              attrs: { _i: 102 }
+                              staticClass: _vm._$g(91, "sc"),
+                              attrs: { _i: 91 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 103 } }),
-                              _vm._v("地点")
-                            ],
-                            1
+                            [_vm._v("地点")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 104 } },
+                        { attrs: { _i: 92 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(105, "sc"),
-                              attrs: { _i: 105 }
+                              staticClass: _vm._$g(93, "sc"),
+                              attrs: { _i: 93 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 106 } },
+                                { attrs: { _i: 94 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 107 },
+                                    attrs: { _i: 95 },
                                     model: {
-                                      value: _vm._$g(107, "v-model"),
+                                      value: _vm._$g(95, "v-model"),
                                       callback: function() {},
                                       expression: "model.personalSex"
                                     }
@@ -27907,22 +27824,20 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(108, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 108 } },
+                    { attrs: { _i: 96 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 109 } },
+                        { attrs: { _i: 97 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(110, "sc"),
-                              attrs: { _i: 110 }
+                              staticClass: _vm._$g(98, "sc"),
+                              attrs: { _i: 98 }
                             },
                             [_vm._v("案由")]
                           )
@@ -27931,23 +27846,23 @@ var render = function() {
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 111 } },
+                        { attrs: { _i: 99 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(112, "sc"),
-                              attrs: { _i: 112 }
+                              staticClass: _vm._$g(100, "sc"),
+                              attrs: { _i: 100 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 113 } },
+                                { attrs: { _i: 101 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 114 },
+                                    attrs: { _i: 102 },
                                     model: {
-                                      value: _vm._$g(114, "v-model"),
+                                      value: _vm._$g(102, "v-model"),
                                       callback: function() {},
                                       expression: "model.caseDesc"
                                     }
@@ -27963,28 +27878,123 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(115, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 115 } },
+                    { attrs: { _i: 103 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 116 } },
+                        { attrs: { _i: 104 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(117, "sc"),
-                              attrs: { _i: 117 }
+                              staticClass: _vm._$g(105, "sc"),
+                              attrs: { _i: 105 }
+                            },
+                            [_vm._v("姓名")]
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 106 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(107, "sc"),
+                              attrs: { _i: 107 }
                             },
                             [
-                              _c("requiredText", { attrs: { _i: 118 } }),
-                              _vm._v("姓名")
+                              _c(
+                                "uni-forms-item",
+                                { attrs: { _i: 108 } },
+                                [
+                                  _c("uni-easyinput", {
+                                    attrs: { _i: 109 },
+                                    model: {
+                                      value: _vm._$g(109, "v-model"),
+                                      callback: function() {},
+                                      expression: "model.personalName"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 110 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(111, "sc"),
+                              attrs: { _i: 111 }
+                            },
+                            [_vm._v("时间")]
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 112 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(113, "sc"),
+                              attrs: { _i: 113 }
+                            },
+                            [
+                              _c(
+                                "uni-forms-item",
+                                { attrs: { _i: 114 } },
+                                [
+                                  _c("datetimePicker", {
+                                    attrs: { _i: 115 },
+                                    model: {
+                                      value: _vm._$g(115, "v-model"),
+                                      callback: function() {},
+                                      expression: "model.personalTime"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _c(
+                    "myCol",
+                    { attrs: { _i: 116 } },
+                    [
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 117 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(118, "sc"),
+                              attrs: { _i: 118 }
+                            },
+                            [_vm._v("家庭住址")]
                           )
                         ],
                         1
@@ -28009,7 +28019,7 @@ var render = function() {
                                     model: {
                                       value: _vm._$g(122, "v-model"),
                                       callback: function() {},
-                                      expression: "model.personalName"
+                                      expression: "model.personalResidence"
                                     }
                                   })
                                 ],
@@ -28031,145 +28041,30 @@ var render = function() {
                               staticClass: _vm._$g(124, "sc"),
                               attrs: { _i: 124 }
                             },
-                            [
-                              _c("requiredText", { attrs: { _i: 125 } }),
-                              _vm._v("时间")
-                            ],
-                            1
+                            [_vm._v("联系电话")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 126 } },
+                        { attrs: { _i: 125 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(127, "sc"),
-                              attrs: { _i: 127 }
+                              staticClass: _vm._$g(126, "sc"),
+                              attrs: { _i: 126 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 128 } },
-                                [
-                                  _c("datetimePicker", {
-                                    attrs: { _i: 129 },
-                                    model: {
-                                      value: _vm._$g(129, "v-model"),
-                                      callback: function() {},
-                                      expression: "model.personalTime"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(130, "i")
-                ? _c(
-                    "myCol",
-                    { attrs: { _i: 130 } },
-                    [
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 131 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(132, "sc"),
-                              attrs: { _i: 132 }
-                            },
-                            [
-                              _c("requiredText", { attrs: { _i: 133 } }),
-                              _vm._v("家庭住址")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 134 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(135, "sc"),
-                              attrs: { _i: 135 }
-                            },
-                            [
-                              _c(
-                                "uni-forms-item",
-                                { attrs: { _i: 136 } },
+                                { attrs: { _i: 127 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 137 },
+                                    attrs: { _i: 128 },
                                     model: {
-                                      value: _vm._$g(137, "v-model"),
-                                      callback: function() {},
-                                      expression: "model.personalResidence"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 138 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(139, "sc"),
-                              attrs: { _i: 139 }
-                            },
-                            [
-                              _c("requiredText", { attrs: { _i: 140 } }),
-                              _vm._v("联系电话")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 141 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(142, "sc"),
-                              attrs: { _i: 142 }
-                            },
-                            [
-                              _c(
-                                "uni-forms-item",
-                                { attrs: { _i: 143 } },
-                                [
-                                  _c("uni-easyinput", {
-                                    attrs: { _i: 144 },
-                                    model: {
-                                      value: _vm._$g(144, "v-model"),
+                                      value: _vm._$g(128, "v-model"),
                                       callback: function() {},
                                       expression: "model.personalTel"
                                     }
@@ -28185,26 +28080,153 @@ var render = function() {
                       )
                     ],
                     1
-                  )
-                : _vm._e(),
-              _vm._$g(145, "i")
-                ? _c(
+                  ),
+                  _c(
                     "myCol",
-                    { attrs: { _i: 145 } },
+                    { attrs: { _i: 129 } },
                     [
                       _c(
                         "myRow",
-                        { attrs: { _i: 146 } },
+                        { attrs: { _i: 130 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(147, "sc"),
-                              attrs: { _i: 147 }
+                              staticClass: _vm._$g(131, "sc"),
+                              attrs: { _i: 131 }
+                            },
+                            [_vm._v("在场人员")]
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 132 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(133, "sc"),
+                              attrs: { _i: 133 }
                             },
                             [
-                              _c("requiredText", { attrs: { _i: 148 } }),
-                              _vm._v("在场人员")
+                              _c(
+                                "uni-forms-item",
+                                { attrs: { _i: 134 } },
+                                [
+                                  _c("uni-easyinput", {
+                                    attrs: { _i: 135 },
+                                    model: {
+                                      value: _vm._$g(135, "v-model"),
+                                      callback: function() {},
+                                      expression: "model.personalPeople"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 136 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(137, "sc"),
+                              attrs: { _i: 137 }
+                            },
+                            [_vm._v("身份证")]
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 138 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(139, "sc"),
+                              attrs: { _i: 139 }
+                            },
+                            [
+                              _c(
+                                "uni-forms-item",
+                                { attrs: { _i: 140 } },
+                                [
+                                  _c("uni-easyinput", {
+                                    attrs: { _i: 141 },
+                                    model: {
+                                      value: _vm._$g(141, "v-model"),
+                                      callback: function() {},
+                                      expression: "model.personalCard"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
+                            ],
+                            1
+                          )
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  ),
+                  _c(
+                    "myCol",
+                    { attrs: { _i: 142 } },
+                    [
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 143 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(144, "sc"),
+                              attrs: { _i: 144 }
+                            },
+                            [_vm._v("工作岗位")]
+                          )
+                        ],
+                        1
+                      ),
+                      _c(
+                        "myRow",
+                        { attrs: { _i: 145 } },
+                        [
+                          _c(
+                            "v-uni-view",
+                            {
+                              staticClass: _vm._$g(146, "sc"),
+                              attrs: { _i: 146 }
+                            },
+                            [
+                              _c(
+                                "uni-forms-item",
+                                { attrs: { _i: 147 } },
+                                [
+                                  _c("uni-easyinput", {
+                                    attrs: { _i: 148 },
+                                    model: {
+                                      value: _vm._$g(148, "v-model"),
+                                      callback: function() {},
+                                      expression: "model.personalWork"
+                                    }
+                                  })
+                                ],
+                                1
+                              )
                             ],
                             1
                           )
@@ -28221,177 +28243,30 @@ var render = function() {
                               staticClass: _vm._$g(150, "sc"),
                               attrs: { _i: 150 }
                             },
-                            [
-                              _c(
-                                "uni-forms-item",
-                                { attrs: { _i: 151 } },
-                                [
-                                  _c("uni-easyinput", {
-                                    attrs: { _i: 152 },
-                                    model: {
-                                      value: _vm._$g(152, "v-model"),
-                                      callback: function() {},
-                                      expression: "model.personalPeople"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
+                            [_vm._v("联系电话")]
                           )
                         ],
                         1
                       ),
                       _c(
                         "myRow",
-                        { attrs: { _i: 153 } },
+                        { attrs: { _i: 151 } },
                         [
                           _c(
                             "v-uni-view",
                             {
-                              staticClass: _vm._$g(154, "sc"),
-                              attrs: { _i: 154 }
-                            },
-                            [
-                              _c("requiredText", { attrs: { _i: 155 } }),
-                              _vm._v("身份证")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 156 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(157, "sc"),
-                              attrs: { _i: 157 }
+                              staticClass: _vm._$g(152, "sc"),
+                              attrs: { _i: 152 }
                             },
                             [
                               _c(
                                 "uni-forms-item",
-                                { attrs: { _i: 158 } },
+                                { attrs: { _i: 153 } },
                                 [
                                   _c("uni-easyinput", {
-                                    attrs: { _i: 159 },
+                                    attrs: { _i: 154 },
                                     model: {
-                                      value: _vm._$g(159, "v-model"),
-                                      callback: function() {},
-                                      expression: "model.personalCard"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                : _vm._e(),
-              _vm._$g(160, "i")
-                ? _c(
-                    "myCol",
-                    { attrs: { _i: 160 } },
-                    [
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 161 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(162, "sc"),
-                              attrs: { _i: 162 }
-                            },
-                            [
-                              _c("requiredText", { attrs: { _i: 163 } }),
-                              _vm._v("工作岗位")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 164 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(165, "sc"),
-                              attrs: { _i: 165 }
-                            },
-                            [
-                              _c(
-                                "uni-forms-item",
-                                { attrs: { _i: 166 } },
-                                [
-                                  _c("uni-easyinput", {
-                                    attrs: { _i: 167 },
-                                    model: {
-                                      value: _vm._$g(167, "v-model"),
-                                      callback: function() {},
-                                      expression: "model.personalWork"
-                                    }
-                                  })
-                                ],
-                                1
-                              )
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 168 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(169, "sc"),
-                              attrs: { _i: 169 }
-                            },
-                            [
-                              _c("requiredText", { attrs: { _i: 170 } }),
-                              _vm._v("联系电话")
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      ),
-                      _c(
-                        "myRow",
-                        { attrs: { _i: 171 } },
-                        [
-                          _c(
-                            "v-uni-view",
-                            {
-                              staticClass: _vm._$g(172, "sc"),
-                              attrs: { _i: 172 }
-                            },
-                            [
-                              _c(
-                                "uni-forms-item",
-                                { attrs: { _i: 173 } },
-                                [
-                                  _c("uni-easyinput", {
-                                    attrs: { _i: 174 },
-                                    model: {
-                                      value: _vm._$g(174, "v-model"),
+                                      value: _vm._$g(154, "v-model"),
                                       callback: function() {},
                                       expression: "model.personalBirthday"
                                     }
@@ -28408,378 +28283,44 @@ var render = function() {
                     ],
                     1
                   )
-                : _vm._e(),
-              _c(
-                "myCol",
-                { attrs: { _i: 175 } },
-                [
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 176 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(177, "sc"), attrs: { _i: 177 } },
-                        [
-                          _c("requiredText", { attrs: { _i: 178 } }),
-                          _vm._v("检查（勘察）人")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 179 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(180, "sc"), attrs: { _i: 180 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 181 } },
-                            [
-                              _c("dataTreePicker", {
-                                attrs: { _i: 182 },
-                                model: {
-                                  value: _vm._$g(182, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.checkedBy"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 183 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(184, "sc"), attrs: { _i: 184 } },
-                        [
-                          _c("requiredText", { attrs: { _i: 185 } }),
-                          _vm._v("记录人")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 186 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(187, "sc"), attrs: { _i: 187 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 188 } },
-                            [
-                              _c("dataTreePicker", {
-                                attrs: { _i: 189 },
-                                model: {
-                                  value: _vm._$g(189, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.noteTakers"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _c(
-                "myCol",
-                { attrs: { _i: 190 } },
-                [
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 191 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(192, "sc"), attrs: { _i: 192 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 193 } },
-                            [
-                              _c("uni-easyinput", {
-                                attrs: { _i: 194 },
-                                model: {
-                                  value: _vm._$g(194, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.checkedByNotice"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _c(
-                "myCol",
-                { attrs: { _i: 195 } },
-                [
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 196 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(197, "sc"), attrs: { _i: 197 } },
-                        [
-                          _c("requiredText", { attrs: { _i: 198 } }),
-                          _vm._v("现场检查记录情况")
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 199 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(200, "sc"), attrs: { _i: 200 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 201 } },
-                            [
-                              _c("uni-easyinput", {
-                                attrs: { _i: 202 },
-                                model: {
-                                  value: _vm._$g(202, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.inspectionRecords"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _c(
-                "myCol",
-                { attrs: { _i: 203 } },
-                [
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 204 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(205, "sc"), attrs: { _i: 205 } },
-                        [_vm._v("现场勘察示意图")]
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 206 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(207, "sc"), attrs: { _i: 207 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 208 } },
-                            [
-                              _c("filePicker", {
-                                attrs: { _i: 209 },
-                                model: {
-                                  value: _vm._$g(209, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.inspectionInvestigation"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
-                ],
-                1
-              ),
-              _c(
-                "myCol",
-                { attrs: { _i: 210 } },
-                [
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 211 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(212, "sc"), attrs: { _i: 212 } },
-                        [_vm._v("现场勘察示意图说明")]
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 213 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(214, "sc"), attrs: { _i: 214 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 215 } },
-                            [
-                              _c("uni-easyinput", {
-                                attrs: { _i: 216 },
-                                model: {
-                                  value: _vm._$g(216, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.inspectionDesc"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  )
                 ],
                 1
               )
-            ],
-            1
-          ),
+            : _vm._e(),
           _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(217, "sc"), attrs: { _i: 217 } },
+            "myCol",
+            { attrs: { _i: 155 } },
             [
               _c(
-                "v-uni-view",
-                { attrs: { _i: 218 } },
-                [_c("exportPdf", { attrs: { _i: 219 } })],
-                1
-              ),
-              _c(
-                "v-uni-view",
-                { attrs: { _i: 220 } },
+                "myRow",
+                { attrs: { _i: 156 } },
                 [
                   _c(
-                    "v-uni-button",
-                    {
-                      staticClass: _vm._$g(221, "sc"),
-                      attrs: {
-                        loading: _vm._$g(221, "a-loading"),
-                        disabled: _vm._$g(221, "a-disabled"),
-                        type: "primary",
-                        _i: 221
-                      },
-                      on: {
-                        click: function($event) {
-                          return _vm.$handleViewEvent($event)
-                        }
-                      }
-                    },
-                    [_vm._v("保存")]
+                    "v-uni-view",
+                    { staticClass: _vm._$g(157, "sc"), attrs: { _i: 157 } },
+                    [_vm._v("检查（勘察）人")]
                   )
                 ],
                 1
-              )
-            ],
-            1
-          ),
-          _c(
-            "v-uni-view",
-            { staticClass: _vm._$g(222, "sc"), attrs: { _i: 222 } },
-            [
+              ),
               _c(
-                "myCol",
-                { attrs: { _i: 223 } },
+                "myRow",
+                { attrs: { _i: 158 } },
                 [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 224 } },
+                    "v-uni-view",
+                    { staticClass: _vm._$g(159, "sc"), attrs: { _i: 159 } },
                     [
                       _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(225, "sc"), attrs: { _i: 225 } },
-                        [_vm._v("当事人签名")]
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 226 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(227, "sc"), attrs: { _i: 227 } },
+                        "uni-forms-item",
+                        { attrs: { _i: 160 } },
                         [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 228 } },
-                            [
-                              _c("ESignature", {
-                                attrs: { _i: 229 },
-                                model: {
-                                  value: _vm._$g(229, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.signatureQuestioned"
-                                }
-                              })
-                            ],
-                            1
-                          ),
-                          _c("uni-datetime-picker", {
-                            attrs: { _i: 230 },
+                          _c("dataTreePicker", {
+                            attrs: { _i: 161 },
                             model: {
-                              value: _vm._$g(230, "v-model"),
+                              value: _vm._$g(161, "v-model"),
                               callback: function() {},
-                              expression: "model.signatureQuestionedTime"
+                              expression: "model.checkedBy"
                             }
                           })
                         ],
@@ -28787,50 +28328,455 @@ var render = function() {
                       )
                     ],
                     1
-                  ),
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 162 } },
+                [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 231 } },
+                    "v-uni-view",
+                    { staticClass: _vm._$g(163, "sc"), attrs: { _i: 163 } },
+                    [_vm._v("记录人")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 164 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(165, "sc"), attrs: { _i: 165 } },
                     [
                       _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(232, "sc"), attrs: { _i: 232 } },
-                        [_vm._v("见证人签名")]
+                        "uni-forms-item",
+                        { attrs: { _i: 166 } },
+                        [
+                          _c("dataTreePicker", {
+                            attrs: { _i: 167 },
+                            model: {
+                              value: _vm._$g(167, "v-model"),
+                              callback: function() {},
+                              expression: "model.noteTakers"
+                            }
+                          })
+                        ],
+                        1
                       )
                     ],
                     1
-                  ),
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "myCol",
+            { attrs: { _i: 168 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 169 } },
+                [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 233 } },
+                    "v-uni-view",
+                    { staticClass: _vm._$g(170, "sc"), attrs: { _i: 170 } },
                     [
                       _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(234, "sc"), attrs: { _i: 234 } },
+                        "uni-forms-item",
+                        { attrs: { _i: 171 } },
                         [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 235 } },
-                            [
-                              _c("ESignature", {
-                                attrs: { _i: 236 },
-                                model: {
-                                  value: _vm._$g(236, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.witnessInquirer"
-                                }
-                              }),
-                              _c("uni-datetime-picker", {
-                                attrs: { _i: 237 },
-                                model: {
-                                  value: _vm._$g(237, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.witnessInquirerTime"
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _c("uni-easyinput", {
+                            attrs: { _i: 172 },
+                            model: {
+                              value: _vm._$g(172, "v-model"),
+                              callback: function() {},
+                              expression: "model.checkedByNotice"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "myCol",
+            { attrs: { _i: 173 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 174 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(175, "sc"), attrs: { _i: 175 } },
+                    [_vm._v("现场检查记录情况")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 176 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(177, "sc"), attrs: { _i: 177 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 178 } },
+                        [
+                          _c("uni-easyinput", {
+                            attrs: { _i: 179 },
+                            model: {
+                              value: _vm._$g(179, "v-model"),
+                              callback: function() {},
+                              expression: "model.inspectionRecords"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "myCol",
+            { attrs: { _i: 180 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 181 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(182, "sc"), attrs: { _i: 182 } },
+                    [_vm._v("现场勘察示意图")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 183 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(184, "sc"), attrs: { _i: 184 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 185 } },
+                        [
+                          _c("filePicker", {
+                            attrs: { _i: 186 },
+                            model: {
+                              value: _vm._$g(186, "v-model"),
+                              callback: function() {},
+                              expression: "model.inspectionInvestigation"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "myCol",
+            { attrs: { _i: 187 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 188 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(189, "sc"), attrs: { _i: 189 } },
+                    [_vm._v("现场勘察示意图说明")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 190 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(191, "sc"), attrs: { _i: 191 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 192 } },
+                        [
+                          _c("uni-easyinput", {
+                            attrs: { _i: 193 },
+                            model: {
+                              value: _vm._$g(193, "v-model"),
+                              callback: function() {},
+                              expression: "model.inspectionDesc"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(194, "sc"), attrs: { _i: 194 } },
+        [
+          _c(
+            "v-uni-view",
+            { attrs: { _i: 195 } },
+            [_c("exportPdf", { attrs: { _i: 196 } })],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { attrs: { _i: 197 } },
+            [
+              _c(
+                "v-uni-button",
+                {
+                  staticClass: _vm._$g(198, "sc"),
+                  attrs: {
+                    loading: _vm._$g(198, "a-loading"),
+                    disabled: _vm._$g(198, "a-disabled"),
+                    type: "primary",
+                    _i: 198
+                  },
+                  on: {
+                    click: function($event) {
+                      return _vm.$handleViewEvent($event)
+                    }
+                  }
+                },
+                [_vm._v("保存")]
+              )
+            ],
+            1
+          ),
+          _c(
+            "v-uni-view",
+            { attrs: { _i: 199 } },
+            [
+              _vm._$g(200, "i")
+                ? _c(
+                    "v-uni-button",
+                    {
+                      staticClass: _vm._$g(200, "sc"),
+                      attrs: {
+                        loading: _vm._$g(200, "a-loading"),
+                        disabled: _vm._$g(200, "a-disabled"),
+                        type: "primary",
+                        _i: 200
+                      },
+                      on: {
+                        click: function($event) {
+                          return _vm.$handleViewEvent($event)
+                        }
+                      }
+                    },
+                    [_vm._v("提交")]
+                  )
+                : _vm._e()
+            ],
+            1
+          )
+        ],
+        1
+      ),
+      _c(
+        "v-uni-view",
+        { staticClass: _vm._$g(201, "sc"), attrs: { _i: 201 } },
+        [
+          _c(
+            "myCol",
+            { attrs: { _i: 202 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 203 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(204, "sc"), attrs: { _i: 204 } },
+                    [_vm._v("当事人签名")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 205 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(206, "sc"), attrs: { _i: 206 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 207 } },
+                        [
+                          _c("ESignature", {
+                            attrs: { _i: 208 },
+                            model: {
+                              value: _vm._$g(208, "v-model"),
+                              callback: function() {},
+                              expression: "model.signatureQuestioned"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _c("uni-datetime-picker", {
+                        attrs: { _i: 209 },
+                        model: {
+                          value: _vm._$g(209, "v-model"),
+                          callback: function() {},
+                          expression: "model.signatureQuestionedTime"
+                        }
+                      })
+                    ],
+                    1
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 210 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(211, "sc"), attrs: { _i: 211 } },
+                    [_vm._v("见证人签名")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 212 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(213, "sc"), attrs: { _i: 213 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 214 } },
+                        [
+                          _c("ESignature", {
+                            attrs: { _i: 215 },
+                            model: {
+                              value: _vm._$g(215, "v-model"),
+                              callback: function() {},
+                              expression: "model.witnessInquirer"
+                            }
+                          }),
+                          _c("uni-datetime-picker", {
+                            attrs: { _i: 216 },
+                            model: {
+                              value: _vm._$g(216, "v-model"),
+                              callback: function() {},
+                              expression: "model.witnessInquirerTime"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ],
+                    1
+                  )
+                ],
+                1
+              )
+            ],
+            1
+          ),
+          _c(
+            "myCol",
+            { attrs: { _i: 217 } },
+            [
+              _c(
+                "myRow",
+                { attrs: { _i: 218 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(219, "sc"), attrs: { _i: 219 } },
+                    [_vm._v("勘查人签名")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 220 } },
+                [
+                  _c(
+                    "v-uni-view",
+                    { staticClass: _vm._$g(221, "sc"), attrs: { _i: 221 } },
+                    [
+                      _c(
+                        "uni-forms-item",
+                        { attrs: { _i: 222 } },
+                        [
+                          _c("ESignature", {
+                            attrs: { _i: 223 },
+                            model: {
+                              value: _vm._$g(223, "v-model"),
+                              callback: function() {},
+                              expression: "model.surveyorQuestioned"
+                            }
+                          }),
+                          _c("uni-datetime-picker", {
+                            attrs: { _i: 224 },
+                            model: {
+                              value: _vm._$g(224, "v-model"),
+                              callback: function() {},
+                              expression: "model.surveyorQuestionedTime"
+                            }
+                          })
                         ],
                         1
                       )
@@ -28841,101 +28787,45 @@ var render = function() {
                 1
               ),
               _c(
-                "myCol",
-                { attrs: { _i: 238 } },
+                "myRow",
+                { attrs: { _i: 225 } },
                 [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 239 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(240, "sc"), attrs: { _i: 240 } },
-                        [_vm._v("勘查人签名")]
-                      )
-                    ],
-                    1
-                  ),
+                    "v-uni-view",
+                    { staticClass: _vm._$g(226, "sc"), attrs: { _i: 226 } },
+                    [_vm._v("记录人签名")]
+                  )
+                ],
+                1
+              ),
+              _c(
+                "myRow",
+                { attrs: { _i: 227 } },
+                [
                   _c(
-                    "myRow",
-                    { attrs: { _i: 241 } },
+                    "v-uni-view",
+                    { staticClass: _vm._$g(228, "sc"), attrs: { _i: 228 } },
                     [
                       _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(242, "sc"), attrs: { _i: 242 } },
+                        "uni-forms-item",
+                        { attrs: { _i: 229 } },
                         [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 243 } },
-                            [
-                              _c("ESignature", {
-                                attrs: { _i: 244 },
-                                model: {
-                                  value: _vm._$g(244, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.surveyorQuestioned"
-                                }
-                              }),
-                              _c("uni-datetime-picker", {
-                                attrs: { _i: 245 },
-                                model: {
-                                  value: _vm._$g(245, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.surveyorQuestionedTime"
-                                }
-                              })
-                            ],
-                            1
-                          )
-                        ],
-                        1
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 246 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(247, "sc"), attrs: { _i: 247 } },
-                        [_vm._v("记录人签名")]
-                      )
-                    ],
-                    1
-                  ),
-                  _c(
-                    "myRow",
-                    { attrs: { _i: 248 } },
-                    [
-                      _c(
-                        "v-uni-view",
-                        { staticClass: _vm._$g(249, "sc"), attrs: { _i: 249 } },
-                        [
-                          _c(
-                            "uni-forms-item",
-                            { attrs: { _i: 250 } },
-                            [
-                              _c("ESignature", {
-                                attrs: { _i: 251 },
-                                model: {
-                                  value: _vm._$g(251, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.noteTaker"
-                                }
-                              }),
-                              _c("uni-datetime-picker", {
-                                attrs: { _i: 252 },
-                                model: {
-                                  value: _vm._$g(252, "v-model"),
-                                  callback: function() {},
-                                  expression: "model.noteTakerTime"
-                                }
-                              })
-                            ],
-                            1
-                          )
+                          _c("ESignature", {
+                            attrs: { _i: 230 },
+                            model: {
+                              value: _vm._$g(230, "v-model"),
+                              callback: function() {},
+                              expression: "model.noteTaker"
+                            }
+                          }),
+                          _c("uni-datetime-picker", {
+                            attrs: { _i: 231 },
+                            model: {
+                              value: _vm._$g(231, "v-model"),
+                              callback: function() {},
+                              expression: "model.noteTakerTime"
+                            }
+                          })
                         ],
                         1
                       )

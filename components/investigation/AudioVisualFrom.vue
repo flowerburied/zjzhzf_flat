@@ -21,6 +21,7 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text ">
+							<requiredText></requiredText>
 							收集方式
 						</view>
 					</myRow>
@@ -114,9 +115,14 @@
 					<exportPdf pdfName="视听资料" :model="model" excelConfigId="695848109943812096"></exportPdf>
 				</view>
 				<view>
-					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submit"
+					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm"
 						type="primary">保存</button>
 				</view>
+				<view>
+					<button v-if="model.state!='1'" :loading="loading" :disabled="model.state=='2'" class="from_btn"
+						@click="handleOkupdata" type="primary">提交</button>
+				</view>
+
 			</view>
 
 
@@ -136,7 +142,8 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="signatureQuestioned">
-								<ESignature v-model="model.signatureQuestioned"></ESignature>
+								<ESignature :disabled="model.state=='2'" v-model="model.signatureQuestioned">
+								</ESignature>
 								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
 									v-model="model.signatureQuestionedTime" />
 							</uni-forms-item>
@@ -151,7 +158,7 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectorInquirer">
-								<ESignature v-model="model.collectorInquirer"></ESignature>
+								<ESignature :disabled="model.state=='2'" v-model="model.collectorInquirer"></ESignature>
 								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
 									v-model="model.collectorInquirerTime" />
 							</uni-forms-item>
@@ -163,14 +170,7 @@
 			</view>
 		</uni-forms>
 
-		<!-- <view class="prosp_from_btn">
 
-
-			<view>
-				<button class="from_btn" @click="submit" type="primary">保存</button>
-			</view>
-
-		</view> -->
 
 	</view>
 </template>
@@ -261,7 +261,8 @@
 
 				},
 
-				loading: false
+				loading: false,
+				getModelId: ""
 
 			}
 		},
@@ -325,46 +326,103 @@
 
 
 			// 触发提交表单
-			submit() {
+			handleOkupdata() {
+				if (this.model.id) {
+					this.handleOkupdataTrue(this.model.id);
+				} else {
+					if (this.getModelId) {
+						this.handleOkupdataTrue(this.getModelId);
+					} else {
+						this.submitForm(true);
+					}
+				}
+			},
+
+			async handleOkupdataTrue(value) {
+				let httpurl = "/zhzf/audioVisualMaterials/updateTranscriptId";
+				let option = {
+					id: value,
+					state: 1,
+					reason: "",
+				};
+				let method = "GET"
+
+				const res = await this.api.fieldInvestigation.TotolGetFun(option, httpurl, method)
+
+				if (res.success) {
+					uni.navigateBack({
+						delta: 1,
+						animationType: 'pop-out',
+						animationDuration: 200
+					})
 
 
-				console.log("this", this.model)
+				} else {
+
+					uni.showToast({
+						icon: "none",
+						title: res.message,
+						duration: 2000
+					});
+				}
+
+			},
+			submitForm(isSubmit) {
+
 				this.$refs.form.validate().then(res => {
 					console.log('表单数据信息：', res);
+					this.submitFormvalidate(isSubmit)
 
-					if (this.model.id) {
-						this.submitForm()
-					} else {
-
-						this.submitFormAdd()
-					}
 				}).catch(err => {
 					console.log('表单错误信息：', err);
 				})
+
+
+
+
 			},
-			async submitForm() {
+			async submitFormvalidate(isSubmit) {
 				try {
 					this.loading = true
 					uni.showLoading({
 						title: '加载中'
 					});
 					let getModel = JSON.parse(JSON.stringify(this.model))
-
+					let url = ""
+					let method = ""
+					if (getModel.id) {
+						url = "/zhzf/audioVisualMaterials/edit"
+						method = "PUT"
+					} else {
+						url = "/zhzf/audioVisualMaterials/add"
+						method = "POST"
+					}
 					if (getModel.informationUrl) {
 						if (typeof getModel.informationUrl == "object") {
 							getModel.informationUrl = getModel.informationUrl.join(",");
 						}
 					}
 					console.log("getModel", getModel)
-					const res = await this.api.fieldInvestigation.audioVisualedit(getModel)
-					console.log("edit", res)
+					const res = await this.api.fieldInvestigation.TotolPostFun(getModel, url, method)
+					console.log("audioVisualTotol", res)
 					const {
 						code,
 						message,
 						result
 					} = res
 					if (code == 200) {
-
+						this.getModelId = result
+						if (isSubmit) {
+							this.handleOkupdata();
+						} else {
+							if (!this.model.id) {
+								uni.navigateBack({
+									delta: 1,
+									animationType: 'pop-out',
+									animationDuration: 200
+								})
+							}
+						}
 						uni.showToast({
 							icon: "none",
 							title: message,
@@ -384,51 +442,53 @@
 					console.log('try:e:', e)
 				}
 			},
-			async submitFormAdd() {
-				try {
-					uni.showLoading({
-						title: '加载中'
-					});
 
-					let getModel = JSON.parse(JSON.stringify(this.model))
 
-					if (getModel.informationUrl) {
-						if (typeof getModel.informationUrl == "object") {
-							getModel.informationUrl = getModel.informationUrl.join(",");
-						}
-					}
-					console.log("getModel", getModel)
-					const res = await this.api.fieldInvestigation.audioVisualadd(getModel)
-					console.log("add", res)
-					const {
-						code,
-						message,
-						result
-					} = res
-					if (code == 200) {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
+			// async submitFormAdd() {
+			// 	try {
+			// 		uni.showLoading({
+			// 			title: '加载中'
+			// 		});
 
-						uni.navigateBack({
-							delta: 1,
-							animationType: 'pop-out',
-							animationDuration: 200
-						})
-					} else {
-						uni.showToast({
-							icon: "none",
-							title: message,
-							duration: 2000
-						});
-					}
-					uni.hideLoading();
-				} catch (e) {
-					console.log('try:e:', e)
-				}
-			},
+			// 		let getModel = JSON.parse(JSON.stringify(this.model))
+
+			// 		if (getModel.informationUrl) {
+			// 			if (typeof getModel.informationUrl == "object") {
+			// 				getModel.informationUrl = getModel.informationUrl.join(",");
+			// 			}
+			// 		}
+			// 		console.log("getModel", getModel)
+			// 		const res = await this.api.fieldInvestigation.audioVisualadd(getModel)
+			// 		console.log("add", res)
+			// 		const {
+			// 			code,
+			// 			message,
+			// 			result
+			// 		} = res
+			// 		if (code == 200) {
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+
+			// 			uni.navigateBack({
+			// 				delta: 1,
+			// 				animationType: 'pop-out',
+			// 				animationDuration: 200
+			// 			})
+			// 		} else {
+			// 			uni.showToast({
+			// 				icon: "none",
+			// 				title: message,
+			// 				duration: 2000
+			// 			});
+			// 		}
+			// 		uni.hideLoading();
+			// 	} catch (e) {
+			// 		console.log('try:e:', e)
+			// 	}
+			// },
 
 
 
