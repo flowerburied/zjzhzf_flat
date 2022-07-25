@@ -79,7 +79,6 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text ">
-
 							时间
 						</view>
 					</myRow>

@@ -1,7 +1,9 @@
 <template>
-	<view>
+	<view class="datatimepick_box">
 		<uni-datetime-picker :disabled="disabled" rangeSeparator="至" :type="dateType" :clear-icon="false"
 			v-model="datetimesingle" @change="timechange" />
+
+		<!-- <button type="default">此刻</button> -->
 	</view>
 </template>
 
@@ -16,7 +18,7 @@
 			datetimesingle1: {
 				handler(val, oldValue) {
 					// if (val) {
-						this.datetimesingle = val;
+					this.datetimesingle = val;
 					// }
 
 				},
@@ -58,5 +60,10 @@
 	}
 </script>
 
-<style>
+<style lang="scss" scoped>
+	.datatimepick_box {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+	}
 </style>

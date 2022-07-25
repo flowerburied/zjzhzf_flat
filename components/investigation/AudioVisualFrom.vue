@@ -6,7 +6,7 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+							
 							收集时间
 						</view>
 					</myRow>
@@ -21,7 +21,7 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text ">
-							<requiredText></requiredText>
+							
 							收集方式
 						</view>
 					</myRow>
@@ -39,7 +39,7 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+							
 							收集地点
 						</view>
 					</myRow>
