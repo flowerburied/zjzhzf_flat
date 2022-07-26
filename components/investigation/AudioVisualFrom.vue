@@ -6,7 +6,7 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							
+
 							收集时间
 						</view>
 					</myRow>
@@ -21,7 +21,7 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text ">
-							
+
 							收集方式
 						</view>
 					</myRow>
@@ -39,7 +39,7 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
-							
+
 							收集地点
 						</view>
 					</myRow>
@@ -142,10 +142,15 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="signatureQuestioned">
+
+
 								<ESignature :disabled="model.state=='2'" v-model="model.signatureQuestioned">
 								</ESignature>
-								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-									v-model="model.signatureQuestionedTime" />
+								<datetimePicker :disabled="model.state=='2'" v-model="model.signatureQuestionedTime"
+									dateType="datetime">
+								</datetimePicker>
+								<!-- 						<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.signatureQuestionedTime" /> -->
 							</uni-forms-item>
 						</view>
 
@@ -159,8 +164,11 @@
 						<view class="public_input">
 							<uni-forms-item name="collectorInquirer">
 								<ESignature :disabled="model.state=='2'" v-model="model.collectorInquirer"></ESignature>
-								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-									v-model="model.collectorInquirerTime" />
+								<datetimePicker :disabled="model.state=='2'" v-model="model.collectorInquirerTime"
+									dateType="datetime">
+								</datetimePicker>
+								<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.collectorInquirerTime" /> -->
 							</uni-forms-item>
 						</view>
 					</myRow>

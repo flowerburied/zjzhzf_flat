@@ -285,8 +285,12 @@
 						<view class="public_input">
 							<uni-forms-item name="personQuestionedSign">
 								<ESignature v-model="model.personQuestionedSign"></ESignature>
-								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-									v-model="model.personQuestionedTime" />
+
+								<datetimePicker :disabled="model.state=='2'" v-model="model.personQuestionedTime"
+									dateType="datetime">
+								</datetimePicker>
+								<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.personQuestionedTime" /> -->
 							</uni-forms-item>
 						</view>
 
@@ -300,8 +304,13 @@
 						<view class="public_input">
 							<uni-forms-item name="callInquirerSign">
 								<ESignature v-model="model.callInquirerSign"></ESignature>
-								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-									v-model="model.callInquirerTime" />
+
+								<datetimePicker :disabled="model.state=='2'" v-model="model.callInquirerTime"
+									dateType="datetime">
+								</datetimePicker>
+
+								<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.callInquirerTime" /> -->
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -320,8 +329,12 @@
 						<view class="public_input">
 							<uni-forms-item name="personQuestionedSign">
 								<ESignature v-model="model.noteTakerSign"></ESignature>
-								<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-									v-model="model.noteTakerTime" />
+
+								<datetimePicker :disabled="model.state=='2'" v-model="model.noteTakerTime"
+									dateType="datetime">
+								</datetimePicker>
+								<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+									v-model="model.noteTakerTime" /> -->
 							</uni-forms-item>
 						</view>
 
@@ -651,6 +664,11 @@
 							getModel.informationUrl = getModel.informationUrl.join(",");
 						}
 					}
+
+					getModel.inquiryStarttime = getModel.startEndTime[0]
+					getModel.inquiryEndtime = getModel.startEndTime[1]
+					delete getModel.startEndTime
+
 					console.log("getModel", getModel)
 					const res = await this.api.fieldInvestigation.TotolPostFun(getModel, url, method)
 					console.log("audioVisualTotol", res)

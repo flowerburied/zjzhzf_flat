@@ -134,14 +134,12 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-
 							工作岗位
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
-							<uni-forms-item>
-
+							<uni-forms-item name="companyPersonPostion">
 								<uni-easyinput :disabled="model.state=='2'" v-model="model.companyPersonPostion"
 									placeholder="请输入工作岗位">
 								</uni-easyinput>
@@ -553,10 +551,12 @@
 						<uni-forms-item name="signatureQuestioned">
 							<ESignature v-model="model.signatureQuestioned"></ESignature>
 						</uni-forms-item>
-
-						<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+						<datetimePicker :disabled="model.state=='2'" v-model="model.signatureQuestionedTime"
+							dateType="datetime">
+						</datetimePicker>
+						<!-- 		<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
 							v-model="model.signatureQuestionedTime" />
-
+ -->
 					</view>
 
 				</myRow>
@@ -569,9 +569,12 @@
 					<view class="public_input">
 						<uni-forms-item name="witnessInquirer">
 							<ESignature v-model="model.witnessInquirer"></ESignature>
-							<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+							<datetimePicker :disabled="model.state=='2'" v-model="model.witnessInquirerTime"
+								dateType="datetime">
+							</datetimePicker>
+							<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
 								v-model="model.witnessInquirerTime" />
-
+ -->
 						</uni-forms-item>
 					</view>
 				</myRow>
@@ -588,9 +591,13 @@
 					<view class="public_input">
 						<uni-forms-item name="surveyorQuestioned">
 							<ESignature v-model="model.surveyorQuestioned"></ESignature>
-							<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-								v-model="model.surveyorQuestionedTime" />
+							<datetimePicker :disabled="model.state=='2'" v-model="model.surveyorQuestionedTime"
+								dateType="datetime">
+							</datetimePicker>
 
+							<!-- 				<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+								v-model="model.surveyorQuestionedTime" />
+ -->
 						</uni-forms-item>
 					</view>
 
@@ -604,8 +611,13 @@
 					<view class="public_input">
 						<uni-forms-item name="noteTaker">
 							<ESignature v-model="model.noteTaker"></ESignature>
-							<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
-								v-model="model.noteTakerTime" />
+
+							<datetimePicker :disabled="model.state=='2'" v-model="model.noteTakerTime"
+								dateType="datetime">
+							</datetimePicker>
+
+							<!-- 			<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+								v-model="model.noteTakerTime" /> -->
 
 						</uni-forms-item>
 					</view>
@@ -749,7 +761,12 @@
 							errorMessage: '请输入名称',
 						}, ]
 					},
-
+					companyPersonPostion: {
+						rules: [{
+							required: true,
+							errorMessage: '请输入工作岗位',
+						}, ]
+					},
 					companyPerson: {
 						rules: [{
 							required: true,
