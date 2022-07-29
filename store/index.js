@@ -9,12 +9,12 @@ const store = new Vuex.Store({
 		token: "",
 		userInfo: null,
 		sysNewsArticle: null,
-		searchContent: ""
+		searchContent: "",
+		isAdmin: false
 	},
 
 	mutations: {
 		SET_SEARCH_CONTENT(state, step) {
-
 			state.searchContent = step
 		},
 		SET_PHONE_INFO(state, step) {
@@ -30,6 +30,17 @@ const store = new Vuex.Store({
 				key: "userInfo",
 				data: step
 			})
+
+			console.log("step", step)
+			if (step) {
+				if (step.username.indexOf('admin') == -1) {
+					state.isAdmin = false
+				} else {
+					state.isAdmin = true
+				}
+			}
+
+
 		},
 		SET_TOKEN(state, step) {
 			// console.log("执行了SET_TOKEN")

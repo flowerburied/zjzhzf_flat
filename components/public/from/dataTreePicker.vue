@@ -1,70 +1,72 @@
 <template>
 	<view>
-
 		<view class="my_datatree_picker">
 			<view class="datatree_picker_name" v-if="userNames">
 				{{userNames}}
 			</view>
 			<button :disabled="disabled" class="mini-btn" type="primary" size="mini" @click="open">设置</button>
 		</view>
-
-		<!-- 	<uni-easyinput disabled class="uni-mt-5" suffixIcon="search" v-model="userNames" placeholder="右侧图标" @iconClick="open"> -->
 		</uni-easyinput>
 		<uni-popup ref="popup" type="bottom">
 			<view class="table_padding_my">
-				<scroll-view @scrolltolower="scrolltolower" :style="{height:200+'rpx'}" scroll-y="true"
-					class="scroll-Y">
+				<uni-card>
+					<TreeList @queryUserByDepId="queryUserByDepId"></TreeList>
+				</uni-card>
+				<view>
+					<scroll-view @scrolltolower="scrolltolower" :style="{height:200+'rpx'}" scroll-y="true"
+						class="scroll-Y">
 
-					<view class="second_view_box">
-						<myCol>
-							<myRow widthPercentage='1'>
+						<view class="second_view_box">
+							<myCol>
+								<myRow widthPercentage='1'>
 
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									用户账号
-								</view>
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									用户姓名
-								</view>
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									部门
-								</view>
-							</myRow>
-						</myCol>
-						<myCol v-for="(item, index) in tableData" :key="index">
-							<myRow widthPercentage='1'>
-								<checkbox-group @change="changeCheckbox(index)">
-									<checkbox :value="item.ischeckBox" :checked="item.ischeckBox" />
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										用户账号
+									</view>
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										用户姓名
+									</view>
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										部门
+									</view>
+								</myRow>
+							</myCol>
+							<myCol v-for="(item, index) in tableData" :key="index">
+								<myRow widthPercentage='1'>
+									<checkbox-group @change="changeCheckbox(index)">
+										<checkbox :value="item.ischeckBox" :checked="item.ischeckBox" />
 
-								</checkbox-group>
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									{{ item.username }}
-								</view>
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									{{ item.realname }}
-								</view>
-							</myRow>
-							<myRow widthPercentage='3'>
-								<view class="public_text">
-									{{ item.orgCodeTxt }}
-								</view>
-							</myRow>
-						</myCol>
+									</checkbox-group>
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										{{ item.username }}
+									</view>
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										{{ item.realname }}
+									</view>
+								</myRow>
+								<myRow widthPercentage='3'>
+									<view class="public_text">
+										{{ item.orgCodeTxt }}
+									</view>
+								</myRow>
+							</myCol>
+						</view>
+					</scroll-view>
+
+					<view class="padding_my_box">
+						<button @click="changeSelect" class="my_box_btn" type="primary">确定</button>
+						<button @click="closePopup" class="my_box_btn" type="default">取消</button>
 					</view>
-				</scroll-view>
-
-				<view class="padding_my_box">
-					<button @click="changeSelect" class="my_box_btn" type="primary">确定</button>
-					<button @click="closePopup" class="my_box_btn" type="default">取消</button>
 				</view>
 			</view>
 
@@ -79,7 +81,7 @@
 	// import tableData from './tableData.js'
 	import myCol from "@/components/public/myRow/myCol.vue"
 	import myRow from "@/components/public/myRow/myRow.vue"
-
+	import TreeList from "@/components/public/from/modules/TreeList.vue"
 	export default {
 		data() {
 			return {
@@ -101,12 +103,14 @@
 				getArray: [],
 				pageNo: 1,
 				ismore: true,
+
+				isSelect: true
 			}
 		},
 		components: {
 			myCol,
 			myRow,
-
+			TreeList
 		},
 		mounted() {
 			this.selectedIndexs = []
@@ -234,16 +238,19 @@
 			scrolltolower(e) {
 				// this.$emit("scrolltolower")
 				console.log("scrolltolower", e)
-				if (this.ismore) {
-					this.pageNo += 1
-					this.getlist()
-				} else {
-					uni.showToast({
-						icon: "none",
-						title: '没有数据了！',
-						duration: 2000
-					});
+				if (this.isSelect) {
+					if (this.ismore) {
+						this.pageNo += 1
+						this.getlist()
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: '没有数据了！',
+							duration: 2000
+						});
+					}
 				}
+
 			},
 			closePopup() {
 				this.$refs.popup.close()
@@ -261,7 +268,7 @@
 					});
 					let option = {
 						pageNo: this.pageNo,
-						pageSize: 5
+						pageSize: 10
 					}
 					const res = await this.api.fieldInvestigation.TreeListlist(option)
 					console.log("queryTreeList", res)
@@ -302,6 +309,53 @@
 					console.log('try:e:', e)
 				}
 			},
+
+			async queryUserByDepId(val) {
+				try {
+					this.isSelect = false
+					this.tableData = []
+					uni.showLoading({
+						title: '加载中'
+					});
+					let option = {
+						id: val,
+					}
+					console.log("option", option)
+					const res = await this.api.publics.queryUserByDepId(option)
+					console.log("queryTreeList", res)
+					const {
+						code,
+						message,
+						result
+					} = res
+					if (code == 0) {
+						if (result.length != 0) {
+							for (var i = 0; i < result.length; i++) {
+								result[i].ischeckBox = false
+								this.tableData.push(result[i])
+							}
+						} else {
+							this.tableData = []
+							uni.showToast({
+								icon: "none",
+								title: '没有数据了！',
+								duration: 2000
+							});
+						}
+					} else {
+						uni.showToast({
+							icon: "none",
+							title: message,
+							duration: 2000
+						});
+					}
+					uni.hideLoading();
+				} catch (e) {
+					console.log('try:e:', e)
+				}
+			},
+
+
 		}
 	}
 </script>
@@ -323,10 +377,13 @@
 		margin: 10rpx;
 		padding: 10rpx;
 		background-color: #FFFFFF;
+		display: flex;
+		flex-direction: row;
+
 
 		.second_view_box {
 			margin-top: 12rpx;
-			width: 324rpx;
+			width: 424rpx;
 			display: flex;
 			flex-wrap: wrap;
 			border-left: 1px #D2D2D2 solid;

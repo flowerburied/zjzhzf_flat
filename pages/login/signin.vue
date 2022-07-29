@@ -83,25 +83,23 @@
 			// this.$refs.form.setRules(this.rules)
 
 		},
-		onLoad() {
-
-
-		},
+		onLoad() {},
 		onShow() {
-			uni.getStorage({
-				key: "token",
+			// uni.getStorage({
+			// 	key: "token",
 
-				complete: (val) => {
-					// console.log(val);
-					if (val.data) {
-						uni.switchTab({
-							url: '/pages/homePage/home'
-						})
-					} else {
-						this.handleChangeCheckCode()
-					}
-				}
-			})
+			// 	complete: (val) => {
+			// 		// console.log(val);
+			// 		if (val.data) {
+			// 			uni.switchTab({
+			// 				url: '/pages/homePage/home'
+			// 			})
+			// 		} else {
+			// 			this.handleChangeCheckCode()
+			// 		}
+			// 	}
+			// })
+			this.handleChangeCheckCode()
 		},
 
 		methods: {

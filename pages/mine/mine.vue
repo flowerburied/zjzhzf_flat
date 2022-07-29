@@ -142,7 +142,7 @@
 							that.$store.commit("SET_USER_INFO", null)
 							uni.clearStorage();
 							uni.reLaunch({
-								url: '/pages/login/signin'
+								url: '/pages/launchPage/launchPage'
 							})
 						} else if (res.cancel) {
 							console.log('用户点击取消');

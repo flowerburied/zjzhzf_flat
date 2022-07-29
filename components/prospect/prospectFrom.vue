@@ -6,28 +6,30 @@
 					<myRow background="#f0f0f0">
 
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							建设单位
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="constructionUnit">
-								<uni-easyinput v-model="model.constructionUnit" placeholder="请输入建设单位">
+								<uni-easyinput :disabled="isdisabled" v-model="model.constructionUnit"
+									placeholder="请输入建设单位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							联系人姓名
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="constructionPeople1">
-								<uni-easyinput v-model="model.constructionPeople1" placeholder="请输入联系人姓名">
+								<uni-easyinput :disabled="isdisabled" v-model="model.constructionPeople1"
+									placeholder="请输入联系人姓名">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -35,14 +37,15 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							联系人电话
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="constructionPeople2">
-								<uni-easyinput v-model="model.constructionPeople2" placeholder="请输入联系人电话">
+								<uni-easyinput :disabled="isdisabled" v-model="model.constructionPeople2"
+									placeholder="请输入联系人电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -55,28 +58,30 @@
 				<myCol>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							施工单位
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="constructionCompany">
-								<uni-easyinput v-model="model.constructionCompany" placeholder="请输入施工单位">
+								<uni-easyinput :disabled="isdisabled" v-model="model.constructionCompany"
+									placeholder="请输入施工单位">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							联系人姓名
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="companyPeople1">
-								<uni-easyinput v-model="model.companyPeople1" placeholder="请输入联系人姓名">
+								<uni-easyinput :disabled="isdisabled" v-model="model.companyPeople1"
+									placeholder="请输入联系人姓名">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -84,14 +89,15 @@
 					</myRow>
 					<myRow background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							联系人电话
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="companyPeople2">
-								<uni-easyinput v-model="model.companyPeople2" placeholder="请输入联系人电话">
+								<uni-easyinput :disabled="isdisabled" v-model="model.companyPeople2"
+									placeholder="请输入联系人电话">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -103,28 +109,29 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							工程名称
 						</view>
 					</myRow>
 					<myRow widthPercentage='1.66'>
 						<view class="public_input">
 							<uni-forms-item name="projectName">
-								<uni-easyinput v-model="model.projectName" placeholder="请输入工程名称">
+								<uni-easyinput :disabled="isdisabled" v-model="model.projectName" placeholder="请输入工程名称">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							工程地址
 						</view>
 					</myRow>
 					<myRow>
 						<view class="public_input">
 							<uni-forms-item name="projectAddress">
-								<uni-easyinput v-model="model.projectAddress" placeholder="请输入工程地址">
+								<uni-easyinput :disabled="isdisabled" v-model="model.projectAddress"
+									placeholder="请输入工程地址">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -133,7 +140,7 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							现场工程检查情况
 						</view>
 					</myRow>
@@ -141,8 +148,8 @@
 						<view class="public_input">
 							<uni-forms-item name="engineeringInspection">
 
-								<uni-easyinput type="textarea" v-model="model.engineeringInspection"
-									placeholder="请输入现场工程检查情况">
+								<uni-easyinput :disabled="isdisabled" type="textarea"
+									v-model="model.engineeringInspection" placeholder="请输入现场工程检查情况">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -155,14 +162,14 @@
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							现场踏勘示意图
 						</view>
 					</myRow>
 					<myRow widthPercentage='8.34'>
 						<view class="public_updata">
 							<uni-forms-item name="schematicDiagram">
-								<filePicker v-model="model.schematicDiagram"></filePicker>
+								<filePicker :disabled="isdisabled" v-model="model.schematicDiagram"></filePicker>
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -172,7 +179,7 @@
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							现场踏勘情况
 						</view>
 					</myRow>
@@ -180,7 +187,8 @@
 
 						<view class="public_input">
 							<uni-forms-item name="siteSurvey">
-								<uni-easyinput type="textarea" v-model="model.siteSurvey" placeholder="请输入现场踏勘情况">
+								<uni-easyinput :disabled="isdisabled" type="textarea" v-model="model.siteSurvey"
+									placeholder="请输入现场踏勘情况">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -190,14 +198,14 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							勘查人
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="surveyor">
-								<uni-easyinput v-model="model.surveyor" placeholder="请输入勘查人">
+								<uni-easyinput :disabled="isdisabled" v-model="model.surveyor" placeholder="请输入勘查人">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -205,14 +213,14 @@
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							勘查时间
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="surveyTime">
-								<datetimePicker v-model="model.surveyTime"></datetimePicker>
+								<datetimePicker :disabled="isdisabled" v-model="model.surveyTime"></datetimePicker>
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -221,28 +229,28 @@
 				<myCol>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							勘查人签名
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="surveyorQuestioned">
-								<ESignature v-model="model.surveyorQuestioned"></ESignature>
+								<ESignature :disabled="isdisabled" v-model="model.surveyorQuestioned"></ESignature>
 							</uni-forms-item>
 						</view>
 
 					</myRow>
 					<myRow background="#f0f0f0" widthPercentage='1.66'>
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							当事人签名
 						</view>
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="signatureQuestioned">
-								<ESignature v-model="model.signatureQuestioned"></ESignature>
+								<ESignature :disabled="isdisabled" v-model="model.signatureQuestioned"></ESignature>
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -251,7 +259,7 @@
 				<myCol>
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							附件
 						</view>
 					</myRow>
@@ -259,8 +267,7 @@
 						<view class="public_input">
 							<uni-forms-item name="fileUrl">
 								<view class="test_index">
-
-									<upAllFile v-model="model.fileUrl"></upAllFile>
+									<upAllFile :disabled="isdisabled" v-model="model.fileUrl"></upAllFile>
 								</view>
 							</uni-forms-item>
 						</view>
@@ -270,7 +277,7 @@
 					<myRow widthPercentage='1.66' background="#f0f0f0">
 
 						<view class="public_text">
-							<requiredText></requiredText>
+
 							处理意见
 						</view>
 					</myRow>
@@ -278,7 +285,8 @@
 
 						<view class="public_input">
 							<uni-forms-item name="handlingOpinions">
-								<uni-easyinput type="textarea" v-model="model.handlingOpinions" placeholder="请输入现场踏勘情况">
+								<uni-easyinput :disabled="isdisabled" type="textarea" v-model="model.handlingOpinions"
+									placeholder="请输入现场踏勘情况">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -303,10 +311,11 @@
 				<button class="from_btn" @click="goBack" type="default">返回</button>
 			</view>
 			<view>
-				<button @click="submitexamine" v-if="model.id" class="from_btn" type="primary">提交</button>
+				<button :disabled="isdisabled" @click="submitexamine" v-if="model.id" class="from_btn"
+					type="primary">提交</button>
 			</view>
 			<view>
-				<button class="from_btn" @click="submit" type="primary">保存</button>
+				<button :disabled="isdisabled" class="from_btn" @click="submit" type="primary">保存</button>
 			</view>
 
 		</view>
@@ -333,6 +342,10 @@
 					if (val.id) {
 						console.log("valllllll", val)
 						this.model = val;
+						if (this.model.state == '1' || this.model.state == '2') {
+							this.isdisabled = true
+						}
+
 					}
 
 				},
@@ -352,7 +365,7 @@
 		},
 		data() {
 			return {
-
+				isdisabled: false,
 				testfile: '2022-05-15_log_1653014036228.txt',
 				fileLists: [],
 				// addlist

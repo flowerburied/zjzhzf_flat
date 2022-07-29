@@ -14,7 +14,7 @@
 					<text class="item_box_title">收集时间：</text>
 					<text class="item_box_text">{{item.collectionTime}}</text>
 				</view>
-				
+
 				<view class="box_item_box">
 					<text class="item_box_title">状态：</text>
 					<text class="item_box_text">{{item.state_dictText}}</text>
@@ -27,7 +27,7 @@
 					<view class="box_btn" v-if="item.state != '2'">
 						<button @click="Destruction(item)" type="default">销毁</button>
 					</view>
-					<view class="box_btn">
+					<view class="box_btn" v-if="$store.state.isAdmin">
 						<button @click="delList(item)" type="default">删除</button>
 					</view>
 					<view class="box_btn">
@@ -35,9 +35,7 @@
 					</view>
 				</view>
 			</view>
-
 		</view>
-
 		<nodata v-if="dataSource.length==0"></nodata>
 
 	</view>

@@ -19,7 +19,6 @@
 			<button :disabled="disabled" @click="delFile" class="record_right_btn" v-if="fileName"
 				type="default">删除</button>
 		</view>
-
 		<view class="sound_record_right">
 			<button v-if="fileName" type="primary" @tap="playVoice">播放录音</button>
 			<button :disabled="disabled" v-if="!isvoice" type="primary" @tap="startRecord">开始录音</button>

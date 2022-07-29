@@ -18,8 +18,8 @@
 			</view>
 		</view> -->
 
-		<lsj-upload ref="lsjUpload" childId="upload" width="100px" :height="height" :option="option" :size="size"
-			:debug="debug" :instantly="instantly" @progress="onprogress" @change="onChange">
+		<lsj-upload v-if="!disabled" ref="lsjUpload" childId="upload" width="100px" :height="height" :option="option"
+			:size="size" :debug="debug" :instantly="instantly" @progress="onprogress" @change="onChange">
 			<!-- <view class="btn">选择附件</view> -->
 			<!-- :style="{height: height}" -->
 			<button :disabled="disabled" type="primary">选择附件</button>
@@ -78,6 +78,7 @@
 			event: "change",
 		},
 		props: {
+
 			resultFile1: {
 				type: String,
 				default: ''

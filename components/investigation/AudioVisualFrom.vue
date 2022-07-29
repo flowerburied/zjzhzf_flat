@@ -13,7 +13,7 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionTime">
-								<datetimePicker :disabled="model.state=='2'" v-model="model.collectionTime"
+								<datetimePicker :disabled="isdisabled" v-model="model.collectionTime"
 									dateType="datetime">
 								</datetimePicker>
 							</uni-forms-item>
@@ -28,7 +28,7 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionMethod">
-								<uni-easyinput :disabled="model.state=='2'" v-model="model.collectionMethod"
+								<uni-easyinput :disabled="isdisabled" v-model="model.collectionMethod"
 									placeholder="请输入记录人">
 								</uni-easyinput>
 							</uni-forms-item>
@@ -46,7 +46,7 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectionLocation">
-								<uni-easyinput :disabled="model.state=='2'" type="textarea"
+								<uni-easyinput :disabled="isdisabled" type="textarea"
 									v-model="model.collectionLocation" placeholder="请输入案由!">
 								</uni-easyinput>
 							</uni-forms-item>
@@ -66,9 +66,9 @@
 						<view class="public_input">
 							<uni-forms-item name="informationUrl">
 
-								<filePicker :disabled="model.state=='2'" v-model="model.informationUrl">
+								<filePicker :disabled="isdisabled" v-model="model.informationUrl">
 								</filePicker>
-								<!-- <upAllFile :disabled="model.state=='2'" v-model="model.informationUrl"></upAllFile> -->
+								<!-- <upAllFile :disabled="isdisabled" v-model="model.informationUrl"></upAllFile> -->
 							</uni-forms-item>
 						</view>
 					</myRow>
@@ -84,7 +84,7 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="informationDescription">
-								<uni-easyinput :disabled="model.state=='2'" type="textarea" autoHeight
+								<uni-easyinput :disabled="isdisabled" type="textarea" autoHeight
 									v-model="model.informationDescription">
 								</uni-easyinput>
 							</uni-forms-item>
@@ -101,13 +101,12 @@
 					<myRow widthPercentage='8.34'>
 						<view class="public_input">
 							<uni-forms-item name="informationDescription">
-								<soundRecording :disabled="model.state=='2'" v-model="model.soundrecordingUrl">
+								<soundRecording :disabled="isdisabled" v-model="model.soundrecordingUrl">
 								</soundRecording>
 							</uni-forms-item>
 						</view>
 					</myRow>
 				</myCol>
-
 
 			</view>
 			<view class="prosp_from_btn">
@@ -115,11 +114,11 @@
 					<exportPdf pdfName="视听资料" :model="model" excelConfigId="695848109943812096"></exportPdf>
 				</view>
 				<view>
-					<button :loading="loading" :disabled="model.state=='2'" class="from_btn" @click="submitForm(false)"
+					<button :loading="loading" :disabled="isdisabled" class="from_btn" @click="submitForm(false)"
 						type="primary">保存</button>
 				</view>
 				<view>
-					<button v-if="model.state!='1'" :loading="loading" :disabled="model.state=='2'" class="from_btn"
+					<button v-if="model.state!='1'" :loading="loading" :disabled="isdisabled" class="from_btn"
 						@click="handleOkupdata" type="primary">提交</button>
 				</view>
 
@@ -144,12 +143,12 @@
 							<uni-forms-item name="signatureQuestioned">
 
 
-								<ESignature :disabled="model.state=='2'" v-model="model.signatureQuestioned">
+								<ESignature :disabled="isdisabled" v-model="model.signatureQuestioned">
 								</ESignature>
-								<datetimePicker :disabled="model.state=='2'" v-model="model.signatureQuestionedTime"
+								<datetimePicker :disabled="isdisabled" v-model="model.signatureQuestionedTime"
 									dateType="datetime">
 								</datetimePicker>
-								<!-- 						<uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+								<!-- 						<uni-datetime-picker :disabled="isdisabled" type="datetime"
 									v-model="model.signatureQuestionedTime" /> -->
 							</uni-forms-item>
 						</view>
@@ -163,11 +162,11 @@
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
 							<uni-forms-item name="collectorInquirer">
-								<ESignature :disabled="model.state=='2'" v-model="model.collectorInquirer"></ESignature>
-								<datetimePicker :disabled="model.state=='2'" v-model="model.collectorInquirerTime"
+								<ESignature :disabled="isdisabled" v-model="model.collectorInquirer"></ESignature>
+								<datetimePicker :disabled="isdisabled" v-model="model.collectorInquirerTime"
 									dateType="datetime">
 								</datetimePicker>
-								<!-- <uni-datetime-picker :disabled="model.state=='2'" type="datetime"
+								<!-- <uni-datetime-picker :disabled="isdisabled" type="datetime"
 									v-model="model.collectorInquirerTime" /> -->
 							</uni-forms-item>
 						</view>
@@ -206,6 +205,9 @@
 					if (val.id) {
 						console.log("valllllll", val)
 						this.model = val;
+						if (this.model.state == '1' || this.model.state == '2') {
+							this.isdisabled = true
+						}
 					}
 
 				},
@@ -226,6 +228,8 @@
 
 		data() {
 			return {
+				isdisabled: false,
+
 				sexlocaldata: [{
 					text: '男',
 					value: '1'

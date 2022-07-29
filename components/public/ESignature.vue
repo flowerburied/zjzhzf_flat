@@ -9,7 +9,7 @@
 		<uni-popup ref="popup" type="center">
 			<view class="recti_popup">
 				<view class="recti_popup_canvas">
-					<drawing-board @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="500rpx"
+					<drawing-board :lineWidth="4" @touchmove222="touchmove222" ref="drawingBoard" canvasWidth="500rpx"
 						canvasHeight="225rpx">
 					</drawing-board>
 				</view>

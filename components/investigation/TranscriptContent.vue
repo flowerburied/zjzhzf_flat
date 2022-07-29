@@ -29,8 +29,8 @@
 					<view class="box_btn" v-if="item.state != '2'">
 						<button @click="Destruction(item)" type="default">销毁</button>
 					</view>
-					<view class="box_btn">
-						<button @click="delList(item)" type="default">删除</button>
+					<view class="box_btn" v-if="$store.state.isAdmin">
+						<button @click="delList(item)" type="default">删除</button>	
 					</view>
 					<view class="box_btn">
 						<button @click="changeList(item)" type="primary">修改</button>

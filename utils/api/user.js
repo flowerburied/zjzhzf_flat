@@ -18,7 +18,7 @@ let user = {
 			method: 'GET',
 			
 		})
-	}
+	},
 }
 // 用户授权
 export default user

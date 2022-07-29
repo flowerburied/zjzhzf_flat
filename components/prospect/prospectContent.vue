@@ -18,11 +18,18 @@
 					<text class="item_box_title">勘查时间：</text>
 					<text class="item_box_text2">{{item.surveyTime}}</text>
 				</view>
+				<view class="box_item_box">
+					<text class="item_box_title">状态：</text>
+					<text class="item_box_text2">{{item.state=='0'?'草稿':item.state=='1'?'待审核':'已审核'}}</text>
+				</view>
 				<view class="box_line">
 
 				</view>
 				<view class="box_btn_add">
-					<view class="box_btn">
+					<view class="box_btn" v-if="item.state == '1'">
+						<button @click="examine(item)" type="default">审核</button>
+					</view>
+					<view class="box_btn" v-if="$store.state.isAdmin">
 						<button @click="delList(item)" type="default">删除</button>
 					</view>
 					<view class="box_btn">
@@ -48,6 +55,53 @@
 			}
 		},
 		methods: {
+			examine(val) {
+				let that = this
+				uni.showModal({
+					title: '提示',
+					content: '再次确认通过审核',
+					success: function(res) {
+						if (res.confirm) {
+							that.examineTrue(val.id)
+							console.log('用户点击确定');
+						} else if (res.cancel) {
+							console.log('用户点击取消');
+						}
+					}
+				});
+			},
+			async examineTrue(val) {
+				console.log("val", val);
+				let httpurl = "/zhzf/siteSurvey/approved";
+				let method = "post";
+				let option = {
+					id: val,
+				};
+
+				const res = await this.api.fieldInvestigation.TotolPostFun(option, httpurl, method)
+				const {
+					code,
+					message,
+					result,
+					success
+				} = res
+				if (success) {
+					console.log("res", res)
+					uni.showToast({
+						icon: "none",
+						title: message,
+						duration: 2000
+					});
+					this.$emit("callbackCon")
+				} else {
+					uni.showToast({
+						icon: "none",
+						title: message,
+						duration: 2000
+					});
+				}
+
+			},
 			tolist() {
 				// console.log("34567")
 				uni.navigateTo({

@@ -26,6 +26,22 @@ let publics = {
 			params: params
 		})
 	},
+	queryTreeList() {
+		return request.request({
+			url: '/sys/sysDepart/queryTreeList',
+			method: 'GET',
+
+		})
+	},
+
+	queryUserByDepId(params) {
+		return request.request({
+			url: '/sys/user/queryUserByDepId',
+			method: 'GET',
+			params: params
+
+		})
+	},
 
 }
 // 用户授权

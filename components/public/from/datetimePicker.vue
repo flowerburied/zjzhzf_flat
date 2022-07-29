@@ -1,9 +1,10 @@
 <template>
 	<view class="datatimepick_box" @click="showFun">
 		<uni-datetime-picker @maskClick="maskClickFun" :disabled="disabled" rangeSeparator="至" :type="dateType"
-			:clear-icon="false" v-model="datetimesingle" @change="timechange" />
-		<view class="datatimepick_box_btn" v-if="isShowBtn">
-			<button v-if="dateType!='datetimerange'" size="mini" type="default" @click.stop="onwtime">此刻</button>
+			:clear-icon="true" v-model="datetimesingle" @change="timechange" />
+		<view class="datatimepick_box_btn" v-if="isShowBtn&&isShowBtn1">
+			<button :disabled="disabled" v-if="dateType!='datetimerange' " size="mini" type="default"
+				@click.stop="onwtime">此刻</button>
 		</view>
 
 	</view>
@@ -16,7 +17,8 @@
 			return {
 				datetimesingle: '',
 				isShowBtn: false,
-				isShowPopup:false
+				isShowPopup: false,
+				isShowBtn1: true
 			}
 		},
 		watch: {
@@ -25,15 +27,22 @@
 					if (val) {
 						this.datetimesingle = val;
 					}
-					//  else {
-					// 	if (this.dateType == 'datetimerange') {
+				},
+				//立刻执行handler
+				immediate: true,
+			},
+			datetimesingle: {
+				handler(val, oldValue) {
+					if (val) {
+						this.isShowBtn1 = false;
 
-					// 	} else {
-					// 		this.datetimesingle = Date.now() - 2 * 24 * 3600 * 1000
-					// 	}
-					// }
-
-
+						setTimeout(() => {
+							this.isShowBtn = false
+						}, 50);
+						console.log("val", val)
+					} else {
+						this.isShowBtn1 = true;
+					}
 				},
 				//立刻执行handler
 				immediate: true,
@@ -60,19 +69,18 @@
 		methods: {
 			showFun() {
 				this.isShowBtn = !this.isShowBtn
-				console.log("点击showFun")
+				console.log("点击showFun", this.isShowBtn)
 			},
 			maskClickFun() {
 				console.log("点击")
 				this.isShowBtn = false
 			},
 			onwtime() {
-
 				this.datetimesingle = Date.now()
 				const getTime = myfun.datialTime(this.datetimesingle)
 				console.log("getTime", getTime)
 				this.$emit("change", getTime);
-					this.isShowBtn = false
+				this.isShowBtn = false
 				// console.log("getTime", this.datetimesingle)
 			},
 			// maskClick(e) {
