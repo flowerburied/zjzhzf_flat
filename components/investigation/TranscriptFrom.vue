@@ -327,7 +327,7 @@
 					</myRow>
 					<myRow widthPercentage='3.34'>
 						<view class="public_input">
-							<uni-forms-item name="personQuestionedSign">
+							<uni-forms-item name="noteTakerSign">
 								<ESignature  :disabled="isdisabled" v-model="model.noteTakerSign"></ESignature>
 
 								<datetimePicker :disabled="isdisabled" v-model="model.noteTakerTime"

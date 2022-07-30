@@ -258,7 +258,7 @@
 					collectionMethod: {
 						rules: [{
 							required: true,
-							errorMessage: '请输入收集方式',
+							errorMessage: '请选择记录人',
 
 						}, ]
 					},

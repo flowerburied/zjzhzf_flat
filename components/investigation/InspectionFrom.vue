@@ -443,7 +443,7 @@
 						<view class="public_input">
 							<uni-forms-item name="checkedByNotice">
 
-								<uni-easyinput :disabled="isdisabled" type="textarea" autoHeight
+								<uni-easyinput :maxlength="-1" :disabled="isdisabled" type="textarea" autoHeight
 									v-model="model.checkedByNotice" placeholder="请输入检查人告知!">
 								</uni-easyinput>
 							</uni-forms-item>
