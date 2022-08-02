@@ -459,7 +459,7 @@
 					noteTaker: {
 						rules: [{
 							required: true,
-							errorMessage: "输入记录人!",
+							errorMessage: "请选择记录人!",
 
 						}, ]
 					},

@@ -1,7 +1,7 @@
 <template>
 	<view class="datatimepick_box" @click="showFun">
 		<uni-datetime-picker @maskClick="maskClickFun" :disabled="disabled" rangeSeparator="至" :type="dateType"
-			:clear-icon="true" v-model="datetimesingle" @change="timechange" />
+			:clear-icon="dateType!='date'" v-model="datetimesingle" @change="timechange" />
 		<view class="datatimepick_box_btn" v-if="isShowBtn&&isShowBtn1">
 			<button :disabled="disabled" v-if="dateType!='datetimerange' " size="mini" type="default"
 				@click.stop="onwtime">此刻</button>

@@ -29,7 +29,7 @@
 						<view class="public_input">
 							<uni-forms-item name="collectionMethod">
 								<uni-easyinput :disabled="isdisabled" v-model="model.collectionMethod"
-									placeholder="请输入记录人">
+									placeholder="请输入收集方式">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -47,7 +47,7 @@
 						<view class="public_input">
 							<uni-forms-item name="collectionLocation">
 								<uni-easyinput :disabled="isdisabled" type="textarea"
-									v-model="model.collectionLocation" placeholder="请输入案由!">
+									v-model="model.collectionLocation" placeholder="请输入收集地点!">
 								</uni-easyinput>
 							</uni-forms-item>
 						</view>
@@ -258,7 +258,7 @@
 					collectionMethod: {
 						rules: [{
 							required: true,
-							errorMessage: '请选择记录人',
+							errorMessage: '请输入收集方式',
 
 						}, ]
 					},

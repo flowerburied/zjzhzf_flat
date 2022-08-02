@@ -21,7 +21,9 @@
 		</view>
 		<view class="sound_record_right">
 			<button v-if="fileName" type="primary" @tap="playVoice">播放录音</button>
-			<button :disabled="disabled" v-if="!isvoice" type="primary" @tap="startRecord">开始录音</button>
+			<!-- requestAndroidPermission
+			startRecord -->
+			<button :disabled="disabled" v-if="!isvoice" type="primary" @tap="requestAndroidPermission">开始录音</button>
 			<button :disabled="disabled" v-if="isvoice" type="primary" @tap="endRecord">结束录音</button>
 		</view>
 
@@ -29,6 +31,7 @@
 </template>
 
 <script>
+	import permision from "@/js_sdk/wa-permission/permission.js"
 	// 录音
 	const recorderManager = uni.getRecorderManager();
 	const innerAudioContext = uni.createInnerAudioContext();
@@ -68,6 +71,55 @@
 			}
 		},
 		methods: {
+
+
+
+			async requestAndroidPermission() {
+				let permisionID = 'android.permission.RECORD_AUDIO'
+				var result = await permision.requestAndroidPermission(permisionID)
+				var strStatus
+				if (result == 1) {
+					strStatus = "已获得授权"
+					this.startRecord()
+				} else if (result == 0) {
+					// strStatus = "未获得授权"
+					// uni.showModal({
+					// 	content: '录音' + strStatus,
+					// 	showCancel: false
+					// });
+					uni.showModal({
+						title: '录音未获得授权',
+						content: '是否去打开权限',
+						success: function(res) {
+							if (res.confirm) {
+								permision.gotoAppPermissionSetting()
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				} else {
+					// strStatus = "被永久拒绝权限"
+					// uni.showModal({
+					// 	content: '录音' + strStatus,
+					// 	showCancel: false
+					// });
+					uni.showModal({
+						title: '录音未获得授权',
+						content: '是否去打开权限',
+						success: function(res) {
+							if (res.confirm) {
+								permision.gotoAppPermissionSetting()
+								console.log('用户点击确定');
+							} else if (res.cancel) {
+								console.log('用户点击取消');
+							}
+						}
+					});
+				}
+
+			},
 			download() {
 
 				let downUrl = this.url + '/' + this.fileName;
@@ -143,6 +195,7 @@
 				this.isvoice = true
 				recorderManager.start();
 			},
+
 			endRecord() {
 				// uni.showLoading({
 				// 	title: '加载中'
@@ -164,6 +217,9 @@
 				}
 			},
 			updata(val) {
+				uni.showLoading({
+					title: '加载中'
+				});
 				console.log('updata上传', val)
 				let token = uni.getStorageSync('token')
 				uni.uploadFile({

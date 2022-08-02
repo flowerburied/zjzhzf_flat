@@ -1,4 +1,6 @@
 
+##权限判断Android设备iOS设备permisionID字段不一样
+
 ## 附件上传
 [](https://ext.dcloud.net.cn/plugin?id=5459#detail)
 2.0不能在scroll-view中使用 一定要用动态fixed或者使用1.0
